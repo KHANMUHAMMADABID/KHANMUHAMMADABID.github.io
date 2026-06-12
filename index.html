@@ -1,0 +1,2865 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dr. Khan Muhammad Abid | Atmospheric & Climate Scientist</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    :root {
+      --navy:    #0a1628;
+      --navy2:   #0f2040;
+      --teal:    #1a6b6b;
+      --teal2:   #22a8a8;
+      --gold:    #c9a84c;
+      --gold2:   #e8c96e;
+      --offwhite:#f0ede8;
+      --muted:   #8a9bb0;
+      --sidebar: 290px;
+      --trans:   0.3s ease;
+      --cover-h: 340px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--navy);
+      color: var(--offwhite);
+      display: flex;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ══ SIDEBAR ══ */
+    #sidebar {
+      position: fixed; top: 0; left: 0;
+      width: var(--sidebar); height: 100vh;
+      background: linear-gradient(180deg, var(--navy2) 0%, #071020 100%);
+      border-right: 1px solid rgba(26,107,107,0.3);
+      display: flex; flex-direction: column;
+      z-index: 100; overflow-y: auto;
+      transition: transform var(--trans);
+      scrollbar-width: thin;
+      scrollbar-color: rgba(26,107,107,0.3) transparent;
+    }
+    #sidebar::-webkit-scrollbar { width: 4px; }
+    #sidebar::-webkit-scrollbar-track { background: transparent; }
+    #sidebar::-webkit-scrollbar-thumb { background: rgba(26,107,107,0.4); border-radius: 4px; }
+
+    /* ── Sidebar cover photo ── */
+    .sidebar-cover {
+      width: 100%;
+      height: 110px;
+      background: url('cover.jpg') center/cover no-repeat,
+                  linear-gradient(135deg, #0d3a4a 0%, #0a1628 100%);
+      position: relative;
+      flex-shrink: 0;
+    }
+    .sidebar-cover::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom, rgba(10,22,40,0.2), rgba(10,22,40,0.85));
+    }
+
+    .sidebar-top {
+      padding: 0 1.5rem 1rem;
+      border-bottom: 1px solid rgba(26,107,107,0.25);
+      text-align: center;
+      position: relative;
+    }
+
+    .avatar-wrap {
+      width: 90px; height: 90px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--teal), var(--gold));
+      padding: 3px; margin: -45px auto 0.7rem;
+      position: relative; z-index: 2;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    }
+    .avatar-inner {
+      width: 100%; height: 100%; border-radius: 50%;
+      background: url('photo.jpg') center/cover no-repeat,
+                  linear-gradient(135deg, #1a3a5c, #0f2040);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem; color: var(--gold2); font-weight: 300;
+    }
+    .sidebar-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem; font-weight: 600;
+      color: var(--offwhite); line-height: 1.25; margin-bottom: 0.25rem;
+    }
+    .sidebar-title {
+      font-size: 0.68rem; color: var(--teal2);
+      letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 0.2rem;
+    }
+    .sidebar-inst {
+      font-size: 0.67rem; color: var(--muted); font-style: italic;
+    }
+
+    /* Social icons row */
+    .social-row {
+      display: flex; flex-wrap: wrap; justify-content: center;
+      gap: 0.4rem; padding: 0.8rem 1rem;
+      border-bottom: 1px solid rgba(26,107,107,0.2);
+    }
+    .social-link {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 32px; height: 32px; border-radius: 6px;
+      background: rgba(26,107,107,0.15);
+      border: 1px solid rgba(26,107,107,0.35);
+      color: var(--teal2); text-decoration: none;
+      font-size: 0.85rem;
+      transition: all var(--trans);
+      position: relative;
+    }
+    .social-link:hover {
+      background: rgba(26,107,107,0.35); border-color: var(--teal2);
+      color: var(--gold2); transform: translateY(-2px);
+    }
+    .social-link[title]:hover::after {
+      content: attr(title);
+      position: absolute; bottom: 110%; left: 50%; transform: translateX(-50%);
+      background: var(--navy2); color: var(--offwhite);
+      font-size: 0.6rem; white-space: nowrap;
+      padding: 0.2rem 0.5rem; border-radius: 4px;
+      border: 1px solid rgba(26,107,107,0.3);
+      pointer-events: none; z-index: 10;
+    }
+
+    /* Nav */
+    nav { flex: 1; padding: 0.5rem 0; }
+    .nav-section-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.58rem; text-transform: uppercase;
+      letter-spacing: 0.12em; color: var(--muted);
+      padding: 0.7rem 1.5rem 0.2rem;
+    }
+    nav a {
+      display: flex; align-items: center; gap: 0.55rem;
+      padding: 0.48rem 1.5rem;
+      color: #8fa8c2; text-decoration: none;
+      font-size: 0.79rem; font-weight: 400;
+      transition: all var(--trans);
+      border-left: 2px solid transparent;
+    }
+    nav a .nav-icon { font-size: 0.82rem; width: 16px; text-align: center; color: var(--muted); }
+    nav a:hover, nav a.active {
+      color: var(--offwhite); background: rgba(26,107,107,0.1);
+      border-left-color: var(--teal2); padding-left: 1.8rem;
+    }
+    nav a.active { color: var(--gold2); border-left-color: var(--gold); }
+    .sidebar-footer {
+      padding: 0.8rem 1.5rem;
+      border-top: 1px solid rgba(26,107,107,0.2);
+      font-size: 0.62rem; color: var(--muted);
+      font-family: 'DM Mono', monospace;
+    }
+
+    /* ══ MAIN ══ */
+    #main { margin-left: var(--sidebar); flex: 1; min-height: 100vh; }
+
+    /* ── Cover banner (top of main) ── */
+    .main-cover {
+      width: 100%; height: var(--cover-h);
+      background: url('cover.jpg') center/cover no-repeat,
+                  linear-gradient(135deg, #0d3a4a 0%, #071020 100%);
+      position: relative; overflow: hidden;
+    }
+    .main-cover::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg,
+        rgba(10,22,40,0.6) 0%,
+        rgba(26,107,107,0.12) 50%,
+        rgba(10,22,40,0.72) 100%);
+    }
+    .cover-overlay {
+      position: absolute; inset: 0; z-index: 2;
+      display: flex; flex-direction: row;
+      align-items: flex-end;
+      padding: 2.5rem 3.5rem;
+      gap: 2.2rem;
+    }
+    /* Profile photo in cover */
+    .cover-photo-wrap {
+      flex-shrink: 0;
+      width: 110px; height: 110px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--teal2), var(--gold));
+      padding: 3px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.55);
+      opacity: 0; animation: fadeUp 0.7s 0.15s forwards;
+    }
+    .cover-photo-inner {
+      width: 100%; height: 100%; border-radius: 50%;
+      background: url('photo.jpg') center/cover no-repeat,
+                  linear-gradient(135deg, #1a3a5c, #0f2040);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem; color: var(--gold2); font-weight: 300;
+    }
+    .cover-text { flex: 1; }
+    .cover-eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem; color: var(--teal2);
+      letter-spacing: 0.2em; text-transform: uppercase;
+      margin-bottom: 0.45rem;
+      opacity: 0; animation: fadeUp 0.7s 0.25s forwards;
+    }
+    .cover-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 3.8vw, 3.5rem);
+      font-weight: 300; line-height: 1.1;
+      color: #fff; text-shadow: 0 2px 20px rgba(0,0,0,0.5);
+      margin-bottom: 0.4rem;
+      opacity: 0; animation: fadeUp 0.7s 0.38s forwards;
+    }
+    .cover-name em { font-style: italic; color: var(--gold2); }
+    .cover-subtitle {
+      font-size: 0.9rem; color: rgba(255,255,255,0.75);
+      font-weight: 300; letter-spacing: 0.04em;
+      opacity: 0; animation: fadeUp 0.7s 0.52s forwards;
+    }
+    .cover-bar {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(to right, var(--teal2), var(--gold), var(--teal2));
+    }
+    /* Cover photo portrait */
+    .cover-portrait {
+      position: absolute; right: 4rem; top: 50%; transform: translateY(-50%);
+      z-index: 3;
+      opacity: 0; animation: fadeUp 0.7s 0.5s forwards;
+    }
+    .cover-portrait-ring {
+      width: 140px; height: 140px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--teal2), var(--gold));
+      padding: 3px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.5), 0 0 0 6px rgba(34,168,168,0.15);
+    }
+    .cover-portrait-inner {
+      width: 100%; height: 100%; border-radius: 50%;
+      background: url('photo.jpg') center/cover no-repeat,
+                  linear-gradient(135deg, #1a3a5c, #0f2040);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.8rem; color: var(--gold2); font-weight: 300;
+    }
+    @media (max-width: 960px) {
+      .cover-portrait { display: none; }
+    }
+
+    /* ── Sections ── */
+    .section {
+      padding: 4rem 3.5rem 3rem;
+      border-bottom: 1px solid rgba(26,107,107,0.13);
+      position: relative;
+    }
+    .section:last-child { border-bottom: none; }
+    .section-header {
+      display: flex; align-items: baseline;
+      gap: 1rem; margin-bottom: 2rem;
+    }
+    .section-number {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem; color: var(--teal2); letter-spacing: 0.05em;
+    }
+    h2.section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem; font-weight: 300;
+      color: var(--offwhite); letter-spacing: 0.02em;
+    }
+    .section-line {
+      flex: 1; height: 1px;
+      background: linear-gradient(to right, rgba(26,107,107,0.5), transparent);
+    }
+
+    /* ══ HOME ══ */
+    #home {
+      background: radial-gradient(ellipse 60% 50% at 80% 50%, rgba(26,107,107,0.1) 0%, transparent 70%),
+                  radial-gradient(ellipse 40% 40% at 20% 80%, rgba(201,168,76,0.05) 0%, transparent 60%);
+    }
+    .home-bio {
+      max-width: 750px; font-size: 0.95rem;
+      line-height: 1.85; color: #b0c4d8; margin-bottom: 1.5rem;
+      text-align: justify;
+    }
+    .home-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2rem; }
+    .tag {
+      padding: 0.3rem 0.8rem; border-radius: 20px;
+      border: 1px solid rgba(26,107,107,0.5);
+      background: rgba(26,107,107,0.1);
+      color: var(--teal2); font-size: 0.73rem;
+      font-family: 'DM Mono', monospace;
+      transition: all var(--trans);
+    }
+    .tag:hover { background: rgba(26,107,107,0.22); color: var(--offwhite); border-color: var(--teal2); }
+    .home-cta { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
+    .btn {
+      padding: 0.65rem 1.6rem; border-radius: 4px;
+      font-size: 0.82rem; font-family: 'DM Sans', sans-serif; font-weight: 500;
+      text-decoration: none; transition: all var(--trans);
+      cursor: pointer; display: inline-flex; align-items: center; gap: 0.4rem; border: none;
+    }
+    .btn-primary { background: var(--teal); color: var(--offwhite); border: 1px solid var(--teal); }
+    .btn-primary:hover { background: var(--teal2); border-color: var(--teal2); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(26,107,107,0.35); }
+    .btn-outline { background: transparent; color: var(--gold); border: 1px solid var(--gold); }
+    .btn-outline:hover { background: rgba(201,168,76,0.1); transform: translateY(-2px); }
+    .stats-bar { display: flex; gap: 2rem; flex-wrap: wrap; padding: 1.5rem 0 0; border-top: 1px solid rgba(26,107,107,0.2); }
+    .stat { text-align: left; }
+    .stat-num { font-family: 'Cormorant Garamond', serif; font-size: 1.9rem; font-weight: 600; color: var(--gold2); display: block; }
+    .stat-label { font-size: 0.65rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; font-family: 'DM Mono', monospace; }
+
+    /* ══ CARDS / GRIDS ══ */
+    .interest-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px,1fr)); gap: 1rem; }
+    .interest-card {
+      background: rgba(15,32,64,0.55);
+      border: 1px solid rgba(26,107,107,0.22);
+      border-radius: 8px; padding: 1.4rem;
+      transition: all var(--trans); position: relative; overflow: hidden;
+    }
+    .interest-card::before {
+      content: ''; position: absolute; top: 0; left: 0;
+      width: 3px; height: 100%;
+      background: linear-gradient(to bottom, var(--teal2), var(--gold));
+      opacity: 0; transition: opacity var(--trans);
+    }
+    .interest-card:hover { border-color: rgba(26,107,107,0.55); transform: translateY(-4px); box-shadow: 0 14px 36px rgba(0,0,0,0.28); }
+    .interest-card:hover::before { opacity: 1; }
+    .interest-icon { font-size: 1.6rem; margin-bottom: 0.7rem; display: block; }
+    .interest-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 600; color: var(--offwhite); margin-bottom: 0.4rem; }
+    .interest-card p { font-size: 0.79rem; color: var(--muted); line-height: 1.6; text-align: justify; }
+
+    /* ══ TIMELINE ══ */
+    .timeline { position: relative; padding-left: 1.8rem; }
+    .timeline::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 1px; background: linear-gradient(to bottom, var(--teal2), rgba(26,107,107,0.1)); }
+    .tl-item { position: relative; margin-bottom: 2.2rem; padding-left: 1.4rem; }
+    .tl-item::before { content: ''; position: absolute; left: -2.2rem; top: 0.3rem; width: 10px; height: 10px; border-radius: 50%; background: var(--teal2); border: 2px solid var(--navy); box-shadow: 0 0 0 3px rgba(34,168,168,0.2); }
+    .tl-date { font-family: 'DM Mono', monospace; font-size: 0.65rem; color: var(--gold); letter-spacing: 0.08em; margin-bottom: 0.25rem; }
+    .tl-title { font-family: 'Cormorant Garamond', serif; font-size: 1.18rem; font-weight: 600; color: var(--offwhite); margin-bottom: 0.18rem; }
+    .tl-org { font-size: 0.82rem; color: var(--teal2); margin-bottom: 0.45rem; }
+    .tl-body { font-size: 0.8rem; color: var(--muted); line-height: 1.7; text-align: justify; }
+    .tl-badge { display: inline-block; padding: 0.18rem 0.55rem; border-radius: 3px; background: rgba(201,168,76,0.12); border: 1px solid rgba(201,168,76,0.3); color: var(--gold2); font-size: 0.62rem; font-family: 'DM Mono', monospace; margin-top: 0.4rem; }
+    .tl-proj { margin-top: 0.6rem; }
+    .tl-proj-item { background: rgba(26,107,107,0.07); border: 1px solid rgba(26,107,107,0.18); border-radius: 6px; padding: 0.7rem 0.9rem; margin-bottom: 0.5rem; }
+    .tl-proj-item h5 { font-size: 0.78rem; color: var(--teal2); font-family: 'DM Mono', monospace; margin-bottom: 0.3rem; letter-spacing: 0.04em; }
+    .tl-proj-item p { font-size: 0.77rem; color: var(--muted); line-height: 1.6; text-align: justify; }
+
+    /* ══ PUBLICATIONS ══ */
+    .pub-filters { display: flex; gap: 0.45rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+    .filter-btn { padding: 0.28rem 0.85rem; border-radius: 20px; border: 1px solid rgba(26,107,107,0.4); background: transparent; color: var(--muted); font-size: 0.72rem; font-family: 'DM Mono', monospace; cursor: pointer; transition: all var(--trans); }
+    .filter-btn.active, .filter-btn:hover { background: rgba(26,107,107,0.2); color: var(--offwhite); border-color: var(--teal2); }
+    .pub-item {
+      background: rgba(15,32,64,0.5); border: 1px solid rgba(26,107,107,0.2);
+      border-radius: 8px; padding: 1.2rem 1.4rem;
+      margin-bottom: 0.85rem; transition: all var(--trans); position: relative;
+    }
+    .pub-item:hover { border-color: rgba(26,107,107,0.48); background: rgba(15,32,64,0.72); }
+    .pub-num { font-family: 'DM Mono', monospace; font-size: 0.63rem; color: var(--teal2); margin-bottom: 0.28rem; }
+    .pub-title { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; font-weight: 600; color: var(--offwhite); line-height: 1.4; margin-bottom: 0.3rem; }
+    .pub-authors { font-size: 0.76rem; color: var(--muted); margin-bottom: 0.22rem; }
+    .pub-authors strong { color: var(--teal2); }
+    .pub-journal { font-size: 0.76rem; color: var(--gold); font-style: italic; }
+    .pub-tags { display: flex; gap: 0.35rem; flex-wrap: wrap; margin-top: 0.55rem; align-items: center; }
+    .pub-tag { padding: 0.13rem 0.48rem; border-radius: 3px; font-size: 0.6rem; font-family: 'DM Mono', monospace; background: rgba(26,107,107,0.13); color: var(--teal2); border: 1px solid rgba(26,107,107,0.28); }
+    .pub-tag.review { background: rgba(201,168,76,0.1); color: var(--gold2); border-color: rgba(201,168,76,0.28); }
+    .pub-actions { position: absolute; right: 1rem; top: 1rem; display: flex; gap: 0.4rem; align-items: center; }
+    .pub-link { font-size: 0.67rem; color: var(--teal2); text-decoration: none; font-family: 'DM Mono', monospace; transition: color var(--trans); background: rgba(26,107,107,0.12); border: 1px solid rgba(26,107,107,0.3); padding: 0.18rem 0.5rem; border-radius: 3px; }
+    .pub-link:hover { color: var(--gold2); border-color: var(--gold2); background: rgba(201,168,76,0.08); }
+
+    /* ══ DATASETS ══ */
+    .dataset-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px,1fr)); gap: 1rem; }
+    .dataset-card {
+      background: rgba(15,32,64,0.5); border: 1px solid rgba(26,107,107,0.22);
+      border-radius: 8px; padding: 1.2rem 1.4rem;
+      transition: all var(--trans); position: relative; overflow: hidden;
+    }
+    .dataset-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: linear-gradient(to right, var(--teal2), var(--gold)); opacity: 0; transition: opacity var(--trans); }
+    .dataset-card:hover { border-color: rgba(26,107,107,0.5); transform: translateY(-3px); }
+    .dataset-card:hover::before { opacity: 1; }
+    .dataset-icon { font-size: 1.4rem; margin-bottom: 0.5rem; }
+    .dataset-card h4 { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-weight: 600; color: var(--offwhite); margin-bottom: 0.3rem; }
+    .dataset-card p { font-size: 0.76rem; color: var(--muted); line-height: 1.55; margin-bottom: 0.5rem; text-align: justify; }
+    .dataset-card a { font-size: 0.68rem; color: var(--teal2); text-decoration: none; font-family: 'DM Mono', monospace; }
+    .dataset-card a:hover { color: var(--gold2); }
+    .dataset-pub { font-size: 0.68rem; color: rgba(201,168,76,0.7); font-style: italic; margin-top: 0.3rem; }
+
+    /* ══ AWARDS ══ */
+    .awards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px,1fr)); gap: 0.9rem; }
+    .award-card { background: rgba(15,32,64,0.5); border: 1px solid rgba(26,107,107,0.2); border-radius: 8px; padding: 1.1rem 1.3rem; display: flex; gap: 0.9rem; align-items: flex-start; transition: all var(--trans); }
+    .award-card:hover { border-color: rgba(201,168,76,0.38); background: rgba(15,32,64,0.72); }
+    .award-icon { font-size: 1.4rem; flex-shrink: 0; }
+    .award-year { font-family: 'DM Mono', monospace; font-size: 0.62rem; color: var(--gold); margin-bottom: 0.18rem; }
+    .award-title { font-size: 0.85rem; color: var(--offwhite); font-weight: 500; line-height: 1.4; }
+    .award-body { font-size: 0.72rem; color: var(--muted); margin-top: 0.18rem; line-height: 1.5; text-align: justify; }
+
+    /* ══ SKILLS ══ */
+    .skills-cols { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px,1fr)); gap: 1.4rem; }
+    .skill-group h4 { font-family: 'DM Mono', monospace; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--teal2); margin-bottom: 0.65rem; padding-bottom: 0.35rem; border-bottom: 1px solid rgba(26,107,107,0.22); }
+    .skill-pill { display: inline-block; padding: 0.22rem 0.6rem; margin: 0.18rem 0.18rem 0 0; border-radius: 4px; background: rgba(15,32,64,0.65); border: 1px solid rgba(26,107,107,0.22); color: #8fa8c2; font-size: 0.72rem; font-family: 'DM Mono', monospace; transition: all var(--trans); }
+    .skill-pill:hover { color: var(--offwhite); border-color: var(--teal2); background: rgba(26,107,107,0.14); }
+
+    /* ══ PRESENTATIONS ══ */
+    .pres-item { display: flex; gap: 1.3rem; padding: 1.1rem 0; border-bottom: 1px solid rgba(26,107,107,0.13); align-items: flex-start; }
+    .pres-date { font-family: 'DM Mono', monospace; font-size: 0.63rem; color: var(--gold); white-space: nowrap; min-width: 78px; padding-top: 0.12rem; }
+    .pres-title { font-size: 0.85rem; color: var(--offwhite); font-weight: 500; line-height: 1.4; }
+    .pres-venue { font-size: 0.73rem; color: var(--muted); margin-top: 0.18rem; }
+    .pres-type { display: inline-block; padding: 0.13rem 0.42rem; border-radius: 3px; font-size: 0.58rem; font-family: 'DM Mono', monospace; margin-right: 0.35rem; }
+    .pres-type.oral { background: rgba(26,107,107,0.18); color: var(--teal2); border: 1px solid rgba(26,107,107,0.32); }
+    .pres-type.poster { background: rgba(201,168,76,0.1); color: var(--gold2); border: 1px solid rgba(201,168,76,0.28); }
+    .pres-subhead {
+      display: flex; align-items: center; gap: 0.7rem;
+      padding: 0.6rem 0; margin-bottom: 0.4rem;
+      border-bottom: 1px solid rgba(26,107,107,0.3);
+    }
+    .pres-subhead-icon { color: var(--teal2); font-size: 0.9rem; width: 18px; text-align:center; }
+    .pres-subhead-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem; text-transform: uppercase;
+      letter-spacing: 0.1em; color: var(--offwhite);
+    }
+    .pres-pdf { display: inline-flex; align-items: center; gap: 0.25rem; margin-top: 0.3rem; font-size: 0.65rem; color: var(--teal2); text-decoration: none; font-family: 'DM Mono', monospace; border: 1px solid rgba(26,107,107,0.3); padding: 0.12rem 0.4rem; border-radius: 3px; transition: all var(--trans); }
+    .pres-pdf:hover { color: var(--gold2); border-color: var(--gold2); }
+
+    /* ══ TEACHING TABLE ══ */
+    .teach-table { width: 100%; border-collapse: collapse; font-size: 0.79rem; }
+    .teach-table th { font-family: 'DM Mono', monospace; font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--teal2); text-align: left; padding: 0.55rem 0.75rem; border-bottom: 1px solid rgba(26,107,107,0.28); }
+    .teach-table td { padding: 0.65rem 0.75rem; color: #8fa8c2; border-bottom: 1px solid rgba(26,107,107,0.1); vertical-align: top; line-height: 1.5; }
+    .teach-table tr:hover td { background: rgba(26,107,107,0.06); color: var(--offwhite); }
+    .teach-dept { font-size: 0.68rem; color: var(--muted); font-style: italic; }
+
+    /* ══ CONTACT ══ */
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .contact-info h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 400; color: var(--offwhite); margin-bottom: 1.1rem; }
+    .contact-row { display: flex; gap: 0.75rem; align-items: flex-start; margin-bottom: 0.9rem; }
+    .contact-icon { font-size: 0.95rem; padding-top: 0.1rem; color: var(--teal2); width: 18px; }
+    .contact-label { font-family: 'DM Mono', monospace; font-size: 0.62rem; text-transform: uppercase; color: var(--muted); margin-bottom: 0.13rem; }
+    .contact-val { font-size: 0.82rem; color: var(--offwhite); }
+    .contact-val a { color: var(--teal2); text-decoration: none; }
+    .contact-val a:hover { color: var(--gold2); }
+    .profiles-grid { display: flex; flex-direction: column; gap: 0.55rem; }
+    .profile-link { display: flex; align-items: center; gap: 0.65rem; padding: 0.65rem 0.9rem; border-radius: 6px; background: rgba(15,32,64,0.5); border: 1px solid rgba(26,107,107,0.22); color: var(--offwhite); text-decoration: none; font-size: 0.79rem; transition: all var(--trans); }
+    .profile-link:hover { border-color: var(--teal2); background: rgba(26,107,107,0.13); transform: translateX(4px); }
+    .profile-link i { width: 18px; text-align: center; color: var(--teal2); }
+    .profile-link-label { flex: 1; }
+    .profile-link-arrow { color: var(--muted); font-size: 0.75rem; }
+
+    /* ══ GALLERY ══ */
+    .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px,1fr)); gap: 1rem; }
+    .gallery-item {
+      background: rgba(15,32,64,0.6);
+      border: 1px solid rgba(26,107,107,0.22); border-radius: 8px;
+      display: flex; flex-direction: column;
+      transition: all var(--trans); overflow: hidden; cursor: pointer;
+    }
+    .gallery-item:hover { border-color: var(--teal2); box-shadow: 0 6px 24px rgba(0,0,0,0.35); }
+    .gallery-img-wrap {
+      width: 100%; aspect-ratio: 4/3; overflow: hidden;
+      background: rgba(10,22,40,0.8);
+      display: flex; align-items: center; justify-content: center;
+      position: relative;
+    }
+    .gallery-img-wrap img { width: 100%; height: 100%; object-fit: cover; opacity: 0.85; transition: opacity var(--trans), transform var(--trans); }
+    .gallery-item:hover .gallery-img-wrap img { opacity: 1; transform: scale(1.04); }
+    .gallery-caption {
+      padding: 0.45rem 0.6rem 0.5rem;
+      font-size: 0.65rem; color: var(--offwhite);
+      font-family: 'DM Sans', sans-serif;
+      background: rgba(10,22,40,0.75);
+      border-top: 1px solid rgba(26,107,107,0.2);
+      line-height: 1.4; text-align: center;
+      min-height: 2rem; display: flex; align-items: center; justify-content: center;
+    }
+    .gallery-placeholder-icon { font-size: 1.4rem; opacity: 0.35; margin-bottom: 0.25rem; }
+    .gallery-placeholder-text { font-size: 0.58rem; color: var(--muted); opacity: 0.7; line-height: 1.4; }
+    .gallery-placeholder-caption {
+      padding: 0.4rem 0.5rem;
+      font-size: 0.62rem; color: var(--muted); font-style: italic;
+      font-family: 'DM Sans', sans-serif;
+      background: rgba(10,22,40,0.6);
+      border-top: 1px solid rgba(26,107,107,0.15);
+      text-align: center; min-height: 1.8rem;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+
+    /* ══ PICTURE SUBSECTIONS ══ */
+    .pic-subsection { margin-bottom: 2.5rem; }
+    .pic-sub-header { display: flex; align-items: center; gap: 0.7rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(26,107,107,0.22); }
+    .pic-sub-icon { color: var(--teal2); font-size: 1rem; width: 22px; text-align: center; }
+    h3.pic-sub-title { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 400; color: var(--offwhite); }
+    /* ══ JUSTIFIED TEXT ══ */
+    .interest-card p,
+    .tl-body,
+    .tl-proj-item p,
+    .award-body,
+    .dataset-card p,
+    .pres-venue,
+    .pub-authors,
+    .pub-journal,
+    .teach-table td,
+    .contact-val,
+    blockquote,
+    .home-bio { text-align: justify; hyphens: auto; }
+
+    /* ══ ANIMATIONS ══ */
+    @keyframes fadeUp { from { opacity:0; transform: translateY(18px); } to { opacity:1; transform: none; } }
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.55s ease, transform 0.55s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* ══ MISC ══ */
+    .divider { height: 1px; background: linear-gradient(to right, rgba(26,107,107,0.38), transparent); margin: 1.8rem 0; }
+    blockquote { border-left: 2px solid var(--teal2); padding-left: 1.1rem; color: var(--muted); font-size: 0.88rem; font-style: italic; line-height: 1.7; margin: 1.3rem 0; text-align: justify; }
+    .text-teal { color: var(--teal2); }
+    .text-gold { color: var(--gold2); }
+    .text-muted { color: var(--muted); }
+    .mb-1 { margin-bottom: 0.5rem; }
+    .mb-2 { margin-bottom: 1rem; }
+    .mb-3 { margin-bottom: 1.5rem; }
+    .mt-1 { margin-top: 0.5rem; }
+    .mt-2 { margin-top: 1rem; }
+    sub-h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; font-weight: 400; color: var(--offwhite); display: block; margin: 1.5rem 0 0.9rem; }
+
+    /* ══ MOBILE ══ */
+    #menu-toggle { display: none; position: fixed; top: 1rem; left: 1rem; z-index: 200; background: var(--navy2); border: 1px solid rgba(26,107,107,0.4); color: var(--teal2); width: 38px; height: 38px; border-radius: 6px; font-size: 1.1rem; cursor: pointer; align-items: center; justify-content: center; }
+    @media (max-width: 960px) {
+      #menu-toggle { display: flex; }
+      #sidebar { transform: translateX(-100%); }
+      #sidebar.open { transform: none; }
+      #main { margin-left: 0; }
+      .section { padding: 3.5rem 1.4rem 2rem; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .main-cover { height: 220px; }
+      .cover-overlay { padding: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<button id="menu-toggle" onclick="toggleSidebar()" aria-label="Toggle menu">☰</button>
+
+<!-- ══════════════════ SIDEBAR ══════════════════ -->
+<aside id="sidebar">
+  <div class="sidebar-cover"></div>
+
+  <div class="sidebar-top">
+    <div class="avatar-wrap">
+      <div class="avatar-inner" id="avatar">KA</div>
+    </div>
+    <div class="sidebar-name">Dr. Khan Muhammad Abid</div>
+    <div class="sidebar-title">Atmospheric and Climate Scientist</div>
+    <div class="sidebar-inst">Chiba University, Japan</div>
+  </div>
+
+  <!-- Social icons -->
+  <div class="social-row">
+    <a class="social-link" href="https://github.com/KHANMUHAMMADABID" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+    <a class="social-link" href="https://scholar.google.com/citations?user=exzhzZoAAAAJ&hl=en" target="_blank" title="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
+    <a class="social-link" href="https://www.linkedin.com/in/muhammad-abid-khan-7305b0126/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+    <a class="social-link" href="https://orcid.org/0000-0001-8387-1044" target="_blank" title="ORCID"><i class="fab fa-orcid"></i></a>
+    <a class="social-link" href="https://www.researchgate.net/profile/Muhammad-Abid-Khan" target="_blank" title="ResearchGate"><i class="fab fa-researchgate"></i></a>
+    <a class="social-link" href="https://researchmap.jp/khan-muhammad-abid" target="_blank" title="ResearchMap"><i class="fas fa-map-marked-alt"></i></a>
+    <a class="social-link" href="https://www.scopus.com/authid/detail.uri?authorId=58971467300" target="_blank" title="Scopus"><i class="fas fa-database"></i></a>
+    <a class="social-link" href="https://www.webofscience.com/wos/author/record/MHQ-5290-2025" target="_blank" title="Web of Science"><i class="fas fa-flask"></i></a>
+    <a class="social-link" href="mailto:rabid609@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+  </div>
+
+  <nav id="nav">
+    <div class="nav-section-label">Overview</div>
+    <a href="#home" class="active"><span class="nav-icon"><i class="fas fa-home"></i></span>Home</a>
+    <a href="#research-interests"><span class="nav-icon"><i class="fas fa-microscope"></i></span>Research Interests</a>
+    <a href="#research-areas"><span class="nav-icon"><i class="fas fa-th-large"></i></span>Research Areas</a>
+
+    <div class="nav-section-label">Background</div>
+    <a href="#education"><span class="nav-icon"><i class="fas fa-university"></i></span>Education</a>
+    <a href="#experience"><span class="nav-icon"><i class="fas fa-briefcase"></i></span>Research &amp; Lecturer History</a>
+    <a href="#awards"><span class="nav-icon"><i class="fas fa-award"></i></span>Awards &amp; Fellowships</a>
+
+    <div class="nav-section-label">Output</div>
+    <a href="#papers"><span class="nav-icon"><i class="fas fa-file-alt"></i></span>Papers</a>
+    <a href="#books"><span class="nav-icon"><i class="fas fa-book"></i></span>Books &amp; Chapters</a>
+    <a href="#presentations"><span class="nav-icon"><i class="fas fa-chalkboard-teacher"></i></span>Presentations</a>
+
+    <div class="nav-section-label">Academic</div>
+    <a href="#teaching"><span class="nav-icon"><i class="fas fa-chalkboard"></i></span>Teaching</a>
+    <a href="#skills"><span class="nav-icon"><i class="fas fa-code"></i></span>Technical Skills</a>
+    <a href="#memberships"><span class="nav-icon"><i class="fas fa-users"></i></span>Memberships</a>
+    <a href="#activities"><span class="nav-icon"><i class="fas fa-star"></i></span>Academic Activities</a>
+    <a href="#leadership"><span class="nav-icon"><i class="fas fa-flag"></i></span>Leadership &amp; Service</a>
+
+    <div class="nav-section-label">More</div>
+    <a href="#pictures"><span class="nav-icon"><i class="fas fa-images"></i></span>Pictures</a>
+    <a href="#datasets"><span class="nav-icon"><i class="fas fa-database"></i></span>Datasets</a>
+    <a href="#contact"><span class="nav-icon"><i class="fas fa-envelope"></i></span>Contact</a>
+  </nav>
+
+  <div class="sidebar-footer">
+    © Dr. Khan Muhammad Abid · 2026
+  </div>
+</aside>
+
+<!-- ══════════════════ MAIN ══════════════════ -->
+<main id="main">
+
+  <!-- COVER BANNER -->
+  <div class="main-cover">
+    <div class="cover-overlay">
+      <div class="cover-photo-wrap">
+        <div class="cover-photo-inner" id="cover-photo">KA</div>
+      </div>
+      <div class="cover-text">
+        <div class="cover-eyebrow">Atmospheric Science | Climate Modeling | Wind Energy | Data Assimilation</div>
+        <h1 class="cover-name">Dr. Khan <em>Muhammad Abid</em></h1>
+        <div class="cover-subtitle">Specially Appointed Researcher &nbsp;&middot;&nbsp; Center for Environmental Remote Sensing, Chiba University, Japan</div>
+      </div>
+    </div>
+    <div class="cover-bar"></div>
+  </div>
+
+  <!-- 00 HOME / ABOUT -->
+  <section class="section" id="home">
+    <div class="section-header reveal">
+      <span class="section-number">00</span>
+      <h2 class="section-title">About Me</h2>
+      <div class="section-line"></div>
+    </div>
+    <p class="home-bio reveal">
+      I am a researcher and engineer with a Ph.D. in Engineering Mechanics and Energy from the University of Tsukuba, Japan.
+      My research spans numerical climate and atmospheric modeling, wind energy resource assessment, data assimilation,
+      and paleoclimate reconstruction, with particular attention to regional and continental scales in South Asia.
+      I have worked extensively with observational, reanalysis, and high-resolution model datasets, and have applied
+      both offline and online ensemble Kalman filter methods to problems in modern climate analysis and paleoclimate reconstruction.
+      In addition to research, I have teaching and supervision experience at the undergraduate level in mechanical
+      and energy engineering, having served at Near East University and the University of Kyrenia, Cyprus.
+      I contribute to the peer review process for several international journals and serve on an editorial board.
+    </p>
+    <div class="home-tags reveal">
+      <span class="tag">Wind Energy Assessment</span>
+      <span class="tag">Climate Modeling</span>
+      <span class="tag">Regional Climate Models</span>
+      <span class="tag">Global Climate Models</span>
+      <span class="tag">Data Assimilation</span>
+      <span class="tag">Dynamical Downscaling</span>
+      <span class="tag">Statistical Downscaling</span>
+      <span class="tag">Reanalysis Products</span>
+      <span class="tag">Paleoclimate</span>
+      <span class="tag">Climate Reconstruction</span>
+      <span class="tag">Machine Learning</span>
+      <span class="tag">South Asia</span>
+    </div>
+    <div class="home-cta reveal">
+      <a class="btn btn-primary" href="#papers"><i class="fas fa-file-alt"></i> View Publications</a>
+      <a class="btn btn-outline" href="CV-KHAN_MUHAMMAD_ABID_2026.pdf" download><i class="fas fa-download"></i> Download CV</a>
+    </div>
+    <div class="stats-bar reveal">
+      <div class="stat"><span class="stat-num">8+</span><span class="stat-label">Publications</span></div>
+      <div class="stat"><span class="stat-num">9+</span><span class="stat-label">Conf. Presentations</span></div>
+      <div class="stat"><span class="stat-num">3</span><span class="stat-label">Research Positions</span></div>
+      <div class="stat"><span class="stat-num">10+</span><span class="stat-label">Journals Reviewed</span></div>
+      <div class="stat"><span class="stat-num">24+</span><span class="stat-label">Courses Taught</span></div>
+      <div class="stat"><span class="stat-num">5</span><span class="stat-label">Book Chapters</span></div>
+    </div>
+  </section>
+
+  <!-- 01 RESEARCH INTERESTS -->
+  <section class="section" id="research-interests">
+    <div class="section-header reveal">
+      <span class="section-number">01</span>
+      <h2 class="section-title">Research Interests</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="interest-grid">
+      <div class="interest-card reveal">
+        <span class="interest-icon">🌬️</span>
+        <h3>Wind Energy Assessment</h3>
+        <p>Quantifying and classifying wind power resources across South Asia using surface observations, reanalysis products, and high-resolution regional climate model output, with attention to terrain effects and inter-dataset uncertainty.</p>
+      </div>
+      <div class="interest-card reveal">
+        <span class="interest-icon">🌏</span>
+        <h3>Climate Variability and Dynamics</h3>
+        <p>Examining seasonal and interannual variability in the atmospheric circulation and surface climate over the Indian subcontinent, including the South Asian monsoon system and its interaction with large-scale teleconnections.</p>
+      </div>
+      <div class="interest-card reveal">
+        <span class="interest-icon">🔄</span>
+        <h3>Data Assimilation</h3>
+        <p>Development and application of offline and online Ensemble Kalman Filter (EnKF) methods for reconstructing climate states from proxy records and instrumental observations, spanning both the modern instrumental period and the Common Era.</p>
+      </div>
+      <div class="interest-card reveal">
+        <span class="interest-icon">⬇️</span>
+        <h3>Dynamical Downscaling</h3>
+        <p>Regional climate modeling within the CORDEX framework to increase spatial resolution of global model output over South Asia, with added-value analysis and terrain-based wind speed adjustments applied in complex orographic settings.</p>
+      </div>
+      <div class="interest-card reveal">
+        <span class="interest-icon">🌡️</span>
+        <h3>Climate and Energy Interactions</h3>
+        <p>Investigating the sensitivity of wind and solar energy resources to historical climate variability and projected future climate change over Pakistan and the broader South Asian region, with applications to energy planning.</p>
+      </div>
+      <div class="interest-card reveal">
+        <span class="interest-icon">🧊</span>
+        <h3>Paleoclimate Reconstruction</h3>
+        <p>Reconstructing past climate variability over the Common Era and last millennium by combining climate proxy records (tree rings, ice cores, and corals) with general circulation model simulations through data assimilation.</p>
+      </div>
+      <div class="interest-card reveal">
+        <span class="interest-icon">🤖</span>
+        <h3>Machine Learning in Climate Science</h3>
+        <p>Application of machine learning methods, informed by physical understanding, to atmospheric and environmental modeling tasks including pattern recognition, bias correction, and the emulation of computationally expensive model components.</p>
+      </div>
+      <div class="interest-card reveal">
+        <span class="interest-icon">📡</span>
+        <h3>Remote Sensing and Geospatial Analysis</h3>
+        <p>Use of satellite-derived datasets and geospatial analysis tools to support climate-relevant wind energy assessment and long-term environmental monitoring at regional scales.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 RESEARCH AREAS -->
+  <section class="section" id="research-areas">
+    <div class="section-header reveal">
+      <span class="section-number">02</span>
+      <h2 class="section-title">Research Areas</h2>
+      <div class="section-line"></div>
+    </div>
+    <p class="reveal" style="font-size:0.9rem; color:#b0c4d8; line-height:1.8; border-left:2px solid var(--teal2); padding-left:1.1rem; margin-bottom:1rem;">My research addresses problems in atmospheric science, climate modeling, paleoclimate reconstruction, and renewable energy assessment, with emphasis on uncertainty quantification and physical consistency.</p>
+    <div class="divider"></div>
+    <div class="skills-cols reveal">
+      <div class="skill-group">
+        <h4>Atmospheric Science</h4>
+        <span class="skill-pill">Numerical Weather Prediction</span>
+        <span class="skill-pill">Synoptic Meteorology</span>
+        <span class="skill-pill">Atmospheric Dynamics</span>
+        <span class="skill-pill">Boundary Layer</span>
+        <span class="skill-pill">Regional Climate Modeling</span>
+        <span class="skill-pill">CORDEX Simulations</span>
+      </div>
+      <div class="skill-group">
+        <h4>Data Assimilation</h4>
+        <span class="skill-pill">Ensemble Kalman Filter (EnKF)</span>
+        <span class="skill-pill">Offline DA</span>
+        <span class="skill-pill">Online DA</span>
+        <span class="skill-pill">Reanalysis Reconstruction</span>
+        <span class="skill-pill">Proxy Integration</span>
+        <span class="skill-pill">Benchmarking DA Products</span>
+      </div>
+      <div class="skill-group">
+        <h4>Paleoclimate</h4>
+        <span class="skill-pill">Common Era Reconstruction</span>
+        <span class="skill-pill">Last Millennium</span>
+        <span class="skill-pill">LMR Proxy Database</span>
+        <span class="skill-pill">CESM1-LME</span>
+        <span class="skill-pill">Climate Proxies</span>
+        <span class="skill-pill">Hydroclimate Variability</span>
+      </div>
+      <div class="skill-group">
+        <h4>Renewable Energy</h4>
+        <span class="skill-pill">Wind Power Density</span>
+        <span class="skill-pill">Solar Potential</span>
+        <span class="skill-pill">Energy Resource Classification</span>
+        <span class="skill-pill">Wind Turbine Siting</span>
+        <span class="skill-pill">Capacity Factor Analysis</span>
+        <span class="skill-pill">Geospatial Framework</span>
+      </div>
+      <div class="skill-group">
+        <h4>Modeling Methods</h4>
+        <span class="skill-pill">Statistical Downscaling</span>
+        <span class="skill-pill">Bias Correction</span>
+        <span class="skill-pill">Added-Value Analysis</span>
+        <span class="skill-pill">Ensemble Methods</span>
+        <span class="skill-pill">Terrain Adjustment (Wt)</span>
+      </div>
+      <div class="skill-group">
+        <h4>Geographic Focus</h4>
+        <span class="skill-pill">Pakistan</span>
+        <span class="skill-pill">South Asia</span>
+        <span class="skill-pill">Indian Subcontinent</span>
+        <span class="skill-pill">Himalayan Region</span>
+        <span class="skill-pill">Karakoram</span>
+        <span class="skill-pill">Ethiopia (Hydrology)</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 EDUCATION -->
+  <section class="section" id="education">
+    <div class="section-header reveal">
+      <span class="section-number">04</span>
+      <h2 class="section-title">Education</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="timeline">
+      <div class="tl-item reveal">
+        <div class="tl-date">Apr 2021 to Mar 2024, Tsukuba, Japan</div>
+        <div class="tl-title">Doctor of Philosophy (Ph.D.)</div>
+        <div class="tl-org">Engineering Mechanics and Energy, University of Tsukuba, Japan</div>
+        <div class="tl-body">
+          <strong>Thesis:</strong> "Added Values on Wind Energy Potential for South Asia Using High-Resolution Climate Models"<br/>
+          Supported by the Japanese Government MEXT Scholarship (full funding). Research conducted in the Regional Hydroclimate Laboratory.
+        </div>
+        <span class="tl-badge">🏆 Director's Award for Best Ph.D. Student (2023-24, Fall)</span>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-date">Sep 2017 to Jan 2019, Nicosia, Cyprus</div>
+        <div class="tl-title">Master of Science (M.Sc.)</div>
+        <div class="tl-org">Mechanical Engineering, Near East University, Nicosia, Cyprus</div>
+        <div class="tl-body">
+          <strong>Thesis:</strong> "Assessment of Wind/Solar Energy Potential as a Power Generation Source at Some Selected Locations in Pakistan"<br/>
+          Supported by the Near East University Postgraduate Scholarship (full funding).
+        </div>
+        <span class="tl-badge">⭐ Outstanding CGPA 4.0/4.0</span>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-date">Feb 2013 to Jun 2017, Nicosia, Cyprus</div>
+        <div class="tl-title">Bachelor of Science (B.Sc.)</div>
+        <div class="tl-org">Mechanical Engineering, Near East University, Nicosia, Cyprus</div>
+        <div class="tl-body">
+          <strong>Thesis:</strong> "Comparison of Transparent Insulated and Non-Insulated Solar Cells"
+        </div>
+        <span class="tl-badge">🎖️ Certificate of High Honors · Faculty of Engineering 2016-17</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 RESEARCH & LECTURER HISTORY -->
+  <section class="section" id="experience">
+    <div class="section-header reveal">
+      <span class="section-number">05</span>
+      <h2 class="section-title">Research &amp; Lecturer History</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="timeline">
+      <div class="tl-item reveal">
+        <div class="tl-date">Nov 2024 to Present, Chiba, Japan</div>
+        <div class="tl-title">Specially Appointed Researcher</div>
+        <div class="tl-org">Center for Environmental Remote Sensing (CEReS), Chiba University, Japan</div>
+        <div class="tl-proj">
+          <div class="tl-proj-item">
+            <h5>Project 1: Last-Millennium Climate Reconstruction</h5>
+            <p>Reconstructing surface climate fields over the last millennium by combining high-resolution ensemble simulations (d4PDF) with climate proxy records using an offline ensemble Kalman filter, to improve the spatial coherence and physical consistency of historical climate estimates.</p>
+          </div>
+          <div class="tl-proj-item">
+            <h5>Project 2: Benchmarking of Paleoclimate Reanalysis Products</h5>
+            <p>Systematic evaluation of multiple paleoclimate reanalysis datasets over 1880 to 2000 against five major instrumental temperature and precipitation records. The work produced a unified benchmarking framework that identifies consistent strengths and limitations across existing products.</p>
+          </div>
+          <div class="tl-proj-item">
+            <h5>Project 3: Common Era Climate Reanalysis (0 to 2005 CE)</h5>
+            <p>Generating a climate reanalysis spanning the full Common Era by assimilating the Last Millennium Reanalysis (LMR) proxy database into a transient CESM1-LME prior using an offline ensemble Kalman filter. The central objective is to determine whether a transient, forcing-consistent prior improves the spatial coherence and physical consistency of reconstructed temperature and hydroclimate fields relative to earlier stationary-prior approaches.</p>
+          </div>
+        </div>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-date">May 2024 to Oct 2024, Tsukuba, Japan</div>
+        <div class="tl-title">Researcher</div>
+        <div class="tl-org">Institute for Agro-Environmental Sciences, NARO, Tsukuba, Japan</div>
+        <div class="tl-body">Conducted research in atmospheric and Earth system science, with a focus on computational modeling, multi-source dataset analysis, and high-resolution environmental simulations.</div>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-date">Apr 2021 to Mar 2024, Tsukuba, Japan</div>
+        <div class="tl-title">Ph.D. Researcher (MEXT Scholar)</div>
+        <div class="tl-org">Regional Hydroclimate Lab, Department of Engineering Mechanics and Energy, University of Tsukuba, Japan</div>
+        <div class="tl-body">Conducted doctoral research in multiscale atmospheric modeling, dynamical downscaling, and wind energy resource assessment over South Asia. Work included systematic evaluation of regional climate model performance against observational and reanalysis reference datasets.</div>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-date">Aug 2017 to Feb 2021, Nicosia and Kyrenia, Cyprus</div>
+        <div class="tl-title">Lecturer, Academic Advisor &amp; Course Coordinator</div>
+        <div class="tl-org">
+          Dept. of Mechanical Engineering, Faculty of Engineering, Near East University, Cyprus (Aug 2017 to Feb 2021)<br/>
+          Dept. of Aeronautical Engineering, Faculty of Aviation and Space Sciences, University of Kyrenia, Cyprus (Aug 2018 to Feb 2020)
+        </div>
+        <div class="tl-body">Delivered undergraduate courses in mechanical and energy engineering at Near East University and the University of Kyrenia. Provided academic advising to students in the Faculty of Engineering, covering course selection and academic planning, and participated in departmental meetings for curriculum review. Co-supervised two B.Sc. graduation projects.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 AWARDS -->
+  <section class="section" id="awards">
+    <div class="section-header reveal">
+      <span class="section-number">06</span>
+      <h2 class="section-title">Awards &amp; Fellowships</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="awards-grid">
+      <div class="award-card reveal">
+        <div class="award-icon">🏆</div>
+        <div>
+          <div class="award-year">Mar 2024</div>
+          <div class="award-title">Director's Award for Best Ph.D. Scholar</div>
+          <div class="award-body">Degree Program in Engineering Mechanics and Energy, University of Tsukuba, Japan. Awarded in recognition of outstanding research performance in the Regional Hydroclimate Laboratory, MEXT Scholarship recipient, 2023–24, Fall.</div>
+        </div>
+      </div>
+      <div class="award-card reveal">
+        <div class="award-icon">📜</div>
+        <div>
+          <div class="award-year">May 2024</div>
+          <div class="award-title">IOP Peer Review Excellence Training Graduate</div>
+          <div class="award-body">Completed the IOP Publishing Peer Review Excellence workshop covering the fundamentals of academic peer review, evaluation standards, and publication ethics.</div>
+        </div>
+      </div>
+      <div class="award-card reveal">
+        <div class="award-icon">🎌</div>
+        <div>
+          <div class="award-year">2021 to 2024</div>
+          <div class="award-title">Japanese Government MEXT Scholarship (Ph.D.)</div>
+          <div class="award-body">Fully funded doctoral scholarship awarded by the Ministry of Education, Culture, Sports, Science and Technology (MEXT), Government of Japan.</div>
+        </div>
+      </div>
+      <div class="award-card reveal">
+        <div class="award-icon">🥇</div>
+        <div>
+          <div class="award-year">Sep 2021</div>
+          <div class="award-title">Placement Rank 1, TC Marmara University, Turkey</div>
+          <div class="award-body">Doctoral admission accepted in the Department of Mechanical Engineering, TC Marmara University, Turkey (2020–21, Fall), ranked first in the placement evaluation.</div>
+        </div>
+      </div>
+      <div class="award-card reveal">
+        <div class="award-icon">⭐</div>
+        <div>
+          <div class="award-year">Jan 2019</div>
+          <div class="award-title">Outstanding CGPA, M.Sc. (4.0/4.0)</div>
+          <div class="award-body">Master of Science in Mechanical Engineering, Near East University, Cyprus. Completed with a GPA of 4.0/4.0, supported by the full NEU Postgraduate Scholarship.</div>
+        </div>
+      </div>
+      <div class="award-card reveal">
+        <div class="award-icon">🎓</div>
+        <div>
+          <div class="award-year">Jan 2019</div>
+          <div class="award-title">Honors Graduation Ceremony Certificate</div>
+          <div class="award-body">Cyprus International Student Association (CISA), 26 January 2019</div>
+        </div>
+      </div>
+      <div class="award-card reveal">
+        <div class="award-icon">🤖</div>
+        <div>
+          <div class="award-year">Apr 2019</div>
+          <div class="award-title">Certificate of Attendance: Artificial Intelligence and Its Applications</div>
+          <div class="award-body">Research Center of Experimental Health Sciences, Nicosia, Cyprus</div>
+        </div>
+      </div>
+      <div class="award-card reveal">
+        <div class="award-icon">📚</div>
+        <div>
+          <div class="award-year">Apr 2018</div>
+          <div class="award-title">Certificate of Participation: Life-long Learning Skills for Academic Development</div>
+          <div class="award-body">Workshop on Academic Development, Near East University, Cyprus, April 2018</div>
+        </div>
+      </div>
+      <div class="award-card reveal">
+        <div class="award-icon">🎖️</div>
+        <div>
+          <div class="award-year">Jun 2017</div>
+          <div class="award-title">Certificate of High Honors, Faculty of Engineering</div>
+          <div class="award-body">B.Sc. in Mechanical Engineering, Near East University, Cyprus, 2016–17, Spring</div>
+        </div>
+      </div>
+      <div class="award-card reveal">
+        <div class="award-icon">🌍</div>
+        <div>
+          <div class="award-year">Dec 2015</div>
+          <div class="award-title">Certificate of Coexistence of Cultures</div>
+          <div class="award-body">Near East University, Cyprus, November/December 2015</div>
+        </div>
+      </div>
+      <div class="award-card reveal">
+        <div class="award-icon">📋</div>
+        <div>
+          <div class="award-year">Apr 2009</div>
+          <div class="award-title">Provisional &amp; Character Certificates</div>
+          <div class="award-body">Grade Award Exceptional (Provisional) and Excellent (Character), Siqarah Education System, Chakwal, Pakistan, 2007 to 2009</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 07 PAPERS -->
+  <section class="section" id="papers">
+    <div class="section-header reveal">
+      <span class="section-number">07</span>
+      <h2 class="section-title">Papers</h2>
+      <div class="section-line"></div>
+    </div>
+    <p class="text-muted mb-2 reveal" style="font-size:0.78rem;font-family:'DM Mono',monospace;">
+      * Corresponding author. PDF links provide direct downloads where files are available; DOI links open the publisher record.
+    </p>
+    <div class="pub-filters reveal">
+      <button class="filter-btn active" onclick="filterPubs('all',this)">All</button>
+      <button class="filter-btn" onclick="filterPubs('wind',this)">Wind Energy</button>
+      <button class="filter-btn" onclick="filterPubs('climate',this)">Climate</button>
+      <button class="filter-btn" onclick="filterPubs('review',this)">Under Review</button>
+    </div>
+
+    <div id="pub-list">
+      <div class="pub-item reveal" data-cat="wind review">
+        <div class="pub-actions">
+          <span class="pub-link" style="color:var(--gold2);border-color:rgba(201,168,76,0.3);">Under Review</span>
+        </div>
+        <div class="pub-num">[8] · 2026</div>
+        <div class="pub-title">A Validated Reanalysis-Based and Geospatial Framework for Climate-Relevant Wind Energy Assessment and Planning in Pakistan</div>
+        <div class="pub-authors"><strong>Khan Muhammad Abid*</strong>, Koji Dairaku, Anjuman Ara Khatun</div>
+        <div class="pub-journal">Q1 Journal · Impact Factor ~9.0 (Under Review)</div>
+        <div class="pub-tags">
+          <span class="pub-tag">Wind Energy</span><span class="pub-tag">Pakistan</span><span class="pub-tag">Geospatial</span>
+          <span class="pub-tag review">Under Review</span>
+        </div>
+      </div>
+
+      <div class="pub-item reveal" data-cat="wind review">
+        <div class="pub-actions">
+          <span class="pub-link" style="color:var(--gold2);border-color:rgba(201,168,76,0.3);">Under Review</span>
+        </div>
+        <div class="pub-num">[7] · 2025</div>
+        <div class="pub-title">Historical and Future Projections Evaluation with Topographical Adjustment over Subcontinent for Wind Power Potential and Resource Classification</div>
+        <div class="pub-authors"><strong>Khan Muhammad Abid*</strong>, Koji Dairaku</div>
+        <div class="pub-journal">Q1 Journal · Impact Factor ~11.2 (Under Review)</div>
+        <div class="pub-tags">
+          <span class="pub-tag">Wind Power</span><span class="pub-tag">Downscaling</span><span class="pub-tag">Future Projections</span>
+          <span class="pub-tag review">Under Review</span>
+        </div>
+      </div>
+
+      <div class="pub-item reveal" data-cat="wind climate">
+        <div class="pub-actions">
+          <a class="pub-link" href="https://doi.org/10.1007/s00477-025-02918-0" target="_blank">DOI ↗</a>
+          <a class="pub-link" href="papers/khan2025_stochastic.pdf" download title="Download PDF"><i class="fas fa-file-pdf"></i> PDF</a>
+        </div>
+        <div class="pub-num">[6] · 2025</div>
+        <div class="pub-title">Assessing Wind Power Generation Potential over South Asia Using Wind Speed Observation and Reanalysis Datasets</div>
+        <div class="pub-authors"><strong>Khan, M. A.*</strong>, Dairaku, K., &amp; Kelkar, S.</div>
+        <div class="pub-journal">Stochastic Environmental Research and Risk Assessment, 2025</div>
+        <div class="pub-tags"><span class="pub-tag">Reanalysis</span><span class="pub-tag">South Asia</span><span class="pub-tag">Wind</span></div>
+      </div>
+
+      <div class="pub-item reveal" data-cat="wind climate">
+        <div class="pub-actions">
+          <a class="pub-link" href="https://doi.org/10.1007/s41748-024-00453-6" target="_blank">DOI ↗</a>
+          <a class="pub-link" href="papers/khan2024_earth_systems.pdf" download><i class="fas fa-file-pdf"></i> PDF</a>
+        </div>
+        <div class="pub-num">[5] · 2024</div>
+        <div class="pub-title">Evaluation of Wind Speed Accuracy Enhancement in South Asia through Terrain-Modified Wind Speed (Wt) Adjustments of High-Resolution Regional Climate Modeling</div>
+        <div class="pub-authors"><strong>Khan, M. A.*</strong>, Dairaku, K., &amp; Kelkar, S.</div>
+        <div class="pub-journal">Earth Systems and Environment, 8(4), 1777–1794</div>
+        <div class="pub-tags"><span class="pub-tag">RCM</span><span class="pub-tag">Terrain Adjustment</span><span class="pub-tag">South Asia</span></div>
+      </div>
+
+      <div class="pub-item reveal" data-cat="wind">
+        <div class="pub-actions">
+          <a class="pub-link" href="http://www.tjprc.org/view_paper.php?id=13010" target="_blank">DOI ↗</a>
+          <a class="pub-link" href="papers/khan2020_solar_pakistan.pdf" download><i class="fas fa-file-pdf"></i> PDF</a>
+        </div>
+        <div class="pub-num">[4] · 2020</div>
+        <div class="pub-title">Power Generation Development Based on Solar Potential at Urban and Rural Regions Selected Locations in Pakistan</div>
+        <div class="pub-authors"><strong>Khan, M. A.*</strong>, Kayansayan, N., &amp; Ragab, A. S.</div>
+        <div class="pub-journal">IJMPERD, 10(3), 2601–2618</div>
+        <div class="pub-tags"><span class="pub-tag">Solar</span><span class="pub-tag">Pakistan</span></div>
+      </div>
+
+      <div class="pub-item reveal" data-cat="wind climate">
+        <div class="pub-actions">
+          <a class="pub-link" href="https://link.springer.com/article/10.1007/s40808-018-0546-6" target="_blank">DOI ↗</a>
+          <a class="pub-link" href="papers/khan2018_wind_modeling.pdf" download><i class="fas fa-file-pdf"></i> PDF</a>
+        </div>
+        <div class="pub-num">[3] · 2018</div>
+        <div class="pub-title">Modeling Predictive Assessment of Wind Energy Potential as a Power Generation Source at Some Selected Locations in Pakistan</div>
+        <div class="pub-authors"><strong>Khan, M. A.*</strong>, Çamur, H., &amp; Kassem, Y.</div>
+        <div class="pub-journal">Modeling Earth Systems and Environment, 2018</div>
+        <div class="pub-tags"><span class="pub-tag">Wind Energy</span><span class="pub-tag">Pakistan</span><span class="pub-tag">Modeling</span></div>
+      </div>
+
+      <div class="pub-item reveal" data-cat="wind">
+        <div class="pub-actions">
+          <a class="pub-link" href="https://sciresol.s3.us-east-2.amazonaws.com/IJST/Articles/2018/Issue-38/Article9.pdf" target="_blank">DOI ↗</a>
+          <a class="pub-link" href="https://sciresol.s3.us-east-2.amazonaws.com/IJST/Articles/2018/Issue-38/Article9.pdf" target="_blank" download><i class="fas fa-file-pdf"></i> PDF</a>
+        </div>
+        <div class="pub-num">[2] · 2018</div>
+        <div class="pub-title">Study of Multiple Half Blades Effect on the Performance of Savonius Rotor: Experimental Study and ANN Model</div>
+        <div class="pub-authors">Al-Ghriybah, M., Çamur, H., Mohd F. Z., <strong>Khan, M. A.*</strong>, et al.</div>
+        <div class="pub-journal">Indian Journal of Science and Technology, 11(38)</div>
+        <div class="pub-tags"><span class="pub-tag">Savonius Rotor</span><span class="pub-tag">ANN</span><span class="pub-tag">Wind Turbine</span></div>
+      </div>
+
+      <div class="pub-item reveal" data-cat="climate">
+        <div class="pub-actions">
+          <a class="pub-link" href="http://www.ijesrt.com/issues%20pdf%20file/Archive2018/January-2018/75.pdf" target="_blank">DOI ↗</a>
+          <a class="pub-link" href="http://www.ijesrt.com/issues%20pdf%20file/Archive2018/January-2018/75.pdf" target="_blank" download><i class="fas fa-file-pdf"></i> PDF</a>
+        </div>
+        <div class="pub-num">[1] · 2018</div>
+        <div class="pub-title">Application of ANFIS and ANN for Kinematic Viscosity of Biodiesel Prediction</div>
+        <div class="pub-authors">Kassem, Y., <strong>Abid Khan, M.</strong>, &amp; Çamur, H.</div>
+        <div class="pub-journal">IJESRT, 7(1), 2018</div>
+        <div class="pub-tags"><span class="pub-tag">ANFIS</span><span class="pub-tag">ANN</span><span class="pub-tag">Biofuel</span></div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- 08 BOOKS & CHAPTERS -->
+  <section class="section" id="books">
+    <div class="section-header reveal">
+      <span class="section-number">08</span>
+      <h2 class="section-title">Books &amp; Other Publications</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="pub-item reveal">
+      <div class="pub-actions">
+        <a class="pub-link" href="https://doi.org/10.1007/978-3-031-86777-4_41" target="_blank">DOI ↗</a>
+        <a class="pub-link" href="papers/chapter_medgu2023_added_value.pdf" download><i class="fas fa-file-pdf"></i> PDF</a>
+      </div>
+      <div class="pub-num">Book Chapter [5] · 2025</div>
+      <div class="pub-title">Assessing Added Value of Dynamical Downscaling for Wind Speed Over South Asia: A Distribution Added Value Approach</div>
+      <div class="pub-authors"><strong>Khan, M.A.*</strong>, Dairaku, K., Kelkar, S.</div>
+      <div class="pub-journal">Dynamic Evolution of Atmospheric, Ecological, and Hydrological Systems. MedGU 2023. Advances in Science, Technology &amp; Innovation. Springer, Cham.</div>
+    </div>
+
+    <div class="pub-item reveal">
+      <div class="pub-actions">
+        <a class="pub-link" href="https://doi.org/10.1007/978-3-031-86777-4_39" target="_blank">DOI ↗</a>
+        <a class="pub-link" href="papers/chapter_medgu2023_hadisd.pdf" download><i class="fas fa-file-pdf"></i> PDF</a>
+      </div>
+      <div class="pub-num">Book Chapter [4] · 2025</div>
+      <div class="pub-title">Assessment of Reanalysis Wind Speeds Datasets Against the HadISD Dataset Over South Asia</div>
+      <div class="pub-authors"><strong>Khan, M.A.*</strong>, Dairaku, K., Kelkar, S.</div>
+      <div class="pub-journal">Dynamic Evolution of Atmospheric, Ecological, and Hydrological Systems. MedGU 2023. Springer, Cham.</div>
+    </div>
+
+    <div class="pub-item reveal">
+      <div class="pub-actions">
+        <a class="pub-link" href="https://doi.org/10.1007/978-3-031-86777-4_81" target="_blank">DOI ↗</a>
+        <a class="pub-link" href="papers/chapter_medgu2023_ethiopia.pdf" download><i class="fas fa-file-pdf"></i> PDF</a>
+      </div>
+      <div class="pub-num">Book Chapter [3] · 2025</div>
+      <div class="pub-title">Quantify the Hydrological Impact of Climate Change Using the Regional Climate Model (Case Study on Ribb Watershed, Ethiopia)</div>
+      <div class="pub-authors">Brhane, E.S., Dairaku, K., <strong>Abid, K.M.</strong></div>
+      <div class="pub-journal">Dynamic Evolution of Atmospheric, Ecological, and Hydrological Systems. MedGU 2023. Springer, Cham.</div>
+    </div>
+
+    <div class="pub-item reveal">
+      <div class="pub-actions">
+        <a class="pub-link" href="https://doi.org/10.1007/978-3-031-47079-0_67" target="_blank">DOI ↗</a>
+        <a class="pub-link" href="papers/chapter_medgu2022_renewable.pdf" download><i class="fas fa-file-pdf"></i> PDF</a>
+      </div>
+      <div class="pub-num">Book Chapter [2] · 2024</div>
+      <div class="pub-title">Assessment of the Potential of Renewable Energy with Bias Correction Due to Climate Change Over South Asia Using Global Atlas Dataset</div>
+      <div class="pub-authors"><strong>Khan, M.A.*</strong>, Dairaku, K.</div>
+      <div class="pub-journal">Recent Advancements from Aquifers to Skies in Hydrogeology, Geoecology, and Atmospheric Sciences. MedGU 2022. Springer, Cham.</div>
+    </div>
+
+    <div class="pub-item reveal">
+      <div class="pub-actions">
+        <a class="pub-link" href="papers/chapter_karakoram_rainfall.pdf" download><i class="fas fa-file-pdf"></i> PDF</a>
+      </div>
+      <div class="pub-num">Conference Proceedings [1] · 2023</div>
+      <div class="pub-title">GPM-IMERG, PERSIANN-PDIR, and CHIRPS 2.0 Rainfall Data Accuracy Assessment for Capturing Extreme Weather Events in the Karakoram Mountains of South Asia</div>
+      <div class="pub-authors">Nadeem, M. U., Dairaku, K., <strong>Khan, M. A.</strong></div>
+      <div class="pub-journal">Advances in Science, Technology &amp; Innovation, Springer (Scopus indexed)</div>
+    </div>
+  </section>
+
+  <!-- 09 PRESENTATIONS -->
+  <section class="section" id="presentations">
+    <div class="section-header reveal">
+      <span class="section-number">09</span>
+      <h2 class="section-title">Presentations</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <!-- Oral Presentations sub-header -->
+    <div class="pres-subhead reveal">
+      <span class="pres-subhead-icon"><i class="fas fa-microphone-alt"></i></span>
+      <span class="pres-subhead-label">Oral Presentations</span>
+    </div>
+
+    <div class="pres-item reveal">
+      <div class="pres-date">2023.11.27</div>
+      <div>
+        <span class="pres-type oral">Oral</span>
+        <div class="pres-title">Assessing Added Value of Dynamical Downscaling for Wind Speed over South Asia: A Distribution Added Value Approach</div>
+        <div class="pres-venue">Mediterranean Geosciences Union Annual Meeting 2023 (MedGU-23), Istanbul, Turkey</div>
+        <a class="pres-pdf" href="presentations/medgu2023_added_value_oral.pdf" download><i class="fas fa-file-pdf"></i> Slides PDF</a>
+      </div>
+    </div>
+
+    <div class="pres-item reveal">
+      <div class="pres-date">2023.11.27</div>
+      <div>
+        <span class="pres-type oral">Oral</span>
+        <div class="pres-title">Assessment of Reanalysis Wind Speed Datasets against the HadISD Dataset over South Asia</div>
+        <div class="pres-venue">Mediterranean Geosciences Union Annual Meeting 2023 (MedGU-23), Istanbul, Turkey</div>
+        <a class="pres-pdf" href="presentations/medgu2023_hadisd_oral.pdf" download><i class="fas fa-file-pdf"></i> Slides PDF</a>
+      </div>
+    </div>
+
+    <div class="pres-item reveal">
+      <div class="pres-date">2022.11.29</div>
+      <div>
+        <span class="pres-type oral">Oral</span>
+        <div class="pres-title">Assessment of Renewable Energy Potential with Bias Correction under Climate Change Scenarios over South Asia Using the Global Atlas Dataset</div>
+        <div class="pres-venue">Mediterranean Geosciences Union Annual Meeting 2022 (MedGU-22), Marrakech, Morocco</div>
+        <a class="pres-pdf" href="presentations/medgu2022_renewable_oral.pdf" download><i class="fas fa-file-pdf"></i> Slides PDF</a>
+      </div>
+    </div>
+
+    <!-- Poster Presentations sub-header -->
+    <div class="pres-subhead reveal" style="margin-top:2rem;">
+      <span class="pres-subhead-icon"><i class="fas fa-image"></i></span>
+      <span class="pres-subhead-label">Poster Presentations</span>
+    </div>
+
+    <div class="pres-item reveal">
+      <div class="pres-date">2025.11.30</div>
+      <div>
+        <span class="pres-type poster">Poster</span>
+        <div class="pres-title">A Comprehensive Benchmarking of Paleoclimate Reanalysis Products Against Major Observational Datasets</div>
+        <div class="pres-venue">The 30th CEReS International Symposium &amp; The 28th CEReS Environmental Remote Sensing Symposium, Chiba University, Japan, 30 November 2025</div>
+        <div class="pres-venue" style="margin-top:0.25rem; color:var(--teal2); font-size:0.73rem;">Co-author: Atsushi Okazaki</div>
+        <a class="pres-pdf" href="https://www.cr.chiba-u.jp/lab/ceres30/symp/20251130_28th%20CEReS%20Symposium%20Program.pdf" target="_blank"><i class="fas fa-external-link-alt"></i> Symposium Program</a>
+        <a class="pres-pdf" href="presentations/ceres2025_paleoclimate_benchmarking_poster.pdf" download style="margin-left:0.4rem;"><i class="fas fa-file-pdf"></i> Poster PDF</a>
+      </div>
+    </div>
+
+    <div class="pres-item reveal">
+      <div class="pres-date">2023.09.27</div>
+      <div>
+        <span class="pres-type poster">Poster</span>
+        <div class="pres-title">Assessment of Wind Power Potential at Selected Locations in Pakistan: Analysis of Wind Speed Characteristics and Power Density Estimation</div>
+        <div class="pres-venue">International Conference on Regional Climate, CORDEX 2023 (ICRC-CORDEX), IITM Hub, Pune, India</div>
+        <a class="pres-pdf" href="presentations/cordex2023_pakistan_poster.pdf" download><i class="fas fa-file-pdf"></i> Poster PDF</a>
+      </div>
+    </div>
+
+    <div class="pres-item reveal">
+      <div class="pres-date">2023.09.26</div>
+      <div>
+        <span class="pres-type poster">Poster</span>
+        <div class="pres-title">Evaluating the Accuracy of Reanalysis Products for Wind Energy Development: A Comparison with In Situ Observations</div>
+        <div class="pres-venue">International Conference on Regional Climate, CORDEX 2023 (ICRC-CORDEX), IITM Hub, Pune, India</div>
+        <a class="pres-pdf" href="presentations/cordex2023_reanalysis_poster.pdf" download><i class="fas fa-file-pdf"></i> Poster PDF</a>
+      </div>
+    </div>
+
+    <div class="pres-item reveal">
+      <div class="pres-date">2023.05.22</div>
+      <div>
+        <span class="pres-type poster">Poster</span>
+        <div class="pres-title">Assessing the Reliability of Reanalysis Products for Wind Energy Development: A Comparison with In Situ Observations</div>
+        <div class="pres-venue">Japan Geoscience Union Meeting 2023 (JpGU 2023), Chiba, Japan</div>
+        <a class="pres-pdf" href="presentations/jpgu2023_reanalysis_poster.pdf" download><i class="fas fa-file-pdf"></i> Poster PDF</a>
+      </div>
+    </div>
+
+    <div class="pres-item reveal">
+      <div class="pres-date">2022.12.15</div>
+      <div>
+        <span class="pres-type poster">Poster</span>
+        <div class="pres-title">CORDEX-South Asia General Circulation Models: A Statistical Evaluation</div>
+        <div class="pres-venue">American Geophysical Union Annual Fall Meeting 2022 (AGU 2022), Chicago, USA</div>
+        <a class="pres-pdf" href="presentations/agu2022_cordex_poster.pdf" download><i class="fas fa-file-pdf"></i> Poster PDF</a>
+      </div>
+    </div>
+
+    <div class="pres-item reveal">
+      <div class="pres-date">2022.12.13</div>
+      <div>
+        <span class="pres-type poster">Poster</span>
+        <div class="pres-title">Wind Energy Potential Yield, Present Climate, and Future Changes in CORDEX-South Asia Ensemble Simulations</div>
+        <div class="pres-venue">American Geophysical Union Annual Fall Meeting 2022 (AGU 2022), Chicago, USA</div>
+        <a class="pres-pdf" href="presentations/agu2022_wind_energy_poster.pdf" download><i class="fas fa-file-pdf"></i> Poster PDF</a>
+      </div>
+    </div>
+
+    <div class="pres-item reveal">
+      <div class="pres-date">2021.06.06</div>
+      <div>
+        <span class="pres-type poster">Poster</span>
+        <div class="pres-title">Assessment of Wind and Solar Energy Potential as Power Generation Sources at Selected Locations in Pakistan</div>
+        <div class="pres-venue">Japan Geoscience Union Meeting 2021 (JpGU 2021), Chiba, Japan</div>
+        <a class="pres-pdf" href="presentations/jpgu2021_wind_solar_poster.pdf" download><i class="fas fa-file-pdf"></i> Poster PDF</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10 TEACHING -->
+  <section class="section" id="teaching">
+    <div class="section-header reveal">
+      <span class="section-number">10</span>
+      <h2 class="section-title">Teaching Experience</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="reveal" style="margin-bottom:1.5rem;">
+      <div class="tl-body" style="margin-bottom:0.5rem;">
+        <strong style="color:var(--offwhite);">Aug 2017 to Feb 2021</strong>,&nbsp;
+        <span class="text-teal">Dept. of Mechanical Engineering, Faculty of Engineering, Near East University, Cyprus</span>
+      </div>
+      <div class="tl-body">
+        <strong style="color:var(--offwhite);">Aug 2018 to Feb 2020</strong>,&nbsp;
+        <span class="text-teal">Dept. of Aeronautical Engineering, Faculty of Aviation and Space Sciences, University of Kyrenia, Cyprus</span>
+      </div>
+    </div>
+
+    <div class="reveal" style="overflow-x:auto;">
+      <table class="teach-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Course Name</th>
+            <th>Institution</th>
+            <th>Delivery</th>
+            <th>Semester</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td>Fluid Mechanics</td><td>Near East University<div class="teach-dept">Dept. Mechanical Eng.</div></td><td>Face to face</td><td>2017–18/Fall</td></tr>
+          <tr><td>2,3</td><td>Heat Transfer I &amp; II</td><td>Near East University<div class="teach-dept">Dept. Mechanical Eng.</div></td><td>Face to face</td><td>2017–18</td></tr>
+          <tr><td>4,5</td><td>Machine Design I &amp; II</td><td>Near East University<div class="teach-dept">Dept. Mechanical Eng.</div></td><td>Face to face</td><td>2017–18</td></tr>
+          <tr><td>6</td><td>Intro. to Computational Fluid Dynamics</td><td>Near East University<div class="teach-dept">Dept. Mechanical Eng.</div></td><td>Face to face</td><td>2017–18/Spring</td></tr>
+          <tr><td>7,8</td><td>Engineering Drawing I &amp; II</td><td>Near East University<div class="teach-dept">Dept. Mechanical Eng.</div></td><td>Face to face</td><td>2017–18</td></tr>
+          <tr><td>9,10</td><td>Materials Science &amp; Engineering Materials</td><td>Near East University<div class="teach-dept">Dept. Mechanical Eng.</div></td><td>Face to face</td><td>2017–18</td></tr>
+          <tr><td>11</td><td>Design of Machine Elements</td><td>University of Kyrenia<div class="teach-dept">Dept. Aeronautical Eng.</div></td><td>Face to face</td><td>2018–19/Fall</td></tr>
+          <tr><td>12</td><td>Theory of Machines II / Mechanical Vibration</td><td>Near East University<div class="teach-dept">Dept. Mechanical Eng.</div></td><td>Face to face</td><td>2018–19</td></tr>
+          <tr><td>13</td><td>Dynamics</td><td>Near East University<div class="teach-dept">Dept. Mechanical Eng.</div></td><td>Face to face</td><td>2018–19/Summer</td></tr>
+          <tr><td>14</td><td>Statics</td><td>Near East University<div class="teach-dept">Dept. Mechanical Eng.</div></td><td>Face to face</td><td>2018–19</td></tr>
+          <tr><td>15</td><td>Machine Tools and Tool Design</td><td>Near East University<div class="teach-dept">Dept. Mechanical Eng.</div></td><td>Face to face</td><td>2019–20/Fall</td></tr>
+          <tr><td>16</td><td>Engineering Drawing I</td><td>Near East University<div class="teach-dept">Dept. Mechanical Eng.</div></td><td>Face to face</td><td>2019–20/Fall</td></tr>
+          <tr><td>17</td><td>Advanced Energy Conversion</td><td>University of Kyrenia<div class="teach-dept">Dept. Aeronautical Eng.</div></td><td>Online (COVID-19)</td><td>2019–20/Spring</td></tr>
+          <tr><td>18</td><td>Thermodynamics II</td><td>University of Kyrenia<div class="teach-dept">Dept. Aeronautical Eng.</div></td><td>Online (COVID-19)</td><td>2019–20/Spring</td></tr>
+          <tr><td>19</td><td>Wind Engineering</td><td>Near East University<div class="teach-dept">Dept. Mechanical Eng.</div></td><td>Online (COVID-19)</td><td>2019–20/Summer</td></tr>
+          <tr><td>20</td><td>Experimental Analysis of Mechanical Eng. Systems</td><td>Near East University<div class="teach-dept">Dept. Mechanical Eng.</div></td><td>Online (COVID-19)</td><td>2019–20</td></tr>
+          <tr><td>21</td><td>Dynamics</td><td>Near East University<div class="teach-dept">Dept. Mechanical Eng.</div></td><td>Online (COVID-19)</td><td>2019–20</td></tr>
+          <tr><td>22</td><td>Engineering Drawing I</td><td>Near East University<div class="teach-dept">Dept. Mechanical Eng.</div></td><td>Online (COVID-19)</td><td>2019–20</td></tr>
+          <tr><td>23</td><td>Hosting and Conveying Machines</td><td>Near East University<div class="teach-dept">Dept. Mechanical Eng.</div></td><td>Flipped (60/40)</td><td>2020–21/Fall</td></tr>
+          <tr><td>24</td><td>Engineering Drawing I</td><td>Near East University<div class="teach-dept">Dept. Mechanical Eng.</div></td><td>Flipped (60/40)</td><td>2020–21/Fall</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- 11 SKILLS -->
+  <section class="section" id="skills">
+    <div class="section-header reveal">
+      <span class="section-number">11</span>
+      <h2 class="section-title">Technical Skills</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="skills-cols reveal">
+      <div class="skill-group">
+        <h4>Programming &amp; Analysis</h4>
+        <span class="skill-pill">Python</span>
+        <span class="skill-pill">R</span>
+        <span class="skill-pill">Linux / Bash</span>
+        <span class="skill-pill">Command Shell</span>
+        <span class="skill-pill">Origin Lab</span>
+      </div>
+      <div class="skill-group">
+        <h4>Climate &amp; Geo Tools</h4>
+        <span class="skill-pill">CDO</span>
+        <span class="skill-pill">GrADS</span>
+        <span class="skill-pill">QGIS</span>
+        <span class="skill-pill">NetCDF</span>
+        <span class="skill-pill">NCO</span>
+      </div>
+      <div class="skill-group">
+        <h4>Modeling Methods</h4>
+        <span class="skill-pill">Data Assimilation (DA)</span>
+        <span class="skill-pill">Ensemble Kalman Filter</span>
+        <span class="skill-pill">NWP</span>
+        <span class="skill-pill">Dynamical Downscaling</span>
+        <span class="skill-pill">Statistical Downscaling</span>
+      </div>
+      <div class="skill-group">
+        <h4>Computing &amp; AI</h4>
+        <span class="skill-pill">HPC / SSH Server</span>
+        <span class="skill-pill">Machine Learning</span>
+        <span class="skill-pill">Statistics</span>
+        <span class="skill-pill">Windows / Mac / Linux</span>
+        <span class="skill-pill">Mendeley</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 12 MEMBERSHIPS -->
+  <section class="section" id="memberships">
+    <div class="section-header reveal">
+      <span class="section-number">12</span>
+      <h2 class="section-title">Professional Memberships</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="awards-grid">
+      <div class="award-card reveal"><div class="award-icon">🌏</div><div><div class="award-year">2024 to present</div><div class="award-title">Asia Oceania Geosciences Society (AOGS)</div></div></div>
+      <div class="award-card reveal"><div class="award-icon">🌍</div><div><div class="award-year">2023 to present</div><div class="award-title">IITM Hub: International Conference on Regional Climate (ICRC-CORDEX)</div></div></div>
+      <div class="award-card reveal"><div class="award-icon">🌊</div><div><div class="award-year">2022 to present</div><div class="award-title">Mediterranean Geosciences Union (MedGU)</div></div></div>
+      <div class="award-card reveal"><div class="award-icon">🌐</div><div><div class="award-year">2022 to present</div><div class="award-title">American Geophysical Union (AGU)</div></div></div>
+      <div class="award-card reveal"><div class="award-icon">🗾</div><div><div class="award-year">2021 to present</div><div class="award-title">Japan Geoscience Union (JpGU)</div></div></div>
+    </div>
+  </section>
+
+  <!-- 13 ACADEMIC ACTIVITIES -->
+  <section class="section" id="activities">
+    <div class="section-header reveal">
+      <span class="section-number">13</span>
+      <h2 class="section-title">Academic Activities</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <style>sub-h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 400; color: var(--offwhite); display: block; margin: 0 0 0.9rem; }</style>
+
+    <sub-h3 class="reveal">Editorial Board Membership</sub-h3>
+    <div class="award-card reveal" style="max-width:480px; margin-bottom:1.8rem;">
+      <div class="award-icon">📋</div>
+      <div>
+        <div class="award-title">Editorial Board Member</div>
+        <div class="award-body">International Journal of Atmospheric and Oceanic Sciences (Science Publishing Group)</div>
+      </div>
+    </div>
+
+    <sub-h3 class="reveal">Peer Review Service</sub-h3>
+    <div class="skills-cols reveal" style="margin-bottom:1.8rem;">
+      <div class="skill-group">
+        <h4>AMS Journals</h4>
+        <span class="skill-pill">J. Atmos. Oceanic Technol.</span>
+        <span class="skill-pill">Weather, Climate &amp; Society</span>
+        <span class="skill-pill">J. Hydrometeorology</span>
+      </div>
+      <div class="skill-group">
+        <h4>Springer / Nature</h4>
+        <span class="skill-pill">Environmental Science &amp; Pollution Research</span>
+        <span class="skill-pill">Earth Systems and Environment</span>
+        <span class="skill-pill">J. Thermal Engineering (YTU)</span>
+      </div>
+      <div class="skill-group">
+        <h4>MDPI</h4>
+        <span class="skill-pill">Processes</span>
+        <span class="skill-pill">Sustainability</span>
+        <span class="skill-pill">Energies</span>
+        <span class="skill-pill">J. Marine Science &amp; Engineering</span>
+      </div>
+      <div class="skill-group">
+        <h4>Other</h4>
+        <span class="skill-pill">ATINER (Blind Peer Review)</span>
+        <span class="skill-pill">J. Engineering Research &amp; Reviews</span>
+      </div>
+    </div>
+
+    <sub-h3 class="reveal">Supervision, B.Sc. Graduation Projects</sub-h3>
+    <div class="pub-item reveal" style="margin-bottom:0.8rem;">
+      <div class="pub-title" style="font-size:0.92rem;">Modification and Testing of a Thermosiphon-Type Solar Domestic Hot Water System</div>
+      <div class="pub-authors">Co-Supervisor · Near East University, Cyprus · Fall 2018</div>
+    </div>
+    <div class="pub-item reveal">
+      <div class="pub-title" style="font-size:0.92rem;">Dual Pipe Heat Exchanger with Varied Flow Rates and Heating Temperatures</div>
+      <div class="pub-authors">Co-Supervisor · Near East University, Cyprus · Spring 2018</div>
+    </div>
+  </section>
+
+  <!-- 14 LEADERSHIP & SERVICE -->
+  <section class="section" id="leadership">
+    <div class="section-header reveal">
+      <span class="section-number">14</span>
+      <h2 class="section-title">Leadership &amp; Service</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <style>sub-h3b { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 400; color: var(--offwhite); display: block; margin: 0 0 0.9rem; }</style>
+
+    <sub-h3b class="reveal">Extracurricular &amp; Leadership</sub-h3b>
+    <div class="timeline" style="margin-bottom:2rem;">
+      <div class="tl-item reveal">
+        <div class="tl-date">2022 to 2023, Tsukuba, Japan</div>
+        <div class="tl-title">Vice Campus Ambassador</div>
+        <div class="tl-org">University of Tsukuba, Pakistan Student Association Japan (PSAJ)</div>
+        <div class="tl-body">Served as Vice Campus Ambassador representing the Pakistani student community at the University of Tsukuba, supporting student affairs and inter-community engagement activities.</div>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-date">2011 to 2012, Chakwal, Pakistan</div>
+        <div class="tl-title">House Captain</div>
+        <div class="tl-org">Siqarah Science College (Munara), Dar ul Irfan, Munara, Pakistan</div>
+      </div>
+    </div>
+
+    <sub-h3b class="reveal">Additional Work &amp; Industrial Experience</sub-h3b>
+    <div class="timeline">
+      <div class="tl-item reveal">
+        <div class="tl-date">Spring 2023, Tsukuba, Japan</div>
+        <div class="tl-title">Lab Management &amp; Leadership</div>
+        <div class="tl-org">Regional Hydroclimate Lab, University of Tsukuba, Japan</div>
+        <div class="tl-body">Managed laboratory meeting schedules and coordinated logistical and administrative functions within the Regional Hydroclimate Laboratory.</div>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-date">2016 to 2017, Nicosia, Cyprus</div>
+        <div class="tl-title">Class Monitor &amp; Course Assistant</div>
+        <div class="tl-org">Near East University, Nicosia, Cyprus</div>
+        <div class="tl-body">Served as class monitor and provided voluntary instructional assistance in Machine Design Courses I and II, Department of Mechanical Engineering.</div>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-date">Sep 2016, Nicosia, Cyprus</div>
+        <div class="tl-title">Research &amp; Laboratory Assistant</div>
+        <div class="tl-org">Dept. of Mechanical Engineering, Faculty of Engineering, Near East University, Cyprus</div>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-date">Oct 2016, Kyrenia, Cyprus</div>
+        <div class="tl-title">Mechanical Professional Power Plant Training</div>
+        <div class="tl-org">Cyprus Turkish Electricity Corporation (KIB-TEK), Kyrenia, Cyprus</div>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-date">Aug 2015, Nicosia, Cyprus</div>
+        <div class="tl-title">Mechanical Professional Workshop Training</div>
+        <div class="tl-org">Hakki Samil Ve Ogullari, Nicosia, Cyprus</div>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-date">Aug 2014, Lahore, Pakistan</div>
+        <div class="tl-title">Mechanical Professional Industrial Training</div>
+        <div class="tl-org">Hawks Engineering Works, Lahore, Pakistan</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 15 PICTURES -->
+  <section class="section" id="pictures">
+    <div class="section-header reveal">
+      <span class="section-number">15</span>
+      <h2 class="section-title">Pictures</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <!-- SUB-SECTION: Conferences & Presentations -->
+    <div class="pic-subsection reveal">
+      <div class="pic-sub-header">
+        <span class="pic-sub-icon"><i class="fas fa-chalkboard-teacher"></i></span>
+        <h3 class="pic-sub-title">Conferences &amp; Presentations</h3>
+      </div>
+      <div class="gallery">
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 01</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 02</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 03</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 04</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 05</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 06</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 07</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 08</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 09</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 10</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 11</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 12</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 13</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 14</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 15</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      </div>
+    </div>
+
+    <!-- SUB-SECTION: Research & Lab -->
+    <div class="pic-subsection reveal">
+      <div class="pic-sub-header">
+        <span class="pic-sub-icon"><i class="fas fa-flask"></i></span>
+        <h3 class="pic-sub-title">Research &amp; Lab</h3>
+      </div>
+      <div class="gallery">
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 01</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 02</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 03</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 04</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 05</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 06</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 07</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 08</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 09</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 10</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 11</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 12</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 13</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 14</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 15</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      </div>
+    </div>
+
+    <!-- SUB-SECTION: Academic Events & Seminars -->
+    <div class="pic-subsection reveal">
+      <div class="pic-sub-header">
+        <span class="pic-sub-icon"><i class="fas fa-university"></i></span>
+        <h3 class="pic-sub-title">Academic Events &amp; Seminars</h3>
+      </div>
+      <div class="gallery">
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 01</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 02</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 03</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 04</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 05</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 06</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 07</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 08</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 09</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 10</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 11</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 12</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 13</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 14</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 15</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      </div>
+    </div>
+
+    <!-- SUB-SECTION: Graduation & Awards -->
+    <div class="pic-subsection reveal">
+      <div class="pic-sub-header">
+        <span class="pic-sub-icon"><i class="fas fa-award"></i></span>
+        <h3 class="pic-sub-title">Graduation &amp; Awards</h3>
+      </div>
+      <div class="gallery">
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 01</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 02</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 03</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 04</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 05</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 06</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 07</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 08</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 09</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 10</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 11</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 12</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 13</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 14</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 15</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      </div>
+    </div>
+
+    <!-- SUB-SECTION: Teaching -->
+    <div class="pic-subsection reveal">
+      <div class="pic-sub-header">
+        <span class="pic-sub-icon"><i class="fas fa-chalkboard"></i></span>
+        <h3 class="pic-sub-title">Teaching</h3>
+      </div>
+      <div class="gallery">
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 01</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 02</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 03</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 04</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 05</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 06</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 07</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 08</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 09</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 10</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 11</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 12</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 13</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 14</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 15</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      </div>
+    </div>
+
+    <!-- SUB-SECTION: Social Gatherings -->
+    <div class="pic-subsection reveal">
+      <div class="pic-sub-header">
+        <span class="pic-sub-icon"><i class="fas fa-users"></i></span>
+        <h3 class="pic-sub-title">Social Gatherings</h3>
+      </div>
+      <div class="gallery">
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 01</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 02</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 03</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 04</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 05</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 06</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 07</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 08</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 09</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 10</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 11</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 12</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 13</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 14</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 15</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      </div>
+    </div>
+
+    <!-- SUB-SECTION: Travel & Fieldwork -->
+    <div class="pic-subsection reveal">
+      <div class="pic-sub-header">
+        <span class="pic-sub-icon"><i class="fas fa-globe-asia"></i></span>
+        <h3 class="pic-sub-title">Travel &amp; Fieldwork</h3>
+      </div>
+      <div class="gallery">
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 01</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 02</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 03</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 04</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 05</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 06</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 07</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 08</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 09</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 10</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 11</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 12</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 13</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 14</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-img-wrap">
+          <div style="text-align:center; padding:1rem;">
+            <div class="gallery-placeholder-icon">📸</div>
+            <div class="gallery-placeholder-text">Photo 15</div>
+          </div>
+        </div>
+        <div class="gallery-placeholder-caption">Caption / title here</div>
+      </div>
+      </div>
+    </div>
+
+    <!-- SUB-SECTION: Farewell and Welcome Parties -->
+    <div class="pic-subsection reveal">
+      <div class="pic-sub-header">
+        <span class="pic-sub-icon"><i class="fas fa-glass-cheers"></i></span>
+        <h3 class="pic-sub-title">Farewell and Welcome Parties</h3>
+      </div>
+      <div class="gallery">
+      <div class="gallery-item"><div class="gallery-img-wrap"><div style="text-align:center;padding:1rem;"><div class="gallery-placeholder-icon">📸</div><div class="gallery-placeholder-text">Photo 01</div></div></div><div class="gallery-placeholder-caption">Caption / title here</div></div>
+      <div class="gallery-item"><div class="gallery-img-wrap"><div style="text-align:center;padding:1rem;"><div class="gallery-placeholder-icon">📸</div><div class="gallery-placeholder-text">Photo 02</div></div></div><div class="gallery-placeholder-caption">Caption / title here</div></div>
+      <div class="gallery-item"><div class="gallery-img-wrap"><div style="text-align:center;padding:1rem;"><div class="gallery-placeholder-icon">📸</div><div class="gallery-placeholder-text">Photo 03</div></div></div><div class="gallery-placeholder-caption">Caption / title here</div></div>
+      <div class="gallery-item"><div class="gallery-img-wrap"><div style="text-align:center;padding:1rem;"><div class="gallery-placeholder-icon">📸</div><div class="gallery-placeholder-text">Photo 04</div></div></div><div class="gallery-placeholder-caption">Caption / title here</div></div>
+      <div class="gallery-item"><div class="gallery-img-wrap"><div style="text-align:center;padding:1rem;"><div class="gallery-placeholder-icon">📸</div><div class="gallery-placeholder-text">Photo 05</div></div></div><div class="gallery-placeholder-caption">Caption / title here</div></div>
+      <div class="gallery-item"><div class="gallery-img-wrap"><div style="text-align:center;padding:1rem;"><div class="gallery-placeholder-icon">📸</div><div class="gallery-placeholder-text">Photo 06</div></div></div><div class="gallery-placeholder-caption">Caption / title here</div></div>
+      <div class="gallery-item"><div class="gallery-img-wrap"><div style="text-align:center;padding:1rem;"><div class="gallery-placeholder-icon">📸</div><div class="gallery-placeholder-text">Photo 07</div></div></div><div class="gallery-placeholder-caption">Caption / title here</div></div>
+      <div class="gallery-item"><div class="gallery-img-wrap"><div style="text-align:center;padding:1rem;"><div class="gallery-placeholder-icon">📸</div><div class="gallery-placeholder-text">Photo 08</div></div></div><div class="gallery-placeholder-caption">Caption / title here</div></div>
+      <div class="gallery-item"><div class="gallery-img-wrap"><div style="text-align:center;padding:1rem;"><div class="gallery-placeholder-icon">📸</div><div class="gallery-placeholder-text">Photo 09</div></div></div><div class="gallery-placeholder-caption">Caption / title here</div></div>
+      <div class="gallery-item"><div class="gallery-img-wrap"><div style="text-align:center;padding:1rem;"><div class="gallery-placeholder-icon">📸</div><div class="gallery-placeholder-text">Photo 10</div></div></div><div class="gallery-placeholder-caption">Caption / title here</div></div>
+      <div class="gallery-item"><div class="gallery-img-wrap"><div style="text-align:center;padding:1rem;"><div class="gallery-placeholder-icon">📸</div><div class="gallery-placeholder-text">Photo 11</div></div></div><div class="gallery-placeholder-caption">Caption / title here</div></div>
+      <div class="gallery-item"><div class="gallery-img-wrap"><div style="text-align:center;padding:1rem;"><div class="gallery-placeholder-icon">📸</div><div class="gallery-placeholder-text">Photo 12</div></div></div><div class="gallery-placeholder-caption">Caption / title here</div></div>
+      <div class="gallery-item"><div class="gallery-img-wrap"><div style="text-align:center;padding:1rem;"><div class="gallery-placeholder-icon">📸</div><div class="gallery-placeholder-text">Photo 13</div></div></div><div class="gallery-placeholder-caption">Caption / title here</div></div>
+      <div class="gallery-item"><div class="gallery-img-wrap"><div style="text-align:center;padding:1rem;"><div class="gallery-placeholder-icon">📸</div><div class="gallery-placeholder-text">Photo 14</div></div></div><div class="gallery-placeholder-caption">Caption / title here</div></div>
+      <div class="gallery-item"><div class="gallery-img-wrap"><div style="text-align:center;padding:1rem;"><div class="gallery-placeholder-icon">📸</div><div class="gallery-placeholder-text">Photo 15</div></div></div><div class="gallery-placeholder-caption">Caption / title here</div></div>
+      </div>
+    </div>
+
+    <!-- SUB-SECTION: Miscellaneous -->
+    <div class="pic-subsection reveal">
+      <div class="pic-sub-header">
+        <span class="pic-sub-icon"><i class="fas fa-camera-retro"></i></span>
+        <h3 class="pic-sub-title">Miscellaneous</h3>
+      </div>
+      <div class="gallery">
+      <div class="gallery-item"><div class="gallery-img-wrap"><div style="text-align:center;padding:1rem;"><div class="gallery-placeholder-icon">📸</div><div class="gallery-placeholder-text">Photo 01</div></div></div><div class="gallery-placeholder-caption">Caption / title here</div></div>
+      <div class="gallery-item"><div class="gallery-img-wrap"><div style="text-align:center;padding:1rem;"><div class="gallery-placeholder-icon">📸</div><div class="gallery-placeholder-text">Photo 02</div></div></div><div class="gallery-placeholder-caption">Caption / title here</div></div>
+      <div class="gallery-item"><div class="gallery-img-wrap"><div style="text-align:center;padding:1rem;"><div class="gallery-placeholder-icon">📸</div><div class="gallery-placeholder-text">Photo 03</div></div></div><div class="gallery-placeholder-caption">Caption / title here</div></div>
+      <div class="gallery-item"><div class="gallery-img-wrap"><div style="text-align:center;padding:1rem;"><div class="gallery-placeholder-icon">📸</div><div class="gallery-placeholder-text">Photo 04</div></div></div><div class="gallery-placeholder-caption">Caption / title here</div></div>
+      <div class="gallery-item"><div class="gallery-img-wrap"><div style="text-align:center;padding:1rem;"><div class="gallery-placeholder-icon">📸</div><div class="gallery-placeholder-text">Photo 05</div></div></div><div class="gallery-placeholder-caption">Caption / title here</div></div>
+      <div class="gallery-item"><div class="gallery-img-wrap"><div style="text-align:center;padding:1rem;"><div class="gallery-placeholder-icon">📸</div><div class="gallery-placeholder-text">Photo 06</div></div></div><div class="gallery-placeholder-caption">Caption / title here</div></div>
+      <div class="gallery-item"><div class="gallery-img-wrap"><div style="text-align:center;padding:1rem;"><div class="gallery-placeholder-icon">📸</div><div class="gallery-placeholder-text">Photo 07</div></div></div><div class="gallery-placeholder-caption">Caption / title here</div></div>
+      <div class="gallery-item"><div class="gallery-img-wrap"><div style="text-align:center;padding:1rem;"><div class="gallery-placeholder-icon">📸</div><div class="gallery-placeholder-text">Photo 08</div></div></div><div class="gallery-placeholder-caption">Caption / title here</div></div>
+      <div class="gallery-item"><div class="gallery-img-wrap"><div style="text-align:center;padding:1rem;"><div class="gallery-placeholder-icon">📸</div><div class="gallery-placeholder-text">Photo 09</div></div></div><div class="gallery-placeholder-caption">Caption / title here</div></div>
+      <div class="gallery-item"><div class="gallery-img-wrap"><div style="text-align:center;padding:1rem;"><div class="gallery-placeholder-icon">📸</div><div class="gallery-placeholder-text">Photo 10</div></div></div><div class="gallery-placeholder-caption">Caption / title here</div></div>
+      <div class="gallery-item"><div class="gallery-img-wrap"><div style="text-align:center;padding:1rem;"><div class="gallery-placeholder-icon">📸</div><div class="gallery-placeholder-text">Photo 11</div></div></div><div class="gallery-placeholder-caption">Caption / title here</div></div>
+      <div class="gallery-item"><div class="gallery-img-wrap"><div style="text-align:center;padding:1rem;"><div class="gallery-placeholder-icon">📸</div><div class="gallery-placeholder-text">Photo 12</div></div></div><div class="gallery-placeholder-caption">Caption / title here</div></div>
+      <div class="gallery-item"><div class="gallery-img-wrap"><div style="text-align:center;padding:1rem;"><div class="gallery-placeholder-icon">📸</div><div class="gallery-placeholder-text">Photo 13</div></div></div><div class="gallery-placeholder-caption">Caption / title here</div></div>
+      <div class="gallery-item"><div class="gallery-img-wrap"><div style="text-align:center;padding:1rem;"><div class="gallery-placeholder-icon">📸</div><div class="gallery-placeholder-text">Photo 14</div></div></div><div class="gallery-placeholder-caption">Caption / title here</div></div>
+      <div class="gallery-item"><div class="gallery-img-wrap"><div style="text-align:center;padding:1rem;"><div class="gallery-placeholder-icon">📸</div><div class="gallery-placeholder-text">Photo 15</div></div></div><div class="gallery-placeholder-caption">Caption / title here</div></div>
+      </div>
+    </div>
+
+  </section>
+
+
+  <!-- 17 DATASETS -->
+  <section class="section" id="datasets">
+    <div class="section-header reveal">
+      <span class="section-number">17</span>
+      <h2 class="section-title">Datasets</h2>
+      <div class="section-line"></div>
+    </div>
+    <p class="text-muted mb-3 reveal" style="font-size:0.85rem;">Key datasets used in research analyses across publications. Click links to access datasets or associated documentation.</p>
+
+    <div class="dataset-grid">
+      <div class="dataset-card reveal">
+        <div class="dataset-icon">🌐</div>
+        <h4>ERA5 Reanalysis</h4>
+        <p>ECMWF's fifth-generation global atmospheric reanalysis; used for wind speed evaluation, bias correction, and climate trend analysis over South Asia.</p>
+        <a href="https://cds.climate.copernicus.eu/cdsapp#!/dataset/reanalysis-era5-single-levels" target="_blank">Access ERA5 ↗</a>
+        <div class="dataset-pub">Khan et al. (2024, 2025, 2026)</div>
+      </div>
+      <div class="dataset-card reveal">
+        <div class="dataset-icon">🌬️</div>
+        <h4>HadISD Dataset</h4>
+        <p>Met Office Hadley Centre's integrated surface database; serves as benchmark in-situ observational dataset for wind speed validation over South Asia.</p>
+        <a href="https://www.metoffice.gov.uk/hadobs/hadisd/" target="_blank">Access HadISD ↗</a>
+        <div class="dataset-pub">Khan et al. (2024, 2025)</div>
+      </div>
+      <div class="dataset-card reveal">
+        <div class="dataset-icon">🛰️</div>
+        <h4>MERRA-2</h4>
+        <p>NASA's Modern-Era Retrospective Analysis for Research and Applications, Version 2; used for multi-reanalysis wind speed comparison and benchmarking over South Asia.</p>
+        <a href="https://gmao.gsfc.nasa.gov/reanalysis/MERRA-2/" target="_blank">Access MERRA-2 ↗</a>
+        <div class="dataset-pub">Khan et al. (2025)</div>
+      </div>
+      <div class="dataset-card reveal">
+        <div class="dataset-icon">🌀</div>
+        <h4>JRA-55 Reanalysis</h4>
+        <p>The Japan Meteorological Agency's 55-year Reanalysis (JRA-55) provides long-term atmospheric data from 1958 to the present. It is used for extended wind speed trend analysis, multi-reanalysis intercomparison, and assessment of low-frequency climate variability over South Asia.</p>
+        <a href="https://jra.kishou.go.jp/JRA-55/index_en.html" target="_blank">Access JRA-55 ↗</a>
+        <div class="dataset-pub">Khan et al. (2025, 2026)</div>
+      </div>
+      <div class="dataset-card reveal">
+        <div class="dataset-icon">🌧️</div>
+        <h4>GPM-IMERG</h4>
+        <p>NASA's Global Precipitation Measurement Integrated Multi-satellitE Retrievals; applied for extreme weather event rainfall accuracy assessment in the Karakoram.</p>
+        <a href="https://gpm.nasa.gov/data/imerg" target="_blank">Access GPM-IMERG ↗</a>
+        <div class="dataset-pub">Nadeem, Dairaku, and Khan (2023)</div>
+      </div>
+      <div class="dataset-card reveal">
+        <div class="dataset-icon">🌦️</div>
+        <h4>PERSIANN-PDIR &amp; CHIRPS 2.0</h4>
+        <p>Satellite-derived precipitation datasets used alongside GPM-IMERG for rainfall accuracy benchmarking over the Karakoram Mountains, South Asia.</p>
+        <a href="https://chrsdata.eng.uci.edu/" target="_blank">Access PERSIANN ↗</a>
+        <div class="dataset-pub">Nadeem, Dairaku, and Khan (2023)</div>
+      </div>
+      <div class="dataset-card reveal">
+        <div class="dataset-icon">🌍</div>
+        <h4>CORDEX-South Asia GCM Ensemble</h4>
+        <p>Coordinated Regional Climate Downscaling Experiment ensemble simulations for South Asia; used for wind energy potential projections and model evaluation.</p>
+        <a href="https://cordex.org/data-access/" target="_blank">Access CORDEX ↗</a>
+        <div class="dataset-pub">Khan et al. (2022, 2024, 2025)</div>
+      </div>
+      <div class="dataset-card reveal">
+        <div class="dataset-icon">☀️</div>
+        <h4>Global Atlas for Renewable Energy</h4>
+        <p>IRENA's global renewable energy resource atlas used for solar and wind potential assessment with bias correction applied under climate change scenarios.</p>
+        <a href="https://globalatlas.irena.org/" target="_blank">Access Global Atlas ↗</a>
+        <div class="dataset-pub">Khan and Dairaku (2024)</div>
+      </div>
+      <div class="dataset-card reveal">
+        <div class="dataset-icon">🧊</div>
+        <h4>LMR Proxy Database</h4>
+        <p>Last Millennium Reanalysis proxy database used for paleoclimate data assimilation experiments over the Common Era (0–2005 CE).</p>
+        <a href="https://www.ncdc.noaa.gov/paleo/study/27850" target="_blank">Access LMR ↗</a>
+        <div class="dataset-pub">Chiba University Projects 1 and 3 (ongoing)</div>
+      </div>
+      <div class="dataset-card reveal">
+        <div class="dataset-icon">🌡️</div>
+        <h4>d4PDF (Large-Ensemble Simulations)</h4>
+        <p>Database for Policy Decision-Making for Future Climate Change; a high-resolution large-ensemble simulation product used for past climate reconstruction at Chiba University.</p>
+        <a href="https://www.miroc.jp/d4PDF/" target="_blank">Access d4PDF ↗</a>
+        <div class="dataset-pub">Chiba University Project 1 (ongoing)</div>
+      </div>
+      <div class="dataset-card reveal">
+        <div class="dataset-icon">📊</div>
+        <h4>CESM1 Last Millennium Ensemble (LME)</h4>
+        <p>NCAR's Community Earth System Model Last Millennium Ensemble, providing a transient, forcing-consistent background covariance structure for Common Era paleoclimate reconstruction and data assimilation experiments.</p>
+        <a href="https://gdex.ucar.edu/datasets/d651058/#" target="_blank">Access CESM1-LME ↗</a>
+        <div class="dataset-pub">Chiba University Projects 1 and 3 (ongoing)</div>
+      </div>
+      <div class="dataset-card reveal">
+        <div class="dataset-icon">📜</div>
+        <h4>PAGES Proxy Databases</h4>
+        <p>Proxy climate records compiled by the Past Global Changes (PAGES) initiative, including the PAGES 2k Consortium temperature reconstructions and related databases. Used for multi-proxy paleoclimate data assimilation and climate field reconstruction over the Common Era.</p>
+        <a href="https://pastglobalchanges.org/science/data/databases" target="_blank">Access PAGES Databases ↗</a>
+        <div class="dataset-pub">Chiba University Projects 1, 2, and 3 (ongoing)</div>
+      </div>
+      <div class="dataset-card reveal">
+        <div class="dataset-icon">🌡️</div>
+        <h4>GISTEMP v4</h4>
+        <p>NASA Goddard Institute for Space Studies (GISS) Surface Temperature Analysis, Version 4. Provides global surface temperature anomalies from 1880 to the present, combining land station and sea surface temperature records. Used for paleoclimate reanalysis benchmarking and verification.</p>
+        <a href="https://data.giss.nasa.gov/gistemp/" target="_blank">Access GISTEMP v4 ↗</a>
+        <div class="dataset-pub">Chiba University Project 2 (ongoing)</div>
+      </div>
+      <div class="dataset-card reveal">
+        <div class="dataset-icon">🌐</div>
+        <h4>Last Millennium Reanalysis (LMR)</h4>
+        <p>The Last Millennium Reanalysis (LMR) product from the University of Washington provides gridded climate reconstructions over the last two millennia using data assimilation with proxy records. Used as a reference and for comparison in paleoclimate benchmarking studies.</p>
+        <a href="https://www.atmos.uw.edu/~hakim/lmr/" target="_blank">Access LMR ↗</a>
+        <div class="dataset-pub">Chiba University Projects 2 and 3 (ongoing)</div>
+      </div>
+      <div class="dataset-card reveal">
+        <div class="dataset-icon">🌡️</div>
+        <h4>GHCN-M v4</h4>
+        <p>Global Historical Climatology Network Monthly Temperature, Version 4, from NOAA NCEI. Provides long-term land surface air temperature records from thousands of stations worldwide. Used as a primary instrumental reference for verifying paleoclimate reanalysis products.</p>
+        <a href="https://www.ncei.noaa.gov/access/metadata/landing-page/bin/iso?id=gov.noaa.ncdc:C00950" target="_blank">Access GHCN-M v4 ↗</a>
+        <div class="dataset-pub">Chiba University Project 2 (ongoing)</div>
+      </div>
+      <div class="dataset-card reveal">
+        <div class="dataset-icon">🌊</div>
+        <h4>MLOST v3.5 (NOAA Merged Land-Ocean)</h4>
+        <p>NOAA NCEI Merged Land and Ocean Surface Temperature, Version 3.5. Combines land air temperature and sea surface temperature anomaly records. Used for multi-dataset benchmarking of paleoclimate reanalysis products against instrumental observations.</p>
+        <a href="https://www.ncei.noaa.gov/access/metadata/landing-page/bin/iso?id=gov.noaa.ncdc:C00759" target="_blank">Access MLOST v3.5 ↗</a>
+        <div class="dataset-pub">Chiba University Project 2 (ongoing)</div>
+      </div>
+      <div class="dataset-card reveal">
+        <div class="dataset-icon">🌧️</div>
+        <h4>GPCC Full Data Monthly</h4>
+        <p>Global Precipitation Climatology Centre (GPCC) monthly gridded precipitation dataset, version 2022. Based on quality-controlled rain gauge records from over 85,000 stations worldwide. Used for precipitation benchmarking and hydroclimate evaluation in paleoclimate studies.</p>
+        <a href="https://opendata.dwd.de/climate_environment/GPCC/html/fulldata-monthly_v2022_doi_download.html" target="_blank">Access GPCC ↗</a>
+        <div class="dataset-pub">Chiba University Project 2 (ongoing)</div>
+      </div>
+      <div class="dataset-card reveal">
+        <div class="dataset-icon">📡</div>
+        <h4>Pakistan Meteorological Department (PMD)</h4>
+        <p>In situ surface observation records from the Pakistan Meteorological Department. Provides station-level wind speed, temperature, and precipitation data used for regional climate model evaluation and renewable energy resource assessment over Pakistan.</p>
+        <a href="https://weather.gov.pk/" target="_blank">Access PMD ↗</a>
+        <div class="dataset-pub">Khan et al. (2024, 2025, 2026)</div>
+      </div>
+      <div class="dataset-card reveal">
+        <div class="dataset-icon">🌍</div>
+        <h4>ESGF GCM Archive</h4>
+        <p>The Earth System Grid Federation (ESGF) archive hosts model output from CMIP5, CMIP6, and related intercomparison projects. Used to access global climate model (GCM) simulations for wind energy potential assessment, future projections, and dynamical downscaling experiments.</p>
+        <a href="https://metagrid.esgf-west.org/search/" target="_blank">Access ESGF ↗</a>
+        <div class="dataset-pub">Khan et al. (2022, 2024, 2025)</div>
+      </div>
+      <div class="dataset-card reveal">
+        <div class="dataset-icon">📜</div>
+        <h4>PAGES 2k Temperature v2 (2017)</h4>
+        <p>The PAGES 2k Consortium temperature reconstruction database, version 2 (2017), compiled from tree rings, corals, ice cores, sediments, and documentary records. Provides a multi-proxy network for the Common Era used in data assimilation experiments and paleoclimate benchmarking.</p>
+        <a href="https://www.ncei.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/" target="_blank">Access PAGES 2k v2 ↗</a>
+        <div class="dataset-pub">Chiba University Projects 1 and 3 (ongoing)</div>
+      </div>
+      <div class="dataset-card reveal">
+        <div class="dataset-icon">🌐</div>
+        <h4>NCEP-NCAR Reanalysis</h4>
+        <p>The NCEP-NCAR Reanalysis dataset from NOAA Physical Sciences Laboratory (PSL) provides atmospheric data from 1948 to the present. Used for long-term wind climatology analysis, model evaluation, and as a reference baseline in multi-reanalysis comparisons over South Asia.</p>
+        <a href="https://www.psl.noaa.gov/data/gridded/data.ncep.reanalysis.html" target="_blank">Access NCEP-NCAR ↗</a>
+        <div class="dataset-pub">Khan et al. (2024, 2025)</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 16 CONTACT -->
+  <section class="section" id="contact">
+    <div class="section-header reveal">
+      <span class="section-number">16</span>
+      <h2 class="section-title">Contact</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <h3>Get in Touch</h3>
+        <div class="contact-row">
+          <span class="contact-icon"><i class="fas fa-envelope"></i></span>
+          <div>
+            <div class="contact-label">Email</div>
+            <div class="contact-val"><a href="mailto:rabid609@gmail.com">rabid609@gmail.com</a></div>
+            <div class="contact-val"><a href="mailto:khan.muhammad.sa@alumni.tsukuba.ac.jp">khan.muhammad.sa@alumni.tsukuba.ac.jp</a></div>
+          </div>
+        </div>
+        <div class="contact-row">
+          <span class="contact-icon"><i class="fas fa-map-marker-alt"></i></span>
+          <div>
+            <div class="contact-label">Current Position</div>
+            <div class="contact-val">Specially Appointed Researcher<br/>Center for Environmental Remote Sensing (CEReS)<br/>Chiba University, Chiba, Japan</div>
+          </div>
+        </div>
+        <div class="contact-row">
+          <span class="contact-icon"><i class="fas fa-language"></i></span>
+          <div>
+            <div class="contact-label">Languages</div>
+            <div class="contact-val">Urdu (Native) · English (Fluent) · Turkish (Moderate) · Japanese (Basic)</div>
+          </div>
+        </div>
+      </div>
+      <div class="reveal">
+        <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:400;color:var(--offwhite);margin-bottom:1rem;">Academic Profiles</h3>
+        <div class="profiles-grid">
+          <a class="profile-link" href="https://github.com/KHANMUHAMMADABID" target="_blank"><i class="fab fa-github"></i><span class="profile-link-label">GitHub</span><span class="profile-link-arrow">↗</span></a>
+          <a class="profile-link" href="https://scholar.google.com/citations?user=exzhzZoAAAAJ&hl=en" target="_blank"><i class="fas fa-graduation-cap"></i><span class="profile-link-label">Google Scholar</span><span class="profile-link-arrow">↗</span></a>
+          <a class="profile-link" href="https://www.linkedin.com/in/muhammad-abid-khan-7305b0126/" target="_blank"><i class="fab fa-linkedin-in"></i><span class="profile-link-label">LinkedIn</span><span class="profile-link-arrow">↗</span></a>
+          <a class="profile-link" href="https://orcid.org/0000-0001-8387-1044" target="_blank"><i class="fab fa-orcid"></i><span class="profile-link-label">ORCID</span><span class="profile-link-arrow">↗</span></a>
+          <a class="profile-link" href="https://www.scopus.com/authid/detail.uri?authorId=58971467300" target="_blank"><i class="fas fa-database"></i><span class="profile-link-label">Scopus</span><span class="profile-link-arrow">↗</span></a>
+          <a class="profile-link" href="https://www.researchgate.net/profile/Muhammad-Abid-Khan" target="_blank"><i class="fab fa-researchgate"></i><span class="profile-link-label">ResearchGate</span><span class="profile-link-arrow">↗</span></a>
+          <a class="profile-link" href="https://researchmap.jp/khan-muhammad-abid" target="_blank"><i class="fas fa-map-marked-alt"></i><span class="profile-link-label">ResearchMap</span><span class="profile-link-arrow">↗</span></a>
+          <a class="profile-link" href="https://www.webofscience.com/wos/author/record/MHQ-5290-2025" target="_blank"><i class="fas fa-flask"></i><span class="profile-link-label">Web of Science</span><span class="profile-link-arrow">↗</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script>
+  // Active nav on scroll
+  const sections = document.querySelectorAll('.section');
+  const navLinks = document.querySelectorAll('nav a');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        navLinks.forEach(l => l.classList.remove('active'));
+        const a = document.querySelector(`nav a[href="#${e.target.id}"]`);
+        if (a) a.classList.add('active');
+      }
+    });
+  }, { threshold: 0.25 });
+  sections.forEach(s => obs.observe(s));
+
+  // Scroll reveal
+  const revObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); revObs.unobserve(e.target); }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => revObs.observe(el));
+
+  // Mobile sidebar
+  function toggleSidebar() { document.getElementById('sidebar').classList.toggle('open'); }
+  document.getElementById('main').addEventListener('click', () => document.getElementById('sidebar').classList.remove('open'));
+
+  // Smooth nav scroll
+  navLinks.forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      const t = document.querySelector(link.getAttribute('href'));
+      if (t) t.scrollIntoView({ behavior: 'smooth' });
+      document.getElementById('sidebar').classList.remove('open');
+    });
+  });
+
+  // Publication filter
+  function filterPubs(cat, btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('#pub-list .pub-item').forEach(item => {
+      item.style.display = (cat === 'all' || (item.dataset.cat && item.dataset.cat.includes(cat))) ? '' : 'none';
+    });
+  }
+
+  // Photo + cover fallback
+  const avatar = document.getElementById('avatar');
+  const img = new Image();
+  img.onload = () => { avatar.style.backgroundImage = "url('photo.jpg')"; avatar.textContent = ''; };
+  img.onerror = () => {};
+  img.src = 'photo.jpg';
+
+  // Cover photo
+  const coverPhoto = document.getElementById('cover-photo');
+  if (coverPhoto) {
+    const cimg = new Image();
+    cimg.onload = () => { coverPhoto.style.backgroundImage = "url('photo.jpg')"; coverPhoto.textContent = ''; };
+    cimg.onerror = () => {};
+    cimg.src = 'photo.jpg';
+  }
+</script>
+</body>
+</html>
