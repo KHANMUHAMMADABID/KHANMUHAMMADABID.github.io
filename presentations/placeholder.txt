@@ -1,1 +1,13 @@
 placeholder
+
+Rename your file to                                                   Presentation it is
+medgu2023_added_value_oral.pdf                                 MedGU 2023 Oral — Added Value
+medgu2023_hadisd_oral.pdf                                      MedGU 2023 Oral — HadISD
+medgu2022_renewable_oral.pdf                                   MedGU 2022 Oral — Renewable Energy
+ceres2025_paleoclimate_benchmarking_poster.pdf                 CEReS 2025 Poster
+cordex2023_pakistan_poster.pdf                                 CORDEX 2023 Poster — Pakistan
+cordex2023_reanalysis_poster.pdf                               CORDEX 2023 Poster — Reanalysis
+jpgu2023_reanalysis_poster.pdf                                 JpGU 2023 Poster
+agu2022_cordex_poster.pdf                                      AGU 2022 Poster — CORDEX
+agu2022_wind_energy_poster.pdf                                 AGU 2022 Poster — Wind Energy
+jpgu2021_wind_solar_poster.pdf                                 JpGU 2021 Poster
