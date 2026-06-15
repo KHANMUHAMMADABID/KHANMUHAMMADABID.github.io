@@ -177,9 +177,13 @@
     }
     .cover-overlay {
       position: absolute; inset: 0; z-index: 2;
+      display: flex; flex-direction: column;
+      justify-content: space-between;
+      padding: 2rem 3.5rem 2.5rem;
+    }
+    .cover-bottom-row {
       display: flex; flex-direction: row;
       align-items: flex-end;
-      padding: 2.5rem 3.5rem;
       gap: 2.2rem;
     }
     /* Profile photo in cover */
@@ -205,7 +209,7 @@
       font-family: 'DM Mono', monospace;
       font-size: 0.68rem; color: var(--teal2);
       letter-spacing: 0.2em; text-transform: uppercase;
-      margin-bottom: 0.45rem;
+      margin-bottom: 0;
       text-shadow: 0 1px 3px rgba(0,0,0,0.85), 0 0 14px rgba(0,0,0,0.6);
       opacity: 0; animation: fadeUp 0.7s 0.25s forwards;
     }
@@ -224,6 +228,14 @@
       font-weight: 300; letter-spacing: 0.04em;
       text-shadow: 0 1px 4px rgba(0,0,0,0.9), 0 0 16px rgba(0,0,0,0.6);
       opacity: 0; animation: fadeUp 0.7s 0.52s forwards;
+    }
+    .cover-credentials {
+      font-size: 0.78rem; color: var(--gold2);
+      font-weight: 300; letter-spacing: 0.05em;
+      margin-top: 0.35rem;
+      font-family: 'DM Mono', monospace;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.9);
+      opacity: 0; animation: fadeUp 0.7s 0.65s forwards;
     }
     .cover-bar {
       position: absolute; bottom: 0; left: 0; right: 0;
@@ -535,7 +547,7 @@
       .section { padding: 3.5rem 1.4rem 2rem; }
       .contact-grid { grid-template-columns: 1fr; }
       .main-cover { height: 220px; }
-      .cover-overlay { padding: 1.5rem; }
+      .cover-overlay { padding: 1.2rem 1.4rem 1.5rem; }
     }
   </style>
 </head>
@@ -609,13 +621,18 @@
   <!-- COVER BANNER -->
   <div class="main-cover">
     <div class="cover-overlay">
-      <div class="cover-photo-wrap">
-        <div class="cover-photo-inner" id="cover-photo">KA</div>
-      </div>
-      <div class="cover-text">
-        <div class="cover-eyebrow">Atmospheric Science | Climate Modeling | Wind Energy | Data Assimilation</div>
-        <h1 class="cover-name">Dr. Khan <em>Muhammad Abid</em></h1>
-        <div class="cover-subtitle">Specially Appointed Researcher &nbsp;&middot;&nbsp; Center for Environmental Remote Sensing, Chiba University, Japan</div>
+      <!-- Keywords — top left -->
+      <div class="cover-eyebrow">Atmospheric Science &nbsp;|&nbsp; Climate Modeling &nbsp;|&nbsp; Wind Energy &nbsp;|&nbsp; Data Assimilation</div>
+      <!-- Photo + name — bottom left -->
+      <div class="cover-bottom-row">
+        <div class="cover-photo-wrap">
+          <div class="cover-photo-inner" id="cover-photo">KA</div>
+        </div>
+        <div class="cover-text">
+          <h1 class="cover-name">Dr. Khan <em>Muhammad Abid</em></h1>
+          <div class="cover-subtitle">Specially Appointed Researcher &nbsp;&middot;&nbsp; Center for Environmental Remote Sensing, Chiba University, Japan</div>
+          <div class="cover-credentials">Ph.D., University of Tsukuba, Japan &nbsp;&middot;&nbsp; Director's Award for Academic Excellence</div>
+        </div>
       </div>
     </div>
     <div class="cover-bar"></div>
