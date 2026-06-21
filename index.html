@@ -271,8 +271,18 @@
       padding: 4rem 3.5rem 3rem;
       border-bottom: 1px solid rgba(26,107,107,0.13);
       position: relative;
+      transition: padding 0.45s ease;
     }
     .section:last-child { border-bottom: none; }
+    /* Collapsed accordion sections: minimal vertical padding so sections sit close together */
+    .accordion-section:not(.expanded) {
+      padding-top: 1.4rem;
+      padding-bottom: 1.4rem;
+    }
+    .accordion-section.expanded {
+      padding-top: 2.2rem;
+      padding-bottom: 3rem;
+    }
     .section-header {
       display: flex; align-items: baseline;
       gap: 1rem; margin-bottom: 2rem;
@@ -501,7 +511,7 @@
 
 
     /* ══ PICTURE SUBSECTIONS ══ */
-    .pic-subsection { margin-bottom: 2.5rem; }
+    .pic-subsection { margin-bottom: 0; }
     .pic-sub-header { display: flex; align-items: center; gap: 0.7rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(26,107,107,0.22); }
     .pic-sub-icon { color: var(--teal2); font-size: 1rem; width: 22px; text-align: center; }
     h3.pic-sub-title { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 400; color: var(--offwhite); }
@@ -545,9 +555,106 @@
       #sidebar.open { transform: none; }
       #main { margin-left: 0; }
       .section { padding: 3.5rem 1.4rem 2rem; }
+      .accordion-section:not(.expanded) { padding-top: 1.1rem; padding-bottom: 1.1rem; }
+      .accordion-section.expanded { padding-top: 1.8rem; padding-bottom: 2rem; }
       .contact-grid { grid-template-columns: 1fr; }
       .main-cover { height: 220px; }
       .cover-overlay { padding: 1.2rem 1.4rem 1.5rem; }
+    }
+    /* ══ ACCORDION (collapsible sections) ══ */
+    .accordion-toggle {
+      cursor: pointer;
+      user-select: none;
+      border-radius: 8px;
+      transition: background var(--trans);
+      padding: 0.5rem 0.7rem;
+      margin: -0.5rem -0.7rem 2rem -0.7rem;
+    }
+    .accordion-toggle:hover { background: rgba(26,107,107,0.08); }
+    .accordion-toggle:focus-visible { outline: 2px solid var(--teal2); outline-offset: 2px; }
+    .accordion-chevron {
+      flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      width: 30px; height: 30px; border-radius: 50%;
+      color: var(--teal2);
+      background: rgba(26,107,107,0.12);
+      border: 1px solid rgba(26,107,107,0.3);
+      transition: transform 0.35s ease, background var(--trans), color var(--trans);
+    }
+    .accordion-toggle:hover .accordion-chevron { background: rgba(26,107,107,0.25); color: var(--gold2); }
+    .accordion-toggle[aria-expanded="true"] .accordion-chevron { transform: rotate(180deg); background: rgba(201,168,76,0.16); color: var(--gold2); border-color: rgba(201,168,76,0.4); }
+    .accordion-section .section-header.accordion-toggle { margin-bottom: 0; }
+    .accordion-body {
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      transition: max-height 0.6s ease, opacity 0.4s ease, margin-top 0.45s ease;
+      margin-top: 0;
+    }
+    .accordion-section.expanded .accordion-body {
+      max-height: 20000px;
+      opacity: 1;
+      margin-top: 2rem;
+    }
+    .accordion-hint {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem; color: var(--muted);
+      letter-spacing: 0.05em;
+      margin-left: auto;
+      padding-right: 0.6rem;
+      white-space: nowrap;
+      opacity: 0.8;
+    }
+    @media (max-width: 700px) { .accordion-hint { display: none; } }
+
+    /* ══ PICTURE SUB-ACCORDION ══ */
+    .pic-accordion-toggle {
+      cursor: pointer; user-select: none;
+      border-radius: 8px;
+      transition: background var(--trans);
+      padding: 0.6rem 0.8rem;
+      margin: 0;
+    }
+    .pic-accordion-toggle:hover { background: rgba(26,107,107,0.08); }
+    .pic-accordion-toggle:focus-visible { outline: 2px solid var(--teal2); outline-offset: 2px; }
+    .pic-accordion-chevron {
+      flex-shrink: 0; margin-left: auto;
+      display: flex; align-items: center; justify-content: center;
+      width: 26px; height: 26px; border-radius: 50%;
+      color: var(--teal2);
+      background: rgba(26,107,107,0.12);
+      border: 1px solid rgba(26,107,107,0.3);
+      transition: transform 0.35s ease, background var(--trans), color var(--trans);
+    }
+    .pic-accordion-toggle:hover .pic-accordion-chevron { background: rgba(26,107,107,0.25); color: var(--gold2); }
+    .pic-accordion-toggle[aria-expanded="true"] .pic-accordion-chevron { transform: rotate(180deg); background: rgba(201,168,76,0.16); color: var(--gold2); border-color: rgba(201,168,76,0.4); }
+    .pic-accordion-body {
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease, opacity 0.4s ease;
+    }
+    .pic-subsection.expanded .pic-accordion-body {
+      max-height: 8000px;
+      opacity: 1;
+    }
+    .pic-subsection.expanded { margin-bottom: 2.2rem; }
+    .pic-subsection:not(.expanded) { margin-bottom: 0; }
+    .pic-subsection:not(.expanded) .pic-sub-header,
+    .pic-subsection:not(.expanded) .pic-accordion-toggle { margin-bottom: 0; }
+    .pic-subsection:not(.expanded) .pic-sub-header {
+      margin-bottom: 0;
+      padding-bottom: 0.6rem;
+      border-bottom: 1px solid rgba(26,107,107,0.14);
+    }
+    .pic-subsection.expanded .pic-sub-header {
+      border-bottom: 2px solid var(--gold);
+      padding-bottom: 0.7rem;
+    }
+    .pic-subsection.expanded .gallery {
+      padding-bottom: 0.4rem;
+      margin-bottom: 0.4rem;
+      border-bottom: 1px dashed rgba(201,168,76,0.3);
     }
   </style>
   <!-- Google tag (gtag.js) — Google Analytics 4
@@ -651,8 +758,7 @@
   </div>
 
   <!-- 00 HOME / ABOUT -->
-  <section class="section" id="home">
-    <div class="section-header reveal">
+  <section class="section" id="home"><div class="section-header reveal">
       <span class="section-number">00</span>
       <h2 class="section-title">About Me</h2>
       <div class="section-line"></div>
@@ -697,12 +803,15 @@
   </section>
 
   <!-- 01 RESEARCH INTERESTS -->
-  <section class="section" id="research-interests">
-    <div class="section-header reveal">
+  <section class="section accordion-section" id="research-interests">
+  <div class="section-header reveal accordion-toggle" onclick="toggleAccordion(this)" role="button" tabindex="0" aria-expanded="false">
       <span class="section-number">01</span>
       <h2 class="section-title">Research Interests</h2>
       <div class="section-line"></div>
+      <span class="accordion-chevron" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
     </div>
+    <div class="accordion-body">
+      <div class="accordion-body-inner">
     <div class="interest-grid">
       <div class="interest-card reveal">
         <span class="interest-icon">🌬️</span>
@@ -744,16 +853,21 @@
         <h3>Remote Sensing and Geospatial Analysis</h3>
         <p>Use of satellite-derived datasets and geospatial analysis tools to support climate-relevant wind energy assessment and long-term environmental monitoring at regional scales.</p>
       </div>
+    </div>      </div>
     </div>
+
   </section>
 
   <!-- 02 RESEARCH AREAS -->
-  <section class="section" id="research-areas">
-    <div class="section-header reveal">
+  <section class="section accordion-section" id="research-areas">
+  <div class="section-header reveal accordion-toggle" onclick="toggleAccordion(this)" role="button" tabindex="0" aria-expanded="false">
       <span class="section-number">02</span>
       <h2 class="section-title">Research Areas</h2>
       <div class="section-line"></div>
+      <span class="accordion-chevron" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
     </div>
+    <div class="accordion-body">
+      <div class="accordion-body-inner">
     <p class="reveal" style="font-size:0.9rem; color:#b0c4d8; line-height:1.8; border-left:2px solid var(--teal2); padding-left:1.1rem; margin-bottom:1rem;">My research addresses problems in atmospheric science, climate modeling, paleoclimate reconstruction, and renewable energy assessment, with emphasis on uncertainty quantification and physical consistency.</p>
     <div class="divider"></div>
     <div class="skills-cols reveal">
@@ -810,16 +924,21 @@
         <span class="skill-pill">Karakoram</span>
         <span class="skill-pill">Ethiopia (Hydrology)</span>
       </div>
+    </div>      </div>
     </div>
+
   </section>
 
   <!-- 04 EDUCATION -->
-  <section class="section" id="education">
-    <div class="section-header reveal">
+  <section class="section accordion-section" id="education">
+  <div class="section-header reveal accordion-toggle" onclick="toggleAccordion(this)" role="button" tabindex="0" aria-expanded="false">
       <span class="section-number">03</span>
       <h2 class="section-title">Education</h2>
       <div class="section-line"></div>
+      <span class="accordion-chevron" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
     </div>
+    <div class="accordion-body">
+      <div class="accordion-body-inner">
     <div class="timeline">
       <div class="tl-item reveal">
         <div class="tl-date">Apr 2021 to Mar 2024, Tsukuba, Japan</div>
@@ -850,16 +969,21 @@
         </div>
         <span class="tl-badge">🎖️ Certificate of High Honors · Faculty of Engineering 2016-17</span>
       </div>
+    </div>      </div>
     </div>
+
   </section>
 
   <!-- 05 RESEARCH & LECTURER HISTORY -->
-  <section class="section" id="experience">
-    <div class="section-header reveal">
+  <section class="section accordion-section" id="experience">
+  <div class="section-header reveal accordion-toggle" onclick="toggleAccordion(this)" role="button" tabindex="0" aria-expanded="false">
       <span class="section-number">04</span>
       <h2 class="section-title">Research &amp; Teaching History</h2>
       <div class="section-line"></div>
+      <span class="accordion-chevron" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
     </div>
+    <div class="accordion-body">
+      <div class="accordion-body-inner">
     <div class="timeline">
       <div class="tl-item reveal">
         <div class="tl-date">Nov 2024 to Present, Chiba, Japan</div>
@@ -901,16 +1025,21 @@
         </div>
         <div class="tl-body">Delivered undergraduate courses in mechanical and energy engineering at Near East University and the University of Kyrenia. Provided academic advising to students in the Faculty of Engineering, covering course selection and academic planning, and participated in departmental meetings for curriculum review. Co-supervised two B.Sc. graduation projects.</div>
       </div>
+    </div>      </div>
     </div>
+
   </section>
 
   <!-- 06 AWARDS -->
-  <section class="section" id="awards">
-    <div class="section-header reveal">
+  <section class="section accordion-section" id="awards">
+  <div class="section-header reveal accordion-toggle" onclick="toggleAccordion(this)" role="button" tabindex="0" aria-expanded="false">
       <span class="section-number">05</span>
       <h2 class="section-title">Awards &amp; Fellowships</h2>
       <div class="section-line"></div>
+      <span class="accordion-chevron" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
     </div>
+    <div class="accordion-body">
+      <div class="accordion-body-inner">
     <div class="awards-grid">
       <div class="award-card reveal">
         <div class="award-icon">🏆</div>
@@ -1000,16 +1129,21 @@
           <div class="award-body">Grade Award Exceptional (Provisional) and Excellent (Character), Siqarah Education System, Chakwal, Pakistan, 2007 to 2009</div>
         </div>
       </div>
+    </div>      </div>
     </div>
+
   </section>
 
   <!-- 07 PAPERS -->
-  <section class="section" id="papers">
-    <div class="section-header reveal">
+  <section class="section accordion-section" id="papers">
+  <div class="section-header reveal accordion-toggle" onclick="toggleAccordion(this)" role="button" tabindex="0" aria-expanded="false">
       <span class="section-number">06</span>
       <h2 class="section-title">Papers</h2>
       <div class="section-line"></div>
+      <span class="accordion-chevron" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
     </div>
+    <div class="accordion-body">
+      <div class="accordion-body-inner">
     <p class="text-muted mb-2 reveal" style="font-size:0.78rem;font-family:'DM Mono',monospace;">
       * Corresponding author. PDF links provide direct downloads where files are available; DOI links open the publisher record.
     </p>
@@ -1120,18 +1254,22 @@
         <div class="pub-journal">IJESRT, 7(1), 2018</div>
         <div class="pub-tags"><span class="pub-tag">ANFIS</span><span class="pub-tag">ANN</span><span class="pub-tag">Biofuel</span></div>
       </div>
+    </div>      </div>
     </div>
+
 
   </section>
 
   <!-- 08 BOOKS & CHAPTERS -->
-  <section class="section" id="books">
-    <div class="section-header reveal">
+  <section class="section accordion-section" id="books">
+  <div class="section-header reveal accordion-toggle" onclick="toggleAccordion(this)" role="button" tabindex="0" aria-expanded="false">
       <span class="section-number">07</span>
       <h2 class="section-title">Book Chapters &amp; Conference Proceedings</h2>
       <div class="section-line"></div>
+      <span class="accordion-chevron" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
     </div>
-
+    <div class="accordion-body">
+      <div class="accordion-body-inner">
     <div class="pub-item reveal">
       <div class="pub-actions">
         <a class="pub-link" href="https://doi.org/10.1007/978-3-031-86777-4_41" target="_blank">DOI ↗</a>
@@ -1184,17 +1322,21 @@
       <div class="pub-title">GPM-IMERG, PERSIANN-PDIR, and CHIRPS 2.0 Rainfall Data Accuracy Assessment for Capturing Extreme Weather Events in the Karakoram Mountains of South Asia</div>
       <div class="pub-authors">Nadeem, M. U., Dairaku, K., <strong>Khan, M. A.</strong></div>
       <div class="pub-journal">Advances in Science, Technology &amp; Innovation, Springer (Scopus indexed)</div>
+    </div>      </div>
     </div>
+
   </section>
 
   <!-- 09 PRESENTATIONS -->
-  <section class="section" id="presentations">
-    <div class="section-header reveal">
+  <section class="section accordion-section" id="presentations">
+  <div class="section-header reveal accordion-toggle" onclick="toggleAccordion(this)" role="button" tabindex="0" aria-expanded="false">
       <span class="section-number">08</span>
       <h2 class="section-title">Presentations</h2>
       <div class="section-line"></div>
+      <span class="accordion-chevron" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
     </div>
-
+    <div class="accordion-body">
+      <div class="accordion-body-inner">
     <!-- Oral Presentations sub-header -->
     <div class="pres-subhead reveal">
       <span class="pres-subhead-icon"><i class="fas fa-microphone-alt"></i></span>
@@ -1307,17 +1449,21 @@
         <div class="pres-venue">Japan Geoscience Union Meeting 2021 (JpGU 2021), Chiba, Japan</div>
         <a class="pres-pdf" href="presentations/jpgu2021_wind_solar_poster.pdf" download><i class="fas fa-file-pdf"></i> Poster PDF</a>
       </div>
+    </div>      </div>
     </div>
+
   </section>
 
   <!-- 10 TEACHING -->
-  <section class="section" id="teaching">
-    <div class="section-header reveal">
+  <section class="section accordion-section" id="teaching">
+  <div class="section-header reveal accordion-toggle" onclick="toggleAccordion(this)" role="button" tabindex="0" aria-expanded="false">
       <span class="section-number">09</span>
       <h2 class="section-title">Teaching Experience</h2>
       <div class="section-line"></div>
+      <span class="accordion-chevron" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
     </div>
-
+    <div class="accordion-body">
+      <div class="accordion-body-inner">
     <div class="reveal" style="margin-bottom:1.5rem;">
       <div class="tl-body" style="margin-bottom:0.5rem;">
         <strong style="color:var(--offwhite);">Aug 2017 to Feb 2021</strong>,&nbsp;
@@ -1363,16 +1509,21 @@
           <tr><td>24</td><td>Engineering Drawing I</td><td>Near East University<div class="teach-dept">Dept. Mechanical Eng.</div></td><td>Flipped (60/40)</td><td>2020–21/Fall</td></tr>
         </tbody>
       </table>
+    </div>      </div>
     </div>
+
   </section>
 
   <!-- 11 SKILLS -->
-  <section class="section" id="skills">
-    <div class="section-header reveal">
+  <section class="section accordion-section" id="skills">
+  <div class="section-header reveal accordion-toggle" onclick="toggleAccordion(this)" role="button" tabindex="0" aria-expanded="false">
       <span class="section-number">10</span>
       <h2 class="section-title">Technical Skills</h2>
       <div class="section-line"></div>
+      <span class="accordion-chevron" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
     </div>
+    <div class="accordion-body">
+      <div class="accordion-body-inner">
     <div class="skills-cols reveal">
       <div class="skill-group">
         <h4>Programming &amp; Analysis</h4>
@@ -1406,33 +1557,42 @@
         <span class="skill-pill">Windows / Mac / Linux</span>
         <span class="skill-pill">Mendeley</span>
       </div>
+    </div>      </div>
     </div>
+
   </section>
 
   <!-- 12 MEMBERSHIPS -->
-  <section class="section" id="memberships">
-    <div class="section-header reveal">
+  <section class="section accordion-section" id="memberships">
+  <div class="section-header reveal accordion-toggle" onclick="toggleAccordion(this)" role="button" tabindex="0" aria-expanded="false">
       <span class="section-number">11</span>
       <h2 class="section-title">Professional Memberships</h2>
       <div class="section-line"></div>
+      <span class="accordion-chevron" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
     </div>
+    <div class="accordion-body">
+      <div class="accordion-body-inner">
     <div class="awards-grid">
       <div class="award-card reveal"><div class="award-icon">🌏</div><div><div class="award-year">2024 to present</div><div class="award-title">Asia Oceania Geosciences Society (AOGS)</div></div></div>
       <div class="award-card reveal"><div class="award-icon">🌍</div><div><div class="award-year">2023 to present</div><div class="award-title">IITM Hub: International Conference on Regional Climate (ICRC-CORDEX)</div></div></div>
       <div class="award-card reveal"><div class="award-icon">🌊</div><div><div class="award-year">2022 to present</div><div class="award-title">Mediterranean Geosciences Union (MedGU)</div></div></div>
       <div class="award-card reveal"><div class="award-icon">🌐</div><div><div class="award-year">2022 to present</div><div class="award-title">American Geophysical Union (AGU)</div></div></div>
       <div class="award-card reveal"><div class="award-icon">🗾</div><div><div class="award-year">2021 to present</div><div class="award-title">Japan Geoscience Union (JpGU)</div></div></div>
+    </div>      </div>
     </div>
+
   </section>
 
   <!-- 13 ACADEMIC ACTIVITIES -->
-  <section class="section" id="activities">
-    <div class="section-header reveal">
+  <section class="section accordion-section" id="activities">
+  <div class="section-header reveal accordion-toggle" onclick="toggleAccordion(this)" role="button" tabindex="0" aria-expanded="false">
       <span class="section-number">12</span>
       <h2 class="section-title">Academic Activities</h2>
       <div class="section-line"></div>
+      <span class="accordion-chevron" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
     </div>
-
+    <div class="accordion-body">
+      <div class="accordion-body-inner">
     <style>sub-h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 400; color: var(--offwhite); display: block; margin: 0 0 0.9rem; }</style>
 
     <sub-h3 class="reveal">Editorial Board Membership</sub-h3>
@@ -1480,17 +1640,21 @@
     <div class="pub-item reveal">
       <div class="pub-title" style="font-size:0.92rem;">Dual Pipe Heat Exchanger with Varied Flow Rates and Heating Temperatures</div>
       <div class="pub-authors">Co-Supervisor · Near East University, Cyprus · Spring 2018</div>
+    </div>      </div>
     </div>
+
   </section>
 
   <!-- 14 LEADERSHIP & SERVICE -->
-  <section class="section" id="leadership">
-    <div class="section-header reveal">
+  <section class="section accordion-section" id="leadership">
+  <div class="section-header reveal accordion-toggle" onclick="toggleAccordion(this)" role="button" tabindex="0" aria-expanded="false">
       <span class="section-number">13</span>
       <h2 class="section-title">Leadership &amp; Service</h2>
       <div class="section-line"></div>
+      <span class="accordion-chevron" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
     </div>
-
+    <div class="accordion-body">
+      <div class="accordion-body-inner">
     <style>sub-h3b { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 400; color: var(--offwhite); display: block; margin: 0 0 0.9rem; }</style>
 
     <sub-h3b class="reveal">Extracurricular &amp; Leadership</sub-h3b>
@@ -1542,23 +1706,29 @@
         <div class="tl-title">Mechanical Professional Industrial Training</div>
         <div class="tl-org">Hawks Engineering Works, Lahore, Pakistan</div>
       </div>
+    </div>      </div>
     </div>
+
   </section>
 
   <!-- 15 PICTURES -->
-  <section class="section" id="pictures">
-    <div class="section-header reveal">
+  <section class="section accordion-section" id="pictures">
+  <div class="section-header reveal accordion-toggle" onclick="toggleAccordion(this)" role="button" tabindex="0" aria-expanded="false">
       <span class="section-number">14</span>
       <h2 class="section-title">Pictures</h2>
       <div class="section-line"></div>
+      <span class="accordion-chevron" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
     </div>
-
+    <div class="accordion-body">
+      <div class="accordion-body-inner">
     <!-- SUB-SECTION: Conferences & Presentations -->
     <div class="pic-subsection reveal">
-      <div class="pic-sub-header">
+      <div class="pic-sub-header pic-accordion-toggle" onclick="togglePicAccordion(this)" role="button" tabindex="0" aria-expanded="false">
         <span class="pic-sub-icon"><i class="fas fa-chalkboard-teacher"></i></span>
-        <h3 class="pic-sub-title">Conferences &amp; Presentations</h3>
+        <h3 class="pic-sub-title">Conferences & Presentations</h3>
+        <span class="pic-accordion-chevron" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
       </div>
+      <div class="pic-accordion-body">
       <div class="gallery">
       <div class="gallery-item">
         <div class="gallery-img-wrap">
@@ -1696,14 +1866,17 @@
         <div class="gallery-placeholder-caption">Caption / title here</div>
       </div>
       </div>
+          </div>
     </div>
 
     <!-- SUB-SECTION: Research & Lab -->
     <div class="pic-subsection reveal">
-      <div class="pic-sub-header">
+      <div class="pic-sub-header pic-accordion-toggle" onclick="togglePicAccordion(this)" role="button" tabindex="0" aria-expanded="false">
         <span class="pic-sub-icon"><i class="fas fa-flask"></i></span>
-        <h3 class="pic-sub-title">Research &amp; Lab</h3>
+        <h3 class="pic-sub-title">Research & Lab</h3>
+        <span class="pic-accordion-chevron" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
       </div>
+      <div class="pic-accordion-body">
       <div class="gallery">
       <div class="gallery-item">
         <div class="gallery-img-wrap">
@@ -1841,14 +2014,17 @@
         <div class="gallery-placeholder-caption">Caption / title here</div>
       </div>
       </div>
+          </div>
     </div>
 
     <!-- SUB-SECTION: Academic Events & Seminars -->
     <div class="pic-subsection reveal">
-      <div class="pic-sub-header">
+      <div class="pic-sub-header pic-accordion-toggle" onclick="togglePicAccordion(this)" role="button" tabindex="0" aria-expanded="false">
         <span class="pic-sub-icon"><i class="fas fa-university"></i></span>
-        <h3 class="pic-sub-title">Academic Events &amp; Seminars</h3>
+        <h3 class="pic-sub-title">Academic Events & Seminars</h3>
+        <span class="pic-accordion-chevron" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
       </div>
+      <div class="pic-accordion-body">
       <div class="gallery">
       <div class="gallery-item">
         <div class="gallery-img-wrap">
@@ -1986,14 +2162,17 @@
         <div class="gallery-placeholder-caption">Caption / title here</div>
       </div>
       </div>
+          </div>
     </div>
 
     <!-- SUB-SECTION: Graduation & Awards -->
     <div class="pic-subsection reveal">
-      <div class="pic-sub-header">
+      <div class="pic-sub-header pic-accordion-toggle" onclick="togglePicAccordion(this)" role="button" tabindex="0" aria-expanded="false">
         <span class="pic-sub-icon"><i class="fas fa-award"></i></span>
-        <h3 class="pic-sub-title">Graduation &amp; Awards</h3>
+        <h3 class="pic-sub-title">Graduation & Awards</h3>
+        <span class="pic-accordion-chevron" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
       </div>
+      <div class="pic-accordion-body">
       <div class="gallery">
       <div class="gallery-item">
         <div class="gallery-img-wrap">
@@ -2136,14 +2315,17 @@
         <div class="gallery-placeholder-caption">Caption / title here</div>
       </div>
       </div>
+          </div>
     </div>
 
     <!-- SUB-SECTION: Teaching -->
     <div class="pic-subsection reveal">
-      <div class="pic-sub-header">
+      <div class="pic-sub-header pic-accordion-toggle" onclick="togglePicAccordion(this)" role="button" tabindex="0" aria-expanded="false">
         <span class="pic-sub-icon"><i class="fas fa-chalkboard"></i></span>
         <h3 class="pic-sub-title">Teaching</h3>
+        <span class="pic-accordion-chevron" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
       </div>
+      <div class="pic-accordion-body">
       <div class="gallery">
       <div class="gallery-item">
         <div class="gallery-img-wrap">
@@ -2281,14 +2463,17 @@
         <div class="gallery-placeholder-caption">Caption / title here</div>
       </div>
       </div>
+          </div>
     </div>
 
     <!-- SUB-SECTION: Social Gatherings -->
     <div class="pic-subsection reveal">
-      <div class="pic-sub-header">
+      <div class="pic-sub-header pic-accordion-toggle" onclick="togglePicAccordion(this)" role="button" tabindex="0" aria-expanded="false">
         <span class="pic-sub-icon"><i class="fas fa-users"></i></span>
         <h3 class="pic-sub-title">Social Gatherings</h3>
+        <span class="pic-accordion-chevron" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
       </div>
+      <div class="pic-accordion-body">
       <div class="gallery">
       <div class="gallery-item">
         <div class="gallery-img-wrap">
@@ -2426,14 +2611,17 @@
         <div class="gallery-placeholder-caption">Caption / title here</div>
       </div>
       </div>
+          </div>
     </div>
 
     <!-- SUB-SECTION: Travel & Fieldwork -->
     <div class="pic-subsection reveal">
-      <div class="pic-sub-header">
+      <div class="pic-sub-header pic-accordion-toggle" onclick="togglePicAccordion(this)" role="button" tabindex="0" aria-expanded="false">
         <span class="pic-sub-icon"><i class="fas fa-globe-asia"></i></span>
-        <h3 class="pic-sub-title">Travel &amp; Fieldwork</h3>
+        <h3 class="pic-sub-title">Travel & Fieldwork</h3>
+        <span class="pic-accordion-chevron" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
       </div>
+      <div class="pic-accordion-body">
       <div class="gallery">
       <div class="gallery-item">
         <div class="gallery-img-wrap">
@@ -2571,15 +2759,18 @@
         <div class="gallery-placeholder-caption">Caption / title here</div>
       </div>
       </div>
+          </div>
     </div>
 
     <!-- SUB-SECTION: Farewell and Welcome Parties -->
        <!-- SUB-SECTION: Farewell and Welcome Parties -->
     <div class="pic-subsection reveal">
-      <div class="pic-sub-header">
+      <div class="pic-sub-header pic-accordion-toggle" onclick="togglePicAccordion(this)" role="button" tabindex="0" aria-expanded="false">
         <span class="pic-sub-icon"><i class="fas fa-glass-cheers"></i></span>
         <h3 class="pic-sub-title">Farewell and Welcome Parties</h3>
+        <span class="pic-accordion-chevron" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
       </div>
+      <div class="pic-accordion-body">
       <div class="gallery">
 
       <!-- Photo 01 : REAL PHOTO -->
@@ -2739,15 +2930,18 @@
       </div>
 
       </div>
+          </div>
     </div>
 
 
     <!-- SUB-SECTION: Miscellaneous -->
     <div class="pic-subsection reveal">
-      <div class="pic-sub-header">
+      <div class="pic-sub-header pic-accordion-toggle" onclick="togglePicAccordion(this)" role="button" tabindex="0" aria-expanded="false">
         <span class="pic-sub-icon"><i class="fas fa-camera-retro"></i></span>
         <h3 class="pic-sub-title">Miscellaneous</h3>
+        <span class="pic-accordion-chevron" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
       </div>
+      <div class="pic-accordion-body">
       <div class="gallery">
       <div class="gallery-item"><div class="gallery-img-wrap"><div style="text-align:center;padding:1rem;"><div class="gallery-placeholder-icon">📸</div><div class="gallery-placeholder-text">Photo 01</div></div></div><div class="gallery-placeholder-caption">Caption / title here</div></div>
       <div class="gallery-item"><div class="gallery-img-wrap"><div style="text-align:center;padding:1rem;"><div class="gallery-placeholder-icon">📸</div><div class="gallery-placeholder-text">Photo 02</div></div></div><div class="gallery-placeholder-caption">Caption / title here</div></div>
@@ -2765,18 +2959,24 @@
       <div class="gallery-item"><div class="gallery-img-wrap"><div style="text-align:center;padding:1rem;"><div class="gallery-placeholder-icon">📸</div><div class="gallery-placeholder-text">Photo 14</div></div></div><div class="gallery-placeholder-caption">Caption / title here</div></div>
       <div class="gallery-item"><div class="gallery-img-wrap"><div style="text-align:center;padding:1rem;"><div class="gallery-placeholder-icon">📸</div><div class="gallery-placeholder-text">Photo 15</div></div></div><div class="gallery-placeholder-caption">Caption / title here</div></div>
       </div>
+          </div>
+    </div>      </div>
     </div>
+
 
   </section>
 
 
   <!-- 17 DATASETS -->
-  <section class="section" id="datasets">
-    <div class="section-header reveal">
+  <section class="section accordion-section" id="datasets">
+  <div class="section-header reveal accordion-toggle" onclick="toggleAccordion(this)" role="button" tabindex="0" aria-expanded="false">
       <span class="section-number">15</span>
       <h2 class="section-title">Datasets</h2>
       <div class="section-line"></div>
+      <span class="accordion-chevron" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
     </div>
+    <div class="accordion-body">
+      <div class="accordion-body-inner">
     <p class="text-muted mb-3 reveal" style="font-size:0.85rem;">Key datasets used in research analyses across publications. Click links to access datasets or associated documentation.</p>
 
     <div class="dataset-grid">
@@ -2927,12 +3127,13 @@
         <a href="https://www.psl.noaa.gov/data/gridded/data.ncep.reanalysis.html" target="_blank">Access NCEP-NCAR ↗</a>
         <div class="dataset-pub">Khan et al. (2024, 2025)</div>
       </div>
+    </div>      </div>
     </div>
+
   </section>
 
   <!-- 16 CONTACT -->
-  <section class="section" id="contact">
-    <div class="section-header reveal">
+  <section class="section" id="contact"><div class="section-header reveal">
       <span class="section-number">16</span>
       <h2 class="section-title">Contact</h2>
       <div class="section-line"></div>
@@ -3042,6 +3243,89 @@
     cimg.onerror = () => {};
     cimg.src = 'photo.jpg';
   }
+
+  // ══ Accordion toggle — main sections ══
+  function toggleAccordion(headerEl) {
+    const section = headerEl.closest('.accordion-section');
+    const isExpanded = section.classList.contains('expanded');
+    section.classList.toggle('expanded', !isExpanded);
+    headerEl.setAttribute('aria-expanded', String(!isExpanded));
+    if (!isExpanded) {
+      // Re-trigger reveal animations for newly visible content
+      section.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+      setTimeout(() => {
+        headerEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 60);
+    }
+  }
+  // Allow keyboard activation (Enter / Space) on accordion headers
+  document.querySelectorAll('.accordion-toggle').forEach(el => {
+    el.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleAccordion(el); }
+    });
+  });
+
+  // ══ Accordion toggle — picture sub-sections (single-open) ══
+  function togglePicAccordion(headerEl) {
+    const sub = headerEl.closest('.pic-subsection');
+    const isExpanded = sub.classList.contains('expanded');
+    const allSubs = sub.closest('#pictures').querySelectorAll('.pic-subsection');
+
+    // Close every other picture subsection first
+    allSubs.forEach(s => {
+      if (s !== sub && s.classList.contains('expanded')) {
+        s.classList.remove('expanded');
+        const t = s.querySelector('.pic-accordion-toggle');
+        if (t) t.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    // Toggle the clicked one
+    sub.classList.toggle('expanded', !isExpanded);
+    headerEl.setAttribute('aria-expanded', String(!isExpanded));
+
+    if (!isExpanded) {
+      setTimeout(() => {
+        headerEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 60);
+    }
+  }
+  document.querySelectorAll('.pic-accordion-toggle').forEach(el => {
+    el.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); togglePicAccordion(el); }
+    });
+  });
+
+  // If the page loads with a #hash link pointing inside a collapsed
+  // accordion section, auto-expand that section so the link works.
+  function expandAccordionForHash() {
+    const hash = window.location.hash;
+    if (!hash) return;
+    const target = document.querySelector(hash);
+    if (!target) return;
+    const accSection = target.closest('.accordion-section');
+    if (accSection && !accSection.classList.contains('expanded')) {
+      accSection.classList.add('expanded');
+      const toggle = accSection.querySelector('.accordion-toggle');
+      if (toggle) toggle.setAttribute('aria-expanded', 'true');
+    }
+  }
+  window.addEventListener('hashchange', expandAccordionForHash);
+  expandAccordionForHash();
+
+  // When a nav link is clicked, expand the target section before scrolling
+  navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      const href = link.getAttribute('href');
+      const target = document.querySelector(href);
+      if (!target) return;
+      if (target.classList.contains('accordion-section') && !target.classList.contains('expanded')) {
+        target.classList.add('expanded');
+        const toggle = target.querySelector('.accordion-toggle');
+        if (toggle) toggle.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
 </script>
 </body>
 </html>
