@@ -3,7 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Muhammad Abid KHAN, Ph.D. | Atmospheric & Climate Scientist</title>
+  <title>Muhammad Abid KHAN, Ph.D. | Atmospheric &amp; Climate Scientist</title>
+  <meta name="description" content="Academic website of Muhammad Abid KHAN, Ph.D. Specially Appointed Researcher at Chiba University, Japan. Research in atmospheric science, climate modeling, wind energy, and data assimilation." />
+  <meta name="keywords" content="climate modeling, wind energy, data assimilation, paleoclimate, South Asia, atmospheric science, CORDEX, regional climate model, Muhammad Abid Khan" />
+  <meta name="author" content="Muhammad Abid KHAN" />
+  <meta property="og:title" content="Muhammad Abid KHAN, Ph.D. | Atmospheric &amp; Climate Scientist" />
+  <meta property="og:description" content="Specially Appointed Researcher at Chiba University, Japan. Research in atmospheric science, climate modeling, wind energy, and data assimilation." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://khanmuhammadabid.github.io/" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Muhammad Abid KHAN, Ph.D. | Atmospheric &amp; Climate Scientist" />
+  <meta name="twitter:description" content="Specially Appointed Researcher at Chiba University, Japan. Atmospheric science, wind energy, data assimilation." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
@@ -19,7 +29,7 @@
       --muted:   #8a9bb0;
       --sidebar: 290px;
       --trans:   0.3s ease;
-      --cover-h: 340px;
+      --cover-h: 400px;
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
@@ -177,10 +187,9 @@
     .main-cover::after {
       content: '';
       position: absolute; inset: 0;
-      background: linear-gradient(135deg,
-        rgba(7,16,32,0.78) 0%,
-        rgba(10,22,40,0.55) 45%,
-        rgba(7,16,32,0.85) 100%);
+      background:
+        linear-gradient(to right, rgba(7,16,32,0.92) 0%, rgba(7,16,32,0.55) 55%, rgba(7,16,32,0.72) 100%),
+        linear-gradient(to top,   rgba(7,16,32,0.88) 0%, rgba(7,16,32,0.1)  60%, transparent 100%);
     }
     .cover-overlay {
       position: absolute; inset: 0; z-index: 2;
@@ -191,7 +200,7 @@
     .cover-bottom-row {
       display: flex; flex-direction: row;
       align-items: flex-end;
-      gap: 2.2rem;
+      gap: 2rem;
     }
     /* Profile photo in cover */
     .cover-photo-wrap {
@@ -230,6 +239,7 @@
       opacity: 0; animation: fadeUp 0.7s 0.38s forwards;
     }
     .cover-name em { font-style: italic; color: var(--gold2); }
+    .cover-name-underline { display: block; width: 60px; height: 2px; background: linear-gradient(to right, var(--gold2), var(--teal2)); margin-top: 0.5rem; margin-bottom: 0.35rem; border-radius: 2px; }
     .cover-subtitle {
       font-size: 0.9rem; color: rgba(255,255,255,0.92);
       font-weight: 300; letter-spacing: 0.04em;
@@ -253,7 +263,7 @@
     .cover-portrait {
       position: absolute; right: 4rem; top: 50%; transform: translateY(-50%);
       z-index: 3;
-      opacity: 0; animation: fadeUp 0.7s 0.5s forwards;
+      display: none;
     }
     .cover-portrait-ring {
       width: 140px; height: 140px; border-radius: 50%;
@@ -275,12 +285,13 @@
 
     /* ── Sections ── */
     .section {
-      padding: 4rem 3.5rem 3rem;
+      padding: 5rem 4rem 3.5rem;
       border-bottom: 1px solid rgba(26,107,107,0.13);
       position: relative;
       transition: padding 0.45s ease;
     }
     .section:last-child { border-bottom: none; }
+    .section:nth-child(even) { background: rgba(15,32,64,0.18); }
     /* Collapsed accordion sections: minimal vertical padding so sections sit close together */
     .accordion-section:not(.expanded) {
       padding-top: 1.4rem;
@@ -292,20 +303,22 @@
     }
     .section-header {
       display: flex; align-items: baseline;
-      gap: 1rem; margin-bottom: 2rem;
+      gap: 1rem; margin-bottom: 2.2rem;
     }
     .section-number {
       font-family: 'DM Mono', monospace;
-      font-size: 0.68rem; color: var(--teal2); letter-spacing: 0.05em;
+      font-size: 0.75rem; color: var(--teal2); letter-spacing: 0.1em;
+      opacity: 0.85; font-weight: 500;
     }
     h2.section-title {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 2rem; font-weight: 300;
+      font-size: 2.2rem; font-weight: 300;
       color: var(--offwhite); letter-spacing: 0.02em;
+      text-shadow: 0 1px 12px rgba(0,0,0,0.3);
     }
     .section-line {
       flex: 1; height: 1px;
-      background: linear-gradient(to right, rgba(26,107,107,0.5), transparent);
+      background: linear-gradient(to right, var(--teal2), rgba(26,107,107,0.3) 40%, transparent);
     }
 
     /* ══ HOME ══ */
@@ -321,10 +334,10 @@
     @media (max-width: 1100px) { .home-bio { max-width: 100%; } }
     .home-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2rem; }
     .tag {
-      padding: 0.3rem 0.8rem; border-radius: 20px;
+      padding: 0.32rem 0.9rem; border-radius: 20px;
       border: 1px solid rgba(26,107,107,0.5);
       background: rgba(26,107,107,0.1);
-      color: var(--teal2); font-size: 0.73rem;
+      color: var(--teal2); font-size: 0.74rem;
       font-family: 'DM Mono', monospace;
       transition: all var(--trans);
     }
@@ -340,18 +353,19 @@
     .btn-primary:hover { background: var(--teal2); border-color: var(--teal2); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(26,107,107,0.35); }
     .btn-outline { background: transparent; color: var(--gold); border: 1px solid var(--gold); }
     .btn-outline:hover { background: rgba(201,168,76,0.1); transform: translateY(-2px); }
-    .stats-bar { display: flex; gap: 2rem; flex-wrap: wrap; padding: 1.5rem 0 0; border-top: 1px solid rgba(26,107,107,0.2); }
+    .stats-bar { display: flex; gap: 2.5rem; flex-wrap: wrap; padding: 2rem 0 0; border-top: 1px solid rgba(26,107,107,0.3); margin-top: 0.5rem; }
     .stat { text-align: left; }
-    .stat-num { font-family: 'Cormorant Garamond', serif; font-size: 1.9rem; font-weight: 600; color: var(--gold2); display: block; }
-    .stat-label { font-size: 0.65rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; font-family: 'DM Mono', monospace; }
+    .stat-num { font-family: 'Cormorant Garamond', serif; font-size: 2.4rem; font-weight: 600; color: var(--gold2); display: block; line-height: 1; }
+    .stat-label { font-size: 0.65rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; font-family: 'DM Mono', monospace; margin-top: 0.2rem; }
 
     /* ══ CARDS / GRIDS ══ */
-    .interest-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px,1fr)); gap: 1rem; }
+    .interest-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px,1fr)); gap: 1.1rem; }
     .interest-card {
       background: rgba(15,32,64,0.55);
       border: 1px solid rgba(26,107,107,0.22);
-      border-radius: 8px; padding: 1.4rem;
+      border-radius: 8px; padding: 1.5rem;
       transition: all var(--trans); position: relative; overflow: hidden;
+      border-top: 2px solid rgba(26,107,107,0.35);
     }
     .interest-card::before {
       content: ''; position: absolute; top: 0; left: 0;
@@ -359,19 +373,19 @@
       background: linear-gradient(to bottom, var(--teal2), var(--gold));
       opacity: 0; transition: opacity var(--trans);
     }
-    .interest-card:hover { border-color: rgba(26,107,107,0.55); transform: translateY(-4px); box-shadow: 0 14px 36px rgba(0,0,0,0.28); }
+    .interest-card:hover { border-color: rgba(26,107,107,0.7); border-top-color: var(--teal2); transform: translateY(-5px); box-shadow: 0 16px 40px rgba(0,0,0,0.35); }
     .interest-card:hover::before { opacity: 1; }
     .interest-icon { font-size: 1.6rem; margin-bottom: 0.7rem; display: block; }
-    .interest-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 600; color: var(--offwhite); margin-bottom: 0.4rem; }
+    .interest-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.18rem; font-weight: 600; color: var(--offwhite); margin-bottom: 0.5rem; letter-spacing: 0.01em; }
     .interest-card p { font-size: 0.79rem; color: var(--muted); line-height: 1.6; text-align: justify; }
 
     /* ══ TIMELINE ══ */
     .timeline { position: relative; padding-left: 1.8rem; }
     .timeline::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 1px; background: linear-gradient(to bottom, var(--teal2), rgba(26,107,107,0.1)); }
     .tl-item { position: relative; margin-bottom: 2.2rem; padding-left: 1.4rem; }
-    .tl-item::before { content: ''; position: absolute; left: -2.2rem; top: 0.3rem; width: 10px; height: 10px; border-radius: 50%; background: var(--teal2); border: 2px solid var(--navy); box-shadow: 0 0 0 3px rgba(34,168,168,0.2); }
+    .tl-item::before { content: ''; position: absolute; left: -2.3rem; top: 0.32rem; width: 13px; height: 13px; border-radius: 50%; background: var(--teal2); border: 2px solid var(--navy); box-shadow: 0 0 0 4px rgba(34,168,168,0.22), 0 0 12px rgba(34,168,168,0.3); }
     .tl-date { font-family: 'DM Mono', monospace; font-size: 0.65rem; color: var(--gold); letter-spacing: 0.08em; margin-bottom: 0.25rem; }
-    .tl-title { font-family: 'Cormorant Garamond', serif; font-size: 1.18rem; font-weight: 600; color: var(--offwhite); margin-bottom: 0.18rem; }
+    .tl-title { font-family: 'Cormorant Garamond', serif; font-size: 1.28rem; font-weight: 600; color: var(--offwhite); margin-bottom: 0.2rem; letter-spacing: 0.01em; }
     .tl-org { font-size: 0.82rem; color: var(--teal2); margin-bottom: 0.45rem; }
     .tl-body { font-size: 0.8rem; color: var(--muted); line-height: 1.7; text-align: justify; }
     .tl-badge { display: inline-block; padding: 0.18rem 0.55rem; border-radius: 3px; background: rgba(201,168,76,0.12); border: 1px solid rgba(201,168,76,0.3); color: var(--gold2); font-size: 0.62rem; font-family: 'DM Mono', monospace; margin-top: 0.4rem; }
@@ -386,12 +400,13 @@
     .filter-btn.active, .filter-btn:hover { background: rgba(26,107,107,0.2); color: var(--offwhite); border-color: var(--teal2); }
     .pub-item {
       background: rgba(15,32,64,0.5); border: 1px solid rgba(26,107,107,0.2);
-      border-radius: 8px; padding: 1.2rem 1.4rem;
+      border-radius: 8px; padding: 1.2rem 1.4rem 1.2rem 1.6rem;
       margin-bottom: 0.85rem; transition: all var(--trans); position: relative;
+      border-left: 3px solid rgba(26,107,107,0.25);
     }
-    .pub-item:hover { border-color: rgba(26,107,107,0.48); background: rgba(15,32,64,0.72); }
+    .pub-item:hover { border-color: rgba(26,107,107,0.48); border-left-color: var(--teal2); background: rgba(15,32,64,0.72); transform: translateX(2px); }
     .pub-num { font-family: 'DM Mono', monospace; font-size: 0.63rem; color: var(--teal2); margin-bottom: 0.28rem; }
-    .pub-title { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; font-weight: 600; color: var(--offwhite); line-height: 1.4; margin-bottom: 0.3rem; }
+    .pub-title { font-family: 'Cormorant Garamond', serif; font-size: 1.12rem; font-weight: 600; color: var(--offwhite); line-height: 1.4; margin-bottom: 0.3rem; }
     .pub-authors { font-size: 0.76rem; color: var(--muted); margin-bottom: 0.22rem; }
     .pub-authors strong { color: var(--teal2); }
     .pub-journal { font-size: 0.76rem; color: var(--gold); font-style: italic; }
@@ -403,14 +418,14 @@
     .pub-link:hover { color: var(--gold2); border-color: var(--gold2); background: rgba(201,168,76,0.08); }
 
     /* ══ DATASETS ══ */
-    .dataset-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px,1fr)); gap: 1rem; }
+    .dataset-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(310px,1fr)); gap: 1.1rem; }
     .dataset-card {
       background: rgba(15,32,64,0.5); border: 1px solid rgba(26,107,107,0.22);
       border-radius: 8px; padding: 1.2rem 1.4rem;
       transition: all var(--trans); position: relative; overflow: hidden;
     }
-    .dataset-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: linear-gradient(to right, var(--teal2), var(--gold)); opacity: 0; transition: opacity var(--trans); }
-    .dataset-card:hover { border-color: rgba(26,107,107,0.5); transform: translateY(-3px); }
+    .dataset-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: linear-gradient(to right, var(--teal2), var(--gold)); opacity: 0.3; transition: opacity var(--trans); }
+    .dataset-card:hover { border-color: rgba(26,107,107,0.55); transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.3); }
     .dataset-card:hover::before { opacity: 1; }
     .dataset-icon { font-size: 1.4rem; margin-bottom: 0.5rem; }
     .dataset-card h4 { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-weight: 600; color: var(--offwhite); margin-bottom: 0.3rem; }
@@ -421,8 +436,8 @@
 
     /* ══ AWARDS ══ */
     .awards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px,1fr)); gap: 0.9rem; }
-    .award-card { background: rgba(15,32,64,0.5); border: 1px solid rgba(26,107,107,0.2); border-radius: 8px; padding: 1.1rem 1.3rem; display: flex; gap: 0.9rem; align-items: flex-start; transition: all var(--trans); }
-    .award-card:hover { border-color: rgba(201,168,76,0.38); background: rgba(15,32,64,0.72); }
+    .award-card { background: rgba(15,32,64,0.5); border: 1px solid rgba(26,107,107,0.2); border-radius: 8px; padding: 1.1rem 1.3rem; display: flex; gap: 0.9rem; align-items: flex-start; transition: all var(--trans); border-left: 3px solid rgba(201,168,76,0.2); }
+    .award-card:hover { border-color: rgba(201,168,76,0.4); border-left-color: var(--gold); background: rgba(15,32,64,0.72); transform: translateX(2px); }
     .award-icon { font-size: 1.4rem; flex-shrink: 0; }
     .award-year { font-family: 'DM Mono', monospace; font-size: 0.62rem; color: var(--gold); margin-bottom: 0.18rem; }
     .award-title { font-size: 0.85rem; color: var(--offwhite); font-weight: 500; line-height: 1.4; }
@@ -480,7 +495,7 @@
     .profile-link-arrow { color: var(--muted); font-size: 0.75rem; }
 
     /* ══ GALLERY ══ */
-    .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px,1fr)); gap: 1rem; }
+    .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(195px,1fr)); gap: 1.1rem; }
     .gallery-item {
       background: rgba(15,32,64,0.6);
       border: 1px solid rgba(26,107,107,0.22); border-radius: 8px;
@@ -554,6 +569,7 @@
     .mt-1 { margin-top: 0.5rem; }
     .mt-2 { margin-top: 1rem; }
     sub-h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; font-weight: 400; color: var(--offwhite); display: block; margin: 1.5rem 0 0.9rem; }
+    h3.sub-heading { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; font-weight: 400; color: var(--offwhite); display: block; margin: 1.5rem 0 0.9rem; }
 
     /* ══ MOBILE ══ */
     #menu-toggle {
@@ -578,7 +594,7 @@
       .accordion-section:not(.expanded) { padding-top: 1.1rem; padding-bottom: 1.1rem; }
       .accordion-section.expanded { padding-top: 1.8rem; padding-bottom: 2rem; }
       .contact-grid { grid-template-columns: 1fr; }
-      .main-cover { height: 220px; }
+      .main-cover { height: 260px; }
       .cover-overlay { padding: 1.2rem 1.4rem 1.5rem; }
     }
     /* ══ ACCORDION (collapsible sections) ══ */
@@ -713,16 +729,23 @@
   </div>
 
   <!-- Social icons -->
-  <div class="social-row">
-    <a class="social-link" href="https://github.com/KHANMUHAMMADABID" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
-    <a class="social-link" href="https://scholar.google.com/citations?user=exzhzZoAAAAJ&hl=en" target="_blank" title="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
-    <a class="social-link" href="https://www.linkedin.com/in/muhammad-abid-khan-7305b0126/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-    <a class="social-link" href="https://orcid.org/0000-0001-8387-1044" target="_blank" title="ORCID"><i class="fab fa-orcid"></i></a>
-    <a class="social-link" href="https://www.researchgate.net/profile/Muhammad-Abid-Khan" target="_blank" title="ResearchGate"><i class="fab fa-researchgate"></i></a>
-    <a class="social-link" href="https://researchmap.jp/khan-muhammad-abid" target="_blank" title="ResearchMap"><i class="fas fa-map-marked-alt"></i></a>
-    <a class="social-link" href="https://www.scopus.com/authid/detail.uri?authorId=58971467300" target="_blank" title="Scopus"><i class="fas fa-database"></i></a>
-    <a class="social-link" href="https://www.webofscience.com/wos/author/record/MHQ-5290-2025" target="_blank" title="Web of Science"><i class="fas fa-flask"></i></a>
-    <a class="social-link" href="mailto:rabid609@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+  <div class="social-row" style="flex-direction:column; gap:0.35rem; padding:0.7rem 1rem;">
+    <div style="font-family:'DM Mono',monospace; font-size:0.55rem; color:var(--muted); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:0.1rem;">Academic Profiles</div>
+    <div style="display:flex; flex-wrap:wrap; gap:0.4rem; justify-content:center;">
+      <a class="social-link" href="https://scholar.google.com/citations?user=exzhzZoAAAAJ&hl=en" target="_blank" title="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
+      <a class="social-link" href="https://orcid.org/0000-0001-8387-1044" target="_blank" title="ORCID"><i class="fab fa-orcid"></i></a>
+      <a class="social-link" href="https://www.researchgate.net/profile/Muhammad-Abid-Khan" target="_blank" title="ResearchGate"><i class="fab fa-researchgate"></i></a>
+      <a class="social-link" href="https://www.scopus.com/authid/detail.uri?authorId=58971467300" target="_blank" title="Scopus"><i class="fas fa-database"></i></a>
+      <a class="social-link" href="https://www.webofscience.com/wos/author/record/MHQ-5290-2025" target="_blank" title="Web of Science"><i class="fas fa-flask"></i></a>
+      <a class="social-link" href="https://researchmap.jp/khan-muhammad-abid" target="_blank" title="ResearchMap"><i class="fas fa-map-marked-alt"></i></a>
+    </div>
+    <div style="height:1px; background:rgba(26,107,107,0.18); margin:0.2rem 0;"></div>
+    <div style="font-family:'DM Mono',monospace; font-size:0.55rem; color:var(--muted); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:0.1rem;">Connect</div>
+    <div style="display:flex; flex-wrap:wrap; gap:0.4rem; justify-content:center;">
+      <a class="social-link" href="https://github.com/KHANMUHAMMADABID" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+      <a class="social-link" href="https://www.linkedin.com/in/muhammad-abid-khan-7305b0126/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+      <a class="social-link" href="mailto:rabid609@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+    </div>
   </div>
 
   <nav id="nav">
@@ -767,7 +790,7 @@
   <div class="main-cover">
     <div class="cover-overlay">
       <!-- Keywords — top left -->
-      <div class="cover-eyebrow">Engineering &nbsp;|&nbsp; Atmospheric Science &nbsp;|&nbsp; Climate Modeling &nbsp;|&nbsp; Wind Energy &nbsp;|&nbsp; Data Assimilation</div>
+      <div class="cover-eyebrow"><span style="color:var(--teal2);opacity:0.6;">▸</span> &nbsp;Engineering &nbsp;<span style="opacity:0.4;">·</span>&nbsp; Atmospheric Science &nbsp;<span style="opacity:0.4;">·</span>&nbsp; Climate Modeling &nbsp;<span style="opacity:0.4;">·</span>&nbsp; Wind Energy &nbsp;<span style="opacity:0.4;">·</span>&nbsp; Data Assimilation</div>
       <!-- Photo + name — bottom left -->
       <div class="cover-bottom-row">
         <div class="cover-photo-wrap">
@@ -775,6 +798,7 @@
         </div>
         <div class="cover-text">
           <h1 class="cover-name">Muhammad Abid KHAN, Ph.D.</h1>
+          <span class="cover-name-underline"></span>
           <div class="cover-subtitle">Specially Appointed Researcher &nbsp;&middot;&nbsp; Center for Environmental Remote Sensing, Chiba University, Japan</div>
           <div class="cover-credentials">Ph.D., University of Tsukuba, Japan &nbsp;&middot;&nbsp; Director's Award for Academic Excellence</div>
         </div>
@@ -1621,7 +1645,7 @@
       <div class="accordion-body-inner">
     <style>sub-h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 400; color: var(--offwhite); display: block; margin: 0 0 0.9rem; }</style>
 
-    <sub-h3 class="reveal">Editorial Board Membership</sub-h3>
+    <h3 class="sub-heading reveal">Editorial Board Membership</h3>
     <div class="award-card reveal" style="max-width:480px; margin-bottom:1.8rem;">
       <div class="award-icon">📋</div>
       <div>
@@ -1630,7 +1654,7 @@
       </div>
     </div>
 
-    <sub-h3 class="reveal">Peer Review Service</sub-h3>
+    <h3 class="sub-heading reveal">Peer Review Service</h3>
     <div class="skills-cols reveal" style="margin-bottom:1.8rem;">
       <div class="skill-group">
         <h4>AMS Journals</h4>
@@ -1658,7 +1682,7 @@
       </div>
     </div>
 
-    <sub-h3 class="reveal">Supervision, B.Sc. Graduation Projects</sub-h3>
+    <h3 class="sub-heading reveal">Supervision, B.Sc. Graduation Projects</h3>
     <div class="pub-item reveal" style="margin-bottom:0.8rem;">
       <div class="pub-title" style="font-size:0.92rem;">Modification and Testing of a Thermosiphon-Type Solar Domestic Hot Water System</div>
       <div class="pub-authors">Co-Supervisor · Near East University, Cyprus · Fall 2018</div>
@@ -1683,7 +1707,7 @@
       <div class="accordion-body-inner">
     <style>sub-h3b { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 400; color: var(--offwhite); display: block; margin: 0 0 0.9rem; }</style>
 
-    <sub-h3b class="reveal">Extracurricular &amp; Leadership</sub-h3b>
+    <h3 class="sub-heading reveal">Extracurricular &amp; Leadership</h3>
     <div class="timeline" style="margin-bottom:2rem;">
       <div class="tl-item reveal">
         <div class="tl-date">2022 to 2023, Tsukuba, Japan</div>
@@ -1698,7 +1722,7 @@
       </div>
     </div>
 
-    <sub-h3b class="reveal">Additional Work &amp; Industrial Experience</sub-h3b>
+    <h3 class="sub-heading reveal">Additional Work &amp; Industrial Experience</h3>
     <div class="timeline">
       <div class="tl-item reveal">
         <div class="tl-date">Spring 2023, Tsukuba, Japan</div>
