@@ -178,13 +178,37 @@
     #main.sidebar-collapsed { margin-left: 0; }
 
     /* ── Cover banner (top of main) ── */
+    /* ══ CINEMATIC HERO SLIDESHOW ══ */
     .main-cover {
       width: 100%; height: var(--cover-h);
-      background: url('cover.jpg') center/cover no-repeat,
-                  linear-gradient(135deg, #0d3a4a 0%, #071020 100%);
       position: relative; overflow: hidden;
+      background: #071020;
     }
-    .main-cover::after {
+
+    /* Individual slide */
+    .slide {
+      position: absolute; inset: 0;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      opacity: 0;
+      transform: scale(1.08);
+      transition: opacity 1.4s ease-in-out;
+      will-change: opacity, transform;
+    }
+    .slide.active {
+      opacity: 1;
+      transform: scale(1);
+      transition: opacity 1.4s ease-in-out, transform 6s ease-out;
+    }
+    .slide.leaving {
+      opacity: 0;
+      transform: scale(1.05);
+      transition: opacity 1.4s ease-in-out, transform 1.4s ease-in-out;
+    }
+
+    /* Overlay on every slide — matches original */
+    .slide::after {
       content: '';
       position: absolute; inset: 0;
       background: linear-gradient(135deg,
@@ -192,6 +216,52 @@
         rgba(10,22,40,0.45) 45%,
         rgba(7,16,32,0.78) 100%);
     }
+
+    /* Dot navigation */
+    .slide-dots {
+      position: absolute; bottom: 18px; right: 24px;
+      display: flex; gap: 7px; z-index: 10;
+    }
+    .slide-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: rgba(255,255,255,0.35);
+      border: 1px solid rgba(255,255,255,0.5);
+      cursor: pointer;
+      transition: background 0.3s, transform 0.3s;
+    }
+    .slide-dot.active {
+      background: var(--gold2);
+      border-color: var(--gold2);
+      transform: scale(1.25);
+    }
+
+    /* Prev / Next arrows */
+    .slide-prev, .slide-next {
+      position: absolute; top: 50%; z-index: 10;
+      transform: translateY(-50%);
+      background: rgba(10,22,40,0.45);
+      border: 1px solid rgba(255,255,255,0.18);
+      color: rgba(255,255,255,0.75);
+      width: 36px; height: 36px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; font-size: 0.9rem;
+      transition: all 0.25s;
+    }
+    .slide-prev { left: 14px; }
+    .slide-next { right: 14px; }
+    .slide-prev:hover, .slide-next:hover {
+      background: rgba(26,107,107,0.65);
+      border-color: var(--teal2); color: #fff;
+    }
+
+    /* Slide counter */
+    .slide-counter {
+      position: absolute; top: 14px; right: 18px; z-index: 10;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem; letter-spacing: 0.1em;
+      color: rgba(255,255,255,0.5);
+    }
+    .slide-counter span { color: var(--gold2); font-weight: 500; }
     .cover-overlay {
       position: absolute; inset: 0; z-index: 2;
       display: flex; flex-direction: column;
@@ -595,7 +665,8 @@
       .accordion-section:not(.expanded) { padding-top: 1.1rem; padding-bottom: 1.1rem; }
       .accordion-section.expanded { padding-top: 1.8rem; padding-bottom: 2rem; }
       .contact-grid { grid-template-columns: 1fr; }
-      .main-cover { height: 260px; }
+      .main-cover { height: 240px; }
+      .slide-prev, .slide-next { display: none; }
       .cover-overlay { padding: 1.2rem 1.4rem 1.5rem; }
     }
     /* ══ ACCORDION (collapsible sections) ══ */
@@ -787,8 +858,64 @@
 <!-- ══════════════════ MAIN ══════════════════ -->
 <main id="main">
 
-  <!-- COVER BANNER -->
-  <div class="main-cover">
+  <!-- CINEMATIC HERO SLIDESHOW
+       ─────────────────────────────────────────────────────────────
+       FOLDER STRUCTURE ON GITHUB:
+         Your repository root:
+           KHANMUHAMMADABID.github.io/
+           └── covers/
+               ├── 1_Cover-Picture.jpg
+               ├── 2_Cover-Picture.jpg
+               ├── 3_Cover-Picture.jpg
+               ...up to...
+               └── 15_Cover-Picture.jpg
+
+       HOW TO UPLOAD:
+         1. In your GitHub repo click Add file → Upload files
+         2. In the path box type:  covers/
+         3. Upload all your cover photos renamed as above
+         4. Commit. Done — the slideshow loads them automatically.
+
+       PHOTO TIPS (for best cinematic effect):
+         • Size: 1600 × 500 px minimum (wider is fine)
+         • Landscape orientation only
+         • Good subjects: conference halls, lab equipment,
+           climate model visualisations, maps, field sites,
+           research posters, campus/university buildings
+         • Avoid photos with important detail in the
+           bottom-left quarter — your name sits there
+       ─────────────────────────────────────────────────────────────
+  -->
+  <div class="main-cover" id="heroSlideshow">
+
+    <!-- Slides — add / remove as many as you like -->
+    <div class="slide active" style="background-image:url('covers/1_Cover-Picture.jpg');"></div>
+    <div class="slide"        style="background-image:url('covers/2_Cover-Picture.jpg');"></div>
+    <div class="slide"        style="background-image:url('covers/3_Cover-Picture.jpg');"></div>
+    <div class="slide"        style="background-image:url('covers/4_Cover-Picture.jpg');"></div>
+    <div class="slide"        style="background-image:url('covers/5_Cover-Picture.jpg');"></div>
+    <div class="slide"        style="background-image:url('covers/6_Cover-Picture.jpg');"></div>
+    <div class="slide"        style="background-image:url('covers/7_Cover-Picture.jpg');"></div>
+    <div class="slide"        style="background-image:url('covers/8_Cover-Picture.jpg');"></div>
+    <div class="slide"        style="background-image:url('covers/9_Cover-Picture.jpg');"></div>
+    <div class="slide"        style="background-image:url('covers/10_Cover-Picture.jpg');"></div>
+    <div class="slide"        style="background-image:url('covers/11_Cover-Picture.jpg');"></div>
+    <div class="slide"        style="background-image:url('covers/12_Cover-Picture.jpg');"></div>
+    <div class="slide"        style="background-image:url('covers/13_Cover-Picture.jpg');"></div>
+    <div class="slide"        style="background-image:url('covers/14_Cover-Picture.jpg');"></div>
+    <div class="slide"        style="background-image:url('covers/15_Cover-Picture.jpg');"></div>
+
+    <!-- Prev / Next manual controls -->
+    <button class="slide-prev" id="slidePrev" aria-label="Previous slide">&#8249;</button>
+    <button class="slide-next" id="slideNext" aria-label="Next slide">&#8250;</button>
+
+    <!-- Slide counter — e.g. 3 / 15 -->
+    <div class="slide-counter"><span id="slideCurrentNum">1</span> / <span id="slideTotalNum">15</span></div>
+
+    <!-- Dot indicators -->
+    <div class="slide-dots" id="slideDots"></div>
+
+    <!-- Text overlay — unchanged from before -->
     <div class="cover-overlay">
       <!-- Keywords — top left -->
       <div class="cover-eyebrow"><span style="color:var(--teal2);opacity:0.6;">▸</span> &nbsp;Engineering &nbsp;<span style="opacity:0.4;">·</span>&nbsp; Atmospheric Science &nbsp;<span style="opacity:0.4;">·</span>&nbsp; Climate Modeling &nbsp;<span style="opacity:0.4;">·</span>&nbsp; Wind Energy &nbsp;<span style="opacity:0.4;">·</span>&nbsp; Data Assimilation</div>
@@ -3420,6 +3547,94 @@
       }
     });
   });
+  // ═══════════════════════════════════════════════════════════
+  //  CINEMATIC HERO SLIDESHOW
+  // ═══════════════════════════════════════════════════════════
+  (function () {
+    const hero    = document.getElementById('heroSlideshow');
+    if (!hero) return;
+
+    const slides  = Array.from(hero.querySelectorAll('.slide'));
+    const dotsEl  = document.getElementById('slideDots');
+    const prevBtn = document.getElementById('slidePrev');
+    const nextBtn = document.getElementById('slideNext');
+    const currNum = document.getElementById('slideCurrentNum');
+    const totalNum= document.getElementById('slideTotalNum');
+
+    // Remove slides whose background image is missing (graceful degradation)
+    // They stay hidden but don't break the counter
+    const TOTAL = slides.length;
+    totalNum.textContent = TOTAL;
+
+    // Build dot indicators
+    slides.forEach((_, i) => {
+      const dot = document.createElement('button');
+      dot.className = 'slide-dot' + (i === 0 ? ' active' : '');
+      dot.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+      dot.addEventListener('click', () => goTo(i));
+      dotsEl.appendChild(dot);
+    });
+
+    const dots = Array.from(dotsEl.querySelectorAll('.slide-dot'));
+    let current  = 0;
+    let timer    = null;
+    const INTERVAL = 5000;  // 5 seconds per slide
+
+    function goTo(index) {
+      // Clamp
+      index = ((index % TOTAL) + TOTAL) % TOTAL;
+
+      // Outgoing slide
+      slides[current].classList.remove('active');
+      slides[current].classList.add('leaving');
+      dots[current].classList.remove('active');
+      setTimeout(() => slides[current].classList.remove('leaving'), 1500);
+
+      current = index;
+
+      // Incoming slide
+      slides[current].classList.add('active');
+      dots[current].classList.add('active');
+      currNum.textContent = current + 1;
+    }
+
+    function next() { goTo(current + 1); }
+    function prev() { goTo(current - 1); }
+
+    function startAuto() {
+      clearInterval(timer);
+      timer = setInterval(next, INTERVAL);
+    }
+
+    // Arrow buttons
+    nextBtn.addEventListener('click', () => { next(); startAuto(); });
+    prevBtn.addEventListener('click', () => { prev(); startAuto(); });
+
+    // Pause on hover, resume on leave
+    hero.addEventListener('mouseenter', () => clearInterval(timer));
+    hero.addEventListener('mouseleave', startAuto);
+
+    // Touch swipe support (mobile)
+    let touchStartX = 0;
+    hero.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+    hero.addEventListener('touchend', e => {
+      const diff = touchStartX - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 40) { diff > 0 ? next() : prev(); startAuto(); }
+    }, { passive: true });
+
+    // Keyboard left/right when hero is in viewport
+    document.addEventListener('keydown', e => {
+      const rect = hero.getBoundingClientRect();
+      if (rect.bottom < 0 || rect.top > window.innerHeight) return;
+      if (e.key === 'ArrowRight') { next(); startAuto(); }
+      if (e.key === 'ArrowLeft')  { prev(); startAuto(); }
+    });
+
+    // Start
+    startAuto();
+  })();
+  // ═══════════════════════════════════════════════════════════
+
 </script>
 </body>
 </html>
