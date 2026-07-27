@@ -29,7 +29,7 @@
       --muted:   #8a9bb0;
       --sidebar: 290px;
       --trans:   0.3s ease;
-      --cover-h: 400px;
+      --cover-h: 560px;
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
@@ -398,11 +398,10 @@
                   radial-gradient(ellipse 40% 40% at 20% 80%, rgba(201,168,76,0.05) 0%, transparent 60%);
     }
     .home-bio {
-      max-width: min(900px, 78%); font-size: 0.95rem;
+      max-width: 100%; font-size: 0.95rem;
       line-height: 1.85; color: #b0c4d8; margin-bottom: 1.5rem;
       text-align: justify;
     }
-    @media (max-width: 1100px) { .home-bio { max-width: 100%; } }
     .home-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2rem; }
     .tag {
       padding: 0.32rem 0.9rem; border-radius: 20px;
@@ -665,7 +664,7 @@
       .accordion-section:not(.expanded) { padding-top: 1.1rem; padding-bottom: 1.1rem; }
       .accordion-section.expanded { padding-top: 1.8rem; padding-bottom: 2rem; }
       .contact-grid { grid-template-columns: 1fr; }
-      .main-cover { height: 240px; }
+      .main-cover { height: 260px; }
       .slide-prev, .slide-next { display: none; }
       .cover-overlay { padding: 1.2rem 1.4rem 1.5rem; }
     }
@@ -864,11 +863,11 @@
          Your repository root:
            KHANMUHAMMADABID.github.io/
            └── covers/
-               ├── 1_Cover-Picture.jpg
-               ├── 2_Cover-Picture.jpg
-               ├── 3_Cover-Picture.jpg
+               ├── 1_Cover-Picture.png
+               ├── 2_Cover-Picture.png
+               ├── 3_Cover-Picture.png
                ...up to...
-               └── 15_Cover-Picture.jpg
+               └── 15_Cover-Picture.png
 
        HOW TO UPLOAD:
          1. In your GitHub repo click Add file → Upload files
@@ -889,21 +888,21 @@
   <div class="main-cover" id="heroSlideshow">
 
     <!-- Slides — add / remove as many as you like -->
-    <div class="slide active" style="background-image:url('covers/1_Cover-Picture.jpg');"></div>
-    <div class="slide"        style="background-image:url('covers/2_Cover-Picture.jpg');"></div>
-    <div class="slide"        style="background-image:url('covers/3_Cover-Picture.jpg');"></div>
-    <div class="slide"        style="background-image:url('covers/4_Cover-Picture.jpg');"></div>
-    <div class="slide"        style="background-image:url('covers/5_Cover-Picture.jpg');"></div>
-    <div class="slide"        style="background-image:url('covers/6_Cover-Picture.jpg');"></div>
-    <div class="slide"        style="background-image:url('covers/7_Cover-Picture.jpg');"></div>
-    <div class="slide"        style="background-image:url('covers/8_Cover-Picture.jpg');"></div>
-    <div class="slide"        style="background-image:url('covers/9_Cover-Picture.jpg');"></div>
-    <div class="slide"        style="background-image:url('covers/10_Cover-Picture.jpg');"></div>
-    <div class="slide"        style="background-image:url('covers/11_Cover-Picture.jpg');"></div>
-    <div class="slide"        style="background-image:url('covers/12_Cover-Picture.jpg');"></div>
-    <div class="slide"        style="background-image:url('covers/13_Cover-Picture.jpg');"></div>
-    <div class="slide"        style="background-image:url('covers/14_Cover-Picture.jpg');"></div>
-    <div class="slide"        style="background-image:url('covers/15_Cover-Picture.jpg');"></div>
+    <div class="slide active" data-bg-base="covers/1_Cover-Picture" style="background-image:none;"></div>
+    <div class="slide" data-bg-base="covers/2_Cover-Picture" style="background-image:none;"></div>
+    <div class="slide" data-bg-base="covers/3_Cover-Picture" style="background-image:none;"></div>
+    <div class="slide" data-bg-base="covers/4_Cover-Picture" style="background-image:none;"></div>
+    <div class="slide" data-bg-base="covers/5_Cover-Picture" style="background-image:none;"></div>
+    <div class="slide" data-bg-base="covers/6_Cover-Picture" style="background-image:none;"></div>
+    <div class="slide" data-bg-base="covers/7_Cover-Picture" style="background-image:none;"></div>
+    <div class="slide" data-bg-base="covers/8_Cover-Picture" style="background-image:none;"></div>
+    <div class="slide" data-bg-base="covers/9_Cover-Picture" style="background-image:none;"></div>
+    <div class="slide" data-bg-base="covers/10_Cover-Picture" style="background-image:none;"></div>
+    <div class="slide" data-bg-base="covers/11_Cover-Picture" style="background-image:none;"></div>
+    <div class="slide" data-bg-base="covers/12_Cover-Picture" style="background-image:none;"></div>
+    <div class="slide" data-bg-base="covers/13_Cover-Picture" style="background-image:none;"></div>
+    <div class="slide" data-bg-base="covers/14_Cover-Picture" style="background-image:none;"></div>
+    <div class="slide" data-bg-base="covers/15_Cover-Picture" style="background-image:none;"></div>
 
     <!-- Prev / Next manual controls -->
     <button class="slide-prev" id="slidePrev" aria-label="Previous slide">&#8249;</button>
@@ -942,42 +941,42 @@
       <div class="section-line"></div>
     </div>
     <p class="home-bio reveal">
-      I am a researcher and engineer with a Ph.D. in Engineering Mechanics and Energy from the University of Tsukuba, Japan.
-      Since November 2024, I have been serving as a Specially Appointed Researcher at the Center for Environmental Remote Sensing (CEReS), Chiba University, Japan.
-      My research spans numerical climate and atmospheric modeling, wind energy resource assessment, data assimilation,
-      and paleoclimate reconstruction, with particular attention to regional and continental scales in South Asia.
-      I have worked extensively with observational, reanalysis, and high-resolution model datasets, and have applied
-      both offline and online ensemble Kalman filter methods to problems in modern climate analysis and paleoclimate reconstruction.
-      In addition to research, I have teaching and supervision experience at the undergraduate level in mechanical
-      and energy engineering, having served at Near East University and the University of Kyrenia, Cyprus.
-      I contribute to the peer review process for several international journals and serve on an editorial board.
-    </p>
-    <div class="home-tags reveal">
-      <span class="tag">Wind Energy Assessment</span>
-      <span class="tag">Climate Modeling</span>
-      <span class="tag">Regional Climate Models</span>
-      <span class="tag">Global Climate Models</span>
-      <span class="tag">Data Assimilation</span>
-      <span class="tag">Dynamical Downscaling</span>
-      <span class="tag">Statistical Downscaling</span>
-      <span class="tag">Reanalysis Products</span>
-      <span class="tag">Paleoclimate</span>
-      <span class="tag">Climate Reconstruction</span>
-      <span class="tag">Machine Learning</span>
-      <span class="tag">South Asia</span>
-    </div>
-    <div class="home-cta reveal">
-      <a class="btn btn-primary" href="#papers"><i class="fas fa-file-alt"></i> View Publications</a>
-      <a class="btn btn-outline" href="CV-KHAN_MUHAMMAD_ABID_2026.pdf" download><i class="fas fa-download"></i> Download CV</a>
-    </div>
-    <div class="stats-bar reveal">
-      <div class="stat"><span class="stat-num">8+</span><span class="stat-label">Publications</span></div>
-      <div class="stat"><span class="stat-num">10+</span><span class="stat-label">Conf. Presentations</span></div>
-      <div class="stat"><span class="stat-num">3</span><span class="stat-label">Research Positions</span></div>
-      <div class="stat"><span class="stat-num">10+</span><span class="stat-label">Journals Reviewed</span></div>
-      <div class="stat"><span class="stat-num">24+</span><span class="stat-label">Courses Taught</span></div>
-      <div class="stat"><span class="stat-num">5</span><span class="stat-label">Book Chapters</span></div>
-    </div>
+          I am a researcher and engineer with a Ph.D. in Engineering Mechanics and Energy from the University of Tsukuba, Japan.
+          Since November 2024, I have been serving as a Specially Appointed Researcher at the Center for Environmental Remote Sensing (CEReS), Chiba University, Japan.
+          My research spans numerical climate and atmospheric modeling, wind energy resource assessment, data assimilation,
+          and paleoclimate reconstruction, with particular attention to regional and continental scales in South Asia.
+          I have worked extensively with observational, reanalysis, and high-resolution model datasets, and have applied
+          both offline and online ensemble Kalman filter methods to problems in modern climate analysis and paleoclimate reconstruction.
+          In addition to research, I have teaching and supervision experience at the undergraduate level in mechanical
+          and energy engineering, having served at Near East University and the University of Kyrenia, Cyprus.
+          I contribute to the peer review process for several international journals and serve on an editorial board.
+        </p>
+        <div class="home-tags reveal">
+          <span class="tag">Wind Energy Assessment</span>
+          <span class="tag">Climate Modeling</span>
+          <span class="tag">Regional Climate Models</span>
+          <span class="tag">Global Climate Models</span>
+          <span class="tag">Data Assimilation</span>
+          <span class="tag">Dynamical Downscaling</span>
+          <span class="tag">Statistical Downscaling</span>
+          <span class="tag">Reanalysis Products</span>
+          <span class="tag">Paleoclimate</span>
+          <span class="tag">Climate Reconstruction</span>
+          <span class="tag">Machine Learning</span>
+          <span class="tag">South Asia</span>
+        </div>
+        <div class="home-cta reveal">
+          <a class="btn btn-primary" href="#papers"><i class="fas fa-file-alt"></i> View Publications</a>
+          <a class="btn btn-outline" href="CV-KHAN_MUHAMMAD_ABID_2026.pdf" download><i class="fas fa-download"></i> Download CV</a>
+        </div>
+        <div class="stats-bar reveal">
+          <div class="stat"><span class="stat-num">8+</span><span class="stat-label">Publications</span></div>
+          <div class="stat"><span class="stat-num">10+</span><span class="stat-label">Conf. Presentations</span></div>
+          <div class="stat"><span class="stat-num">3</span><span class="stat-label">Research Positions</span></div>
+          <div class="stat"><span class="stat-num">10+</span><span class="stat-label">Journals Reviewed</span></div>
+          <div class="stat"><span class="stat-num">24+</span><span class="stat-label">Courses Taught</span></div>
+          <div class="stat"><span class="stat-num">5</span><span class="stat-label">Book Chapters</span></div>
+        </div>
   </section>
 
   <!-- 01 RESEARCH INTERESTS -->
@@ -3547,6 +3546,57 @@
       }
     });
   });
+  // ═══════════════════════════════════════════════════════════
+  //  FORMAT-AGNOSTIC IMAGE LOADER
+  //  For every <img> with data-src-base attribute,
+  //  try extensions in order: jpg, png, jpeg, webp
+  //  Use whichever loads first. Works for gallery AND covers.
+  // ═══════════════════════════════════════════════════════════
+  (function () {
+    const EXTS = ['jpg', 'JPG', 'jpeg', 'JPEG', 'png', 'PNG', 'webp', 'WEBP'];
+
+    function tryLoad(img, base, i) {
+      if (i >= EXTS.length) return; // all failed — keep placeholder
+      const src = base + '.' + EXTS[i];
+      const test = new Image();
+      test.onload  = () => {
+        img.src = src;
+        img.style.opacity = '1';
+        // If it's a gallery placeholder wrap, remove the placeholder text
+        const wrap = img.closest('.gallery-img-wrap');
+        if (wrap) {
+          const ph = wrap.querySelector('.gallery-placeholder-icon, .gallery-placeholder-text');
+          if (ph) ph.style.display = 'none';
+        }
+      };
+      test.onerror = () => tryLoad(img, base, i + 1);
+      test.src = src;
+    }
+
+    // Process all images with data-src-base (gallery images)
+    document.querySelectorAll('img[data-src-base]').forEach(img => {
+      tryLoad(img, img.getAttribute('data-src-base'), 0);
+    });
+
+    // Process cover slides — try all extensions for each slide
+    document.querySelectorAll('.slide[data-bg-base]').forEach(slide => {
+      const base = slide.getAttribute('data-bg-base');
+      let found = false;
+      EXTS.forEach(ext => {
+        if (found) return;
+        const test = new Image();
+        test.onload = () => {
+          if (!found) {
+            found = true;
+            slide.style.backgroundImage = "url('" + base + '.' + ext + "')";
+          }
+        };
+        test.src = base + '.' + ext;
+      });
+    });
+  })();
+  // ═══════════════════════════════════════════════════════════
+
   // ═══════════════════════════════════════════════════════════
   //  CINEMATIC HERO SLIDESHOW
   // ═══════════════════════════════════════════════════════════
